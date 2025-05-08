@@ -3,10 +3,10 @@
 	<title>Cramik</title>
 	<subtitle></subtitle>
 	
-	<link href="https://cramik.de/feed/feed.xml" rel="self"/>
-	<link href="https://cramik.de"/>
+	<link href="https://cramik.github.io/feed/feed.xml" rel="self"/>
+	<link href="https://cramik.github.io/blog/"/>
 	<updated>2024-10-18T00:00:00+00:00</updated>
-	<id>https://cramik.de</id>
+	<id>https://cramik.github.io/blog/</id>
 	<author>
 		<name>Cramik</name>
 		<email></email>
@@ -14,9 +14,9 @@
 	
 	<entry>
 		<title>PicoCTF 2022 Wizardlike &quot;Unique Solution&quot;</title>
-		<link href="https://cramik.de/posts/picoctf-2022-wizardlike-unique/"/>
+		<link href="https://cramik.github.io/posts/picoctf-2022-wizardlike-unique/"/>
 		<updated>2023-01-16T00:00:00+00:00</updated>
-		<id>https://cramik.de/posts/picoctf-2022-wizardlike-unique/</id>
+		<id>https://cramik.github.io/posts/picoctf-2022-wizardlike-unique/</id>
 		<content type="html">
 		  &lt;p&gt;An arguably lazy solution to Wizardlike&lt;/p&gt;
 &lt;p&gt;Requirements:&lt;br&gt;
@@ -26,18 +26,18 @@ Some decompiler&lt;/p&gt;
 &lt;p&gt;I&#39;m lazy and cheat in videos games so my first intuition was to find the x and y coord values in lunar engine and set these to complete the challenges. You can do this by searching for an all type unknown value and re-searching for when you expect it to change (when you move) and when you don&#39;t expect it to change (standing still) to find the correct values. Doing this provides us with two 4 byte values at game+132F70 and game+132F74 (x, y).&lt;/p&gt;
 &lt;p&gt;However, after doing this and getting through the first couple of levels it becomes apparent that the ctf writer predicted this and made difficult to navigate levels with hidden objects to prevent this.&lt;/p&gt;
 &lt;p&gt;In order to find the hidden objects, you are expected to reverse the function for revealing hidden blocks. One way to do this is to start out by using Lunar Engine again to search for unknown value, this time being some block&#39;s visibility. I ended up finding a 4 byte value at game+136E4C.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://cramik.de/img/wizardlike-blockvisibility.webp&quot; alt=&quot;Screenshot of Lunar Engine Table&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cramik.github.io/img/wizardlike-blockvisibility.webp&quot; alt=&quot;Screenshot of Lunar Engine Table&quot;&gt;&lt;/p&gt;
 &lt;p&gt;Furthering this path, we can connect Lunar Engine&#39;s debugger via the &amp;quot;Find out what access this address&amp;quot; feature in order to find the instructions involved in revealing the block, 00402A0E for setting it to visible and 00401E82 for setting it to not visible.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://cramik.de/img/wizardlike-whataccesses.webp&quot; alt=&quot;Screenshot of the What Accesses Table&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cramik.github.io/img/wizardlike-whataccesses.webp&quot; alt=&quot;Screenshot of the What Accesses Table&quot;&gt;&lt;/p&gt;
 &lt;p&gt;From here, you can go to your decompiler in order to find the instruction at 00402A0E and the decompiled code for it. Doing this, we see that there is &amp;quot;else if&amp;quot; logic that checks whether the block is already visible and whether a function returns true. We can assume that this function likely is a check for visibility or choose to further read other parts of the code to discern the logic.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://cramik.de/img/wizardlike-ifelse.webp&quot; alt=&quot;Screenshot of the decompiled if else statement in IDA Pro&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cramik.github.io/img/wizardlike-ifelse.webp&quot; alt=&quot;Screenshot of the decompiled if else statement in IDA Pro&quot;&gt;&lt;/p&gt;
 &lt;p&gt;When we view the function, we can spot that there are only two sections where the function returns 0, making the block not visible. The instruction addresses for these two return values are 0000210A and 0000204A. We can go back to Lunar Engine, go to its Memory View, find the instruction using Ctrl+G and game+204A, and double click the instruction to patch it live with the value of 1.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://cramik.de/img/wizardlike-idareturn.webp&quot; alt=&quot;Screenshot of the return calls in IDA Pro&quot;&gt;&lt;br&gt;
-&lt;img src=&quot;https://cramik.de/img/wizardlike-patch-one.webp&quot; alt=&quot;Screenshot of finding the address in Lunar Engine&quot;&gt;&lt;br&gt;
-&lt;img src=&quot;https://cramik.de/img/wizardlike-patch-two.webp&quot; alt=&quot;Screenshot of patched code in Lunar Engine&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cramik.github.io/img/wizardlike-idareturn.webp&quot; alt=&quot;Screenshot of the return calls in IDA Pro&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/img/wizardlike-patch-one.webp&quot; alt=&quot;Screenshot of finding the address in Lunar Engine&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/img/wizardlike-patch-two.webp&quot; alt=&quot;Screenshot of patched code in Lunar Engine&quot;&gt;&lt;/p&gt;
 &lt;p&gt;Finally, we can check our work by moving around and find the entire map we are on is now visible. This allows us to go between the levels now and view the flag, picoCTF{ur_4_w1z4rd_8F4B04AE} (for an added bonus you can also find the 4 byte map value to avoid having to walk in-between levels)&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://cramik.de/img/wizardlike-level8.webp&quot; alt=&quot;Screenshot of level 8&quot;&gt;&lt;br&gt;
-&lt;img src=&quot;https://cramik.de/img/wizardlike-level2.webp&quot; alt=&quot;Screenshot of level 2&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cramik.github.io/img/wizardlike-level8.webp&quot; alt=&quot;Screenshot of level 8&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/img/wizardlike-level2.webp&quot; alt=&quot;Screenshot of level 2&quot;&gt;&lt;/p&gt;
 
 			
 		</content>
@@ -45,9 +45,9 @@ Some decompiler&lt;/p&gt;
 	
 	<entry>
 		<title>CSAW CTF 2023</title>
-		<link href="https://cramik.de/posts/csaw-ctf-2023/"/>
+		<link href="https://cramik.github.io/posts/csaw-ctf-2023/"/>
 		<updated>2023-09-15T00:00:00+00:00</updated>
-		<id>https://cramik.de/posts/csaw-ctf-2023/</id>
+		<id>https://cramik.github.io/posts/csaw-ctf-2023/</id>
 		<content type="html">
 		  
 			
@@ -56,9 +56,9 @@ Some decompiler&lt;/p&gt;
 	
 	<entry>
 		<title>Buckeye CTF 2023</title>
-		<link href="https://cramik.de/posts/buckeye-ctf-2023/"/>
+		<link href="https://cramik.github.io/posts/buckeye-ctf-2023/"/>
 		<updated>2023-10-02T00:00:00+00:00</updated>
-		<id>https://cramik.de/posts/buckeye-ctf-2023/</id>
+		<id>https://cramik.github.io/posts/buckeye-ctf-2023/</id>
 		<content type="html">
 		  &lt;h2 id=&quot;stray&quot;&gt;Stray &lt;a class=&quot;direct-link&quot; href=&quot;#stray&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I wrote down this was a javascript type pollution LFI&lt;/p&gt;
@@ -153,9 +153,9 @@ pickle.dump(test(),open(&#39;C:/Users/Cramik/Desktop/payload5.pkl&#39;,&#39;wb&#
 	
 	<entry>
 		<title>CISA ICS CTF 2024</title>
-		<link href="https://cramik.de/posts/cisa-ics-2024/"/>
+		<link href="https://cramik.github.io/posts/cisa-ics-2024/"/>
 		<updated>2024-09-01T00:00:00+00:00</updated>
-		<id>https://cramik.de/posts/cisa-ics-2024/</id>
+		<id>https://cramik.github.io/posts/cisa-ics-2024/</id>
 		<content type="html">
 		  &lt;h2 id=&quot;extend-your-stay---1&quot;&gt;Extend Your Stay - 1 &lt;a class=&quot;direct-link&quot; href=&quot;#extend-your-stay---1&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;crx files are chrome extensions that are basically just zip files. We can open it up, go to background.js and we&#39;ll see some code at the bottom:&lt;/p&gt;
@@ -344,9 +344,9 @@ print(f&amp;quot;Final string: {test_string}&amp;quot;)
 	
 	<entry>
 		<title>DEADFACE CTF 2024</title>
-		<link href="https://cramik.de/posts/deadface-ctf-2024/"/>
+		<link href="https://cramik.github.io/posts/deadface-ctf-2024/"/>
 		<updated>2024-10-18T00:00:00+00:00</updated>
-		<id>https://cramik.de/posts/deadface-ctf-2024/</id>
+		<id>https://cramik.github.io/posts/deadface-ctf-2024/</id>
 		<content type="html">
 		  &lt;p&gt;It took me like 15 minutes to figure out what CTF these notes were for because I never labelled them and half of these challenges don&#39;t show up when you google them.&lt;/p&gt;
 &lt;h2 id=&quot;something-in-the-dark&quot;&gt;Something in the Dark &lt;a class=&quot;direct-link&quot; href=&quot;#something-in-the-dark&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
