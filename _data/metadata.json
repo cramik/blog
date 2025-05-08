@@ -1,17 +1,17 @@
 {
   "title": "Cramik",
-  "url": "https://cramik.de",
-  "domain": "cramik.de",
+  "url": "https://cramik.github.io/blog/",
+  "domain": "cramik.github.io",
   "description": "",
   "genre": "Insert a schema.org genre",
   "feed": {
     "filename": "feed.xml",
     "path": "/feed/feed.xml",
-    "id": "https://cramik.de"
+    "id": "https://cramik.github.io/blog/"
   },
   "jsonfeed": {
     "path": "/feed/feed.json",
-    "url": "https://cramik.de/feed/feed.json"
+    "url": "https://cramik.github.io/blog/feed/feed.json"
   },
   "author": {
     "name": "Cramik"
