@@ -14,4 +14,74 @@
   "datePublished": "2023-09-15",
   "dateModified": "2025-05-25",
   "description": ""
+}</script><script>function patchPictureElementImagePaths() {
+    // Select all <picture> elements in the document.
+    // NodeList is like an array, so we can use forEach.
+    const pictureElements = document.querySelectorAll('picture');
+
+    console.log(`Found ${pictureElements.length} <picture> elements.`);
+
+    pictureElements.forEach((pictureElement, index) => {
+        console.log(`Processing <picture> element #${index + 1}`);
+
+        // 1. Process <source> elements within the current <picture> element.
+        // <picture> can have multiple <source> children.
+        const sourceElements = pictureElement.querySelectorAll('source');
+        
+        sourceElements.forEach(sourceElement => {
+            // Get the current srcset attribute value.
+            const currentSrcset = sourceElement.getAttribute('srcset');
+
+            // Check if srcset exists and is not empty.
+            if (currentSrcset) {
+                // Replace all occurrences of "/img/" with "/blog/img/".
+                // The 'g' flag in the regex ensures all instances are replaced,
+                // which is important for srcset attributes that can list multiple images.
+                const newSrcset = currentSrcset.replace(/\/img\//g, '/blog/img/');
+
+                // Only update if a change was actually made.
+                if (newSrcset !== currentSrcset) {
+                    sourceElement.setAttribute('srcset', newSrcset);
+                    console.log(`  Updated <source> srcset from "${currentSrcset}" to "${newSrcset}"`);
+                } else {
+                    console.log(`  <source> srcset "${currentSrcset}" did not need updating.`);
+                }
+            } else {
+                console.log('  Found a <source> element without a srcset attribute.');
+            }
+        });
+
+        // 2. Process the <img> element within the current <picture> element.
+        // A <picture> element typically has one <img> fallback child.
+        const imgElement = pictureElement.querySelector('img');
+
+        if (imgElement) {
+            // Get the current src attribute value.
+            const currentSrc = imgElement.getAttribute('src');
+
+            // Check if src exists and starts with "/img/".
+            if (currentSrc && currentSrc.startsWith('/img/')) {
+                // Replace the first occurrence of "/img/" with "/blog/img/".
+                // For 'src', which is a single URL, a simple replace is usually sufficient.
+                const newSrc = currentSrc.replace('/img/', '/blog/img/');
+                
+                imgElement.setAttribute('src', newSrc);
+                console.log(`  Updated <img> src from "${currentSrc}" to "${newSrc}"`);
+            } else if (currentSrc) {
+                console.log(`  <img> src "${currentSrc}" did not need updating or did not match criteria.`);
+            } else {
+                 console.log('  Found an <img> element without a src attribute.');
+            }
+        } else {
+            console.log('  No <img> element found in this <picture> element.');
+        }
+    });
+
+    console.log('Finished patching picture element image paths.');
+}
+
+if (document.readyState === 'loading') { // Loading hasn't finished yet
+    document.addEventListener('DOMContentLoaded', patchPictureElementImagePaths);
+} else {  // `DOMContentLoaded` has already fired
+   patchPictureElementImagePaths();
 }</script><p>Published <time datetime=2023-09-15>15 Sep 2023</time></article></main>
