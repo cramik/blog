@@ -5,7 +5,7 @@
 	
 	<link href="https://cramik.github.io/blog/feed/feed.xml" rel="self"/>
 	<link href="https://cramik.github.io/blog/"/>
-	<updated>2024-10-18T00:00:00+00:00</updated>
+	<updated>2025-05-25T00:00:00+00:00</updated>
 	<id>https://cramik.github.io/blog/</id>
 	<author>
 		<name>Cramik</name>
@@ -493,6 +493,178 @@ a=remote(&amp;quot;147.182.245.126&amp;quot;,&amp;quot;33001&amp;quot;);b=a.recv
 &lt;h2 id=&quot;is-this-vul-ner-ble%3F&quot;&gt;Is This Vul-ner-ble? &lt;a class=&quot;direct-link&quot; href=&quot;#is-this-vul-ner-ble%3F&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;pre&gt;&lt;code&gt;hashcat -m 16500 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsIm5vbmNlIjoiIn0.eyJpc3MiOiJ0dXJib3RhY3RpY2FsLm5ldCIsImV4cCI6IjE0NTA2NTkxMDIiLCJ1cG4iOiJjZm9kZXJhIiwiZnVsbF9uYW1lIjoiQ2xhaXIgRm9kZXJhIiwidXNlcm5hbWUiOiJDRm9kZXJhOTEiLCJwaG9uZV9udW1iZXIiOiIiLCJqdGkiOiJmdGlkMjM0MmEtMzI0M2QtMjM0My1kMzR5OHlnZmZlIiwic3R1ZmYiOjExMjIyLCJncm91cHMiOlsibG93X2FkbWluIiwicmVtb3RlX3VzZXIiLCJsYWJ0ZWNoIl0sIm9yZyI6IlR1cmJvVGFjdGljYWwiLCJzdWJfb3JnIjoiR3JvdXBfRCIsIm5idCI6NTc1NDczNzU0ODI5NTI3NTAwMDAsImxkZV9zIjpbeyJhc3RhdHVzIjoibnVsbCIsImJzdGF0dXMiOiJudWxsIiwiY3N0YXR1cyI6InZhbGlkIiwiZHN0YXR1cyI6Im51bGwifV19.kQKRFPLj_SqVeEiBjfKi7FKOEVoV71JgdFRxDTjp7TQ fasttrack.txt
 &lt;/code&gt;&lt;/pre&gt;
+
+			
+		</content>
+	</entry>
+	
+	<entry>
+		<title>LayerOne CTF 2025</title>
+		<link href="https://cramik.github.io/blog/posts/layerone-ctf-2025/"/>
+		<updated>2025-05-25T00:00:00+00:00</updated>
+		<id>https://cramik.github.io/blog/posts/layerone-ctf-2025/</id>
+		<content type="html">
+		  &lt;h2 id=&quot;out-of-frame&quot;&gt;Out of Frame &lt;a class=&quot;direct-link&quot; href=&quot;#out-of-frame&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Binary Eye handles this one very easily&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/blog/img/61d4b2e616f86af4b632cec3e691f74a.png&quot; alt=&quot;61d4b2e616f86af4b632cec3e691f74a.png&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;flag-hunting&quot;&gt;Flag Hunting &lt;a class=&quot;direct-link&quot; href=&quot;#flag-hunting&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Open in wireshark, sort by HTTP, see &amp;quot;flag.txt&amp;quot;, copy text&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/blog/img/150d1e335fa8f1059ad48c9da452a137.png&quot; alt=&quot;150d1e335fa8f1059ad48c9da452a137.png&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;secret-file-1&quot;&gt;Secret File 1 &lt;a class=&quot;direct-link&quot; href=&quot;#secret-file-1&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;┌──(cramik㉿Android)-[/mnt/c/users/cramik/downloads]
+└─$ pdf2john secret.pdf
+secret.pdf:$pdf$5*6*256*-4*1*16*e43d2d0f128345ae81f6c688ecac2b35*48*89a68ba2b7c26dbcfe3f952e53c835a6f92bbf6840229620adacc247fb295302cddc27aaa02dd18245323ab714c349c5*48*50ac35ca7f0844156dec1333a5ec762749f3d5daf7c0e12f21beb36a715687e71a24aeba62041b0345f1f0449dbc9a8b*32*108ab1c0bb3c5d999b04eacee2469554e35a616eaaef72ac869a2e4f8a1ef6bb*32*6460f87b24048e8dcfbfa5d6e7e7becb01ae3c80784cb8c66102fb011a969255
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;C:&#92;Users&#92;Cramik&#92;Desktop&#92;SecTools&#92;hashcat&amp;gt;hashcat -m 10700 secret.pdf.txt wordlists/rockyou.txt&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$pdf$5*6*256*-4*1*16*e43d2d0f128345ae81f6c688ecac2b35*48*89a68ba2b7c26dbcfe3f952e53c835a6f92bbf6840229620adacc247fb295302cddc27aaa02dd18245323ab714c349c5*48*50ac35ca7f0844156dec1333a5ec762749f3d5daf7c0e12f21beb36a715687e71a24aeba62041b0345f1f0449dbc9a8b*32*108ab1c0bb3c5d999b04eacee2469554e35a616eaaef72ac869a2e4f8a1ef6bb*32*6460f87b24048e8dcfbfa5d6e7e7becb01ae3c80784cb8c66102fb011a969255:licenciada&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Open pdf, use password, copy invisible text&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/blog/img/242231ab48109af05bc42873d86fd1c5.png&quot; alt=&quot;242231ab48109af05bc42873d86fd1c5.png&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;barbie&#39;s-cave-adventure&quot;&gt;Barbie&#39;s Cave Adventure &lt;a class=&quot;direct-link&quot; href=&quot;#barbie&#39;s-cave-adventure&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The image has a cave with a dancing man cipher on the wall, dcode has a translator for this cipher &lt;a href=&quot;https://www.dcode.fr/dancing-men-cipher&quot;&gt;https://www.dcode.fr/dancing-men-cipher&lt;/a&gt;&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/blog/img/8bf509e3ae1fede99cdc292091d08951.png&quot; alt=&quot;8bf509e3ae1fede99cdc292091d08951.png&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;piercing-secrets&quot;&gt;Piercing Secrets &lt;a class=&quot;direct-link&quot; href=&quot;#piercing-secrets&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Upload image to aperisolve, aperisolve did steghide and found Daggers.png&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/blog/img/d17e41c3351c8642227e77d5c3289e36.png&quot; alt=&quot;d17e41c3351c8642227e77d5c3289e36.png&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/blog/img/cb770a2bbb3118c52080857ad29659cb.png&quot; alt=&quot;cb770a2bbb3118c52080857ad29659cb.png&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;barbie&#39;s-mysterious-sound&quot;&gt;Barbie&#39;s Mysterious Sound &lt;a class=&quot;direct-link&quot; href=&quot;#barbie&#39;s-mysterious-sound&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;There&#39;s a small bit of morse code in the middle of the audio, extract it with audacity.&lt;br&gt;
+I had difficulties getting the normal &amp;quot;Morse Code Adaptive Audio Decoder&amp;quot; to work so I went with &lt;a href=&quot;https://morsefm.com/&quot;&gt;https://morsefm.com/&lt;/a&gt;&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/blog/img/74f3e999420bae366a39164523ff3cdc.png&quot; alt=&quot;74f3e999420bae366a39164523ff3cdc.png&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;examsploit&quot;&gt;Examsploit &lt;a class=&quot;direct-link&quot; href=&quot;#examsploit&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Modify the correct count in the /api/submit_exam request&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/blog/img/fe0867f6cdafe9c9827b7ef3424d3227.png&quot; alt=&quot;fe0867f6cdafe9c9827b7ef3424d3227.png&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;echoes-of-gunaa&quot;&gt;Echoes Of Gunaa &lt;a class=&quot;direct-link&quot; href=&quot;#echoes-of-gunaa&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;AHA music chrome extension -&amp;gt; &lt;a href=&quot;https://www.aha-music.com/7c53e604a07b928a0db65fcb437ef406?title=Kanmani%20Anbodu%20Kadhalan%20%28From%20%22Guna%22%29&amp;amp;artist=Kamal%20Haasan%2FVaali%2FS.%20Janaki%2FIlaiyaraaja&quot;&gt;https://www.aha-music.com/7c53e604a07b928a0db65fcb437ef406?title=Kanmani Anbodu Kadhalan (From &amp;quot;Guna&amp;quot;)&amp;amp;artist=Kamal Haasan%2FVaali%2FS. Janaki%2FIlaiyaraaja&lt;/a&gt; -&amp;gt; &lt;a href=&quot;https://en.wikipedia.org/wiki/Kanmani_Anbodu_Kadhalan&quot;&gt;https://en.wikipedia.org/wiki/Kanmani_Anbodu_Kadhalan&lt;/a&gt; -&amp;gt; &lt;a href=&quot;https://en.wikipedia.org/wiki/Guna_Caves&quot;&gt;https://en.wikipedia.org/wiki/Guna_Caves&lt;/a&gt; -&amp;gt; flag{GunaCaves_10.21_77.46}&lt;/p&gt;
+&lt;h2 id=&quot;operation-silent-web&quot;&gt;Operation Silent Web &lt;a class=&quot;direct-link&quot; href=&quot;#operation-silent-web&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&amp;quot;Specter&amp;quot; &amp;quot;2216&amp;quot;&lt;br&gt;
+&lt;a href=&quot;https://www.instagram.com/specter_._2216&quot;&gt;https://www.instagram.com/specter_._2216&lt;/a&gt;&lt;br&gt;
+&amp;quot;Shadows on Familiar Grounds&amp;quot;&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/blog/img/b0840a6d241acab728c3e8301672e7ca.png&quot; alt=&quot;b0840a6d241acab728c3e8301672e7ca.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.instagram.com/p/DI7R3wyTHjA/&quot;&gt;https://www.instagram.com/p/DI7R3wyTHjA/&lt;/a&gt;&lt;br&gt;
+#PasswordHere&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/blog/img/37eedcb4233abd4dbd9673bae9829821.png&quot; alt=&quot;37eedcb4233abd4dbd9673bae9829821.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&amp;quot;To unlock the secrets hidden in plain sight, shift your focus 22 steps back from where &#39;A&#39; begins. A simple code, but only for those who can decode the past.&lt;/p&gt;
+&lt;p&gt;dpplo://sss.hejgazej.yki/ej/olaypan-odwzkso-1833x1363?qpi_okqnya=odwna&amp;amp;qpi_ywilwecj=odwna_rew&amp;amp;qpi_ykjpajp=lnkbeha&amp;amp;qpi_iazeqi=wjznkez_wll&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://cyberchef.io/#recipe=ROT13%28true,true,false,-22%29&amp;amp;input=ZHBwbG86Ly9zc3MuaGVqZ2F6ZWoueWtpL2VqL29sYXlwYW4tb2R3emtzby0xODMzeDEzNjM/cXBpX29rcW55YT1vZHduYSZxcGlfeXdpbHdlY2o9b2R3bmFfcmV3JnFwaV95a2pwYWpwPWxua2JlaGEmcXBpX2lhemVxaT13anpua2V6X3dsbA&quot; title=&quot;https://cyberchef.io/#recipe=ROT13(true,true,false,-22)&amp;amp;input=ZHBwbG86Ly9zc3MuaGVqZ2F6ZWoueWtpL2VqL29sYXlwYW4tb2R3emtzby0xODMzeDEzNjM/cXBpX29rcW55YT1vZHduYSZxcGlfeXdpbHdlY2o9b2R3bmFfcmV3JnFwaV95a2pwYWpwPWxua2JlaGEmcXBpX2lhemVxaT13anpua2V6X3dsbA&quot;&gt;https://cyberchef.io/#recipe=ROT13(true,true,false,-22)&amp;amp;input=ZHBwbG86Ly9zc3MuaGVqZ2F6ZWoueWtpL2VqL29sYXlwYW4tb2R3emtzby0xODMzeDEzNjM/cXBpX29rcW55YT1vZHduYSZxcGlfeXdpbHdlY2o9b2R3bmFfcmV3JnFwaV95a2pwYWpwPWxua2JlaGEmcXBpX2lhemVxaT13anpua2V6X3dsbA&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.linkedin.com/in/specter-shadows-1833b1363?utm_source=share&amp;amp;utm_campaign=share_via&amp;amp;utm_content=profile&amp;amp;utm_medium=android_app&quot;&gt;https://www.linkedin.com/in/specter-shadows-1833b1363?utm_source=share&amp;amp;utm_campaign=share_via&amp;amp;utm_content=profile&amp;amp;utm_medium=android_app&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cramik.github.io/blog/img/52373341c548c1cff683953718093243.png&quot; alt=&quot;52373341c548c1cff683953718093243.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://cyberchef.io/#recipe=From_Base64%28%27A-Za-z0-9%2B/%3D%27,true%29&amp;amp;input=Wm14aFozdG9hV2xmYVcxZmMzQmxZM1JsY2w5dWFXTmxYM1J2WDIxbFpYUmZlVzkxWDJGc2JIMD0&quot; title=&quot;https://cyberchef.io/#recipe=From_Base64(&#39;A-Za-z0-9%2B/%3D&#39;,true)&amp;amp;input=Wm14aFozdG9hV2xmYVcxZmMzQmxZM1JsY2w5dWFXTmxYM1J2WDIxbFpYUmZlVzkxWDJGc2JIMD0&quot;&gt;https://cyberchef.io/#recipe=From_Base64(&#39;A-Za-z0-9%2B/%3D&#39;,true)&amp;amp;input=Wm14aFozdG9hV2xmYVcxZmMzQmxZM1JsY2w5dWFXTmxYM1J2WDIxbFpYUmZlVzkxWDJGc2JIMD0&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;scan-me&quot;&gt;Scan Me &lt;a class=&quot;direct-link&quot; href=&quot;#scan-me&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.aperisolve.com/62600eead024bbf1bf4c547d8feee020&quot;&gt;https://www.aperisolve.com/62600eead024bbf1bf4c547d8feee020&lt;/a&gt; + Binary Eye&lt;/p&gt;
+&lt;h2 id=&quot;locksmith&quot;&gt;Locksmith &lt;a class=&quot;direct-link&quot; href=&quot;#locksmith&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/joswr1ght/PatternLockScripts&quot;&gt;https://github.com/joswr1ght/PatternLockScripts&lt;/a&gt;&lt;br&gt;
+python3 &lt;a href=&quot;http://generateandroidgesturerainbowtable.py/&quot;&gt;GenerateAndroidGestureRainbowTable.py&lt;/a&gt;&lt;br&gt;
+python &lt;a href=&quot;http://gesturekeylookup.py/&quot;&gt;GestureKeyLookup.py&lt;/a&gt; gesture.key&lt;br&gt;
+[2, 1, 4, 3, 0, 7, 8, 5, 6]&lt;br&gt;
+flag{214307856}&lt;/p&gt;
+&lt;h2 id=&quot;barbie-world-reversing&quot;&gt;Barbie World Reversing &lt;a class=&quot;direct-link&quot; href=&quot;#barbie-world-reversing&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://cramik.github.io/blog/img/121a1db805e8d06985c145b79811e422.png&quot; alt=&quot;121a1db805e8d06985c145b79811e422.png&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/blog/img/3f24f5fdaaebd9d93e1b2b41b4f5ecab.png&quot; alt=&quot;3f24f5fdaaebd9d93e1b2b41b4f5ecab.png&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;binary-breach&quot;&gt;Binary Breach &lt;a class=&quot;direct-link&quot; href=&quot;#binary-breach&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Same thing?&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/blog/img/ce67e95a788ce2d64b06c064049baa6d.png&quot; alt=&quot;ce67e95a788ce2d64b06c064049baa6d.png&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/blog/img/f603569dee7fb26d3167181333164c57.png&quot; alt=&quot;f603569dee7fb26d3167181333164c57.png&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;nexus&quot;&gt;Nexus &lt;a class=&quot;direct-link&quot; href=&quot;#nexus&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://cramik.github.io/blog/img/a8947ae0e62653571ae5c3f89b21e759.png&quot; alt=&quot;a8947ae0e62653571ae5c3f89b21e759.png&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/blog/img/a0972e9d7eb637e06cf8efcf92194748.png&quot; alt=&quot;a0972e9d7eb637e06cf8efcf92194748.png&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/blog/img/455ada53a7c6db4bb484f7864631a042.png&quot; alt=&quot;455ada53a7c6db4bb484f7864631a042.png&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/blog/img/be449e57971208dc9a650137902d3163.png&quot; alt=&quot;be449e57971208dc9a650137902d3163.png&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;barbie&#39;s-secret-slip-1&quot;&gt;Barbie&#39;s Secret Slip 1 &lt;a class=&quot;direct-link&quot; href=&quot;#barbie&#39;s-secret-slip-1&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/chiccoder342&quot;&gt;https://github.com/chiccoder342&lt;/a&gt; -&amp;gt; &lt;a href=&quot;https://github.com/chiccoder342/fashionbytes&quot;&gt;https://github.com/chiccoder342/fashionbytes&lt;/a&gt; only one with commits -&amp;gt; test branch -&amp;gt; commits -&amp;gt; &lt;a href=&quot;https://github.com/chiccoder342/fashionbytes/commit/b2f5228fe54eb3505e1dd3fe6892e62bdfd67ab9&quot;&gt;https://github.com/chiccoder342/fashionbytes/commit/b2f5228fe54eb3505e1dd3fe6892e62bdfd67ab9&lt;/a&gt; -&amp;gt; AUTH_SECRET&lt;/p&gt;
+&lt;h2 id=&quot;barbie&#39;s-secret-slip-2&quot;&gt;Barbie&#39;s Secret Slip 2 &lt;a class=&quot;direct-link&quot; href=&quot;#barbie&#39;s-secret-slip-2&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://bsky.app/profile/chiccoder342.bsky.social/post/3lpwtyo52bt2s&quot;&gt;https://bsky.app/profile/chiccoder342.bsky.social/post/3lpwtyo52bt2s&lt;/a&gt; -&amp;gt; Base64 Decode&lt;br&gt;
+&lt;a href=&quot;https://sites.google.com/view/chiccodersite234/project-page&quot;&gt;https://sites.google.com/view/chiccodersite234/project-page&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;barbie&#39;s-secret-slip-3&quot;&gt;Barbie&#39;s Secret Slip 3 &lt;a class=&quot;direct-link&quot; href=&quot;#barbie&#39;s-secret-slip-3&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://web.archive.org/web/20241209164508/https://sites.google.com/view/chiccodersite234/project-page&quot;&gt;https://web.archive.org/web/20241209164508/https://sites.google.com/view/chiccodersite234/project-page&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;polyglots!-five&quot;&gt;Polyglots! Five &lt;a class=&quot;direct-link&quot; href=&quot;#polyglots!-five&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;There&#39;s VBScript in the code if you look hard enough. Copy that, and remove the if statement to print the flag&lt;br&gt;
+Final Code:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Dim a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,z1,z2,z3,z4,x1,x2
+a=Chr(73):b=Chr(110):c=Chr(112):d=Chr(117):e=Chr(116):f=Chr(66):g=Chr(111):h=Chr(120)
+x1=a&amp;amp;b&amp;amp;c&amp;amp;d&amp;amp;e&amp;amp;f&amp;amp;g&amp;amp;h:x2=Eval(x1&amp;amp;&amp;quot;(&amp;quot; &amp;amp; Chr(34)&amp;amp;&amp;quot;Sing to me:&amp;quot;&amp;amp;Chr(34)&amp;amp;&amp;quot;)&amp;quot;)
+z1=&amp;quot;illusion&amp;quot;:z2=Mid(z1,3,2):z3=0:z4=0:If x2=&amp;quot;karaoke&amp;quot; Then z3=z3+999:w=False
+If Len(z1)=8 And z2=&amp;quot;lu&amp;quot; And z3=z4+1 Then w=True
+u=Array(79,98,125,102,119,88,112,107,70,85,74,124,120,58,112,60,98,110,55,96,57,104,55,54,113,55,99,110,58,113,118,58,128)
+p=Array(3,1,4,1,5,9,2,6):v=&amp;quot;&amp;quot;
+For i=0 To UBound(u):v=v&amp;amp;Chr(u(i)-p(i Mod 8)):Next:MsgBox v
+If Not w Then MsgBox Chr(78)&amp;amp;Chr(111)&amp;amp;Chr(112)&amp;amp;Chr(101)&amp;amp;Chr(33)&amp;amp;Chr(32)&amp;amp;Chr(84)&amp;amp;Chr(114)&amp;amp;Chr(121)&amp;amp;Chr(32)&amp;amp;Chr(108)&amp;amp;Chr(111)&amp;amp;Chr(117)&amp;amp;Chr(100)&amp;amp;Chr(101)&amp;amp;Chr(114)&amp;amp;Chr(46):End If
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;fixme&quot;&gt;FixMe &lt;a class=&quot;direct-link&quot; href=&quot;#fixme&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;PCRT solves this one &lt;a href=&quot;https://github.com/sherlly/PCRT&quot;&gt;https://github.com/sherlly/PCRT&lt;/a&gt;&lt;br&gt;
+python2 &lt;a href=&quot;http://pcrt.py/&quot;&gt;PCRT.py&lt;/a&gt; -i &amp;quot;chall.png&amp;quot; -o &amp;quot;chall_out.png&amp;quot;&lt;br&gt;
+Y to autofixing, N to fixing IDAT chunk data length. Repaired image looks like this&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/blog/img/339ce48e2ab42cd3ab0f1f67c709b5fa.png&quot; alt=&quot;339ce48e2ab42cd3ab0f1f67c709b5fa.png&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;lawrence-of-arabia&quot;&gt;Lawrence of Arabia &lt;a class=&quot;direct-link&quot; href=&quot;#lawrence-of-arabia&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://cramik.github.io/blog/img/26e690d232278cecb74642cd8d8fc226.png&quot; alt=&quot;26e690d232278cecb74642cd8d8fc226.png&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/blog/img/f0301e0039786f133d606cac2d3d6ab6.png&quot; alt=&quot;f0301e0039786f133d606cac2d3d6ab6.png&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;5th-element&quot;&gt;5th Element &lt;a class=&quot;direct-link&quot; href=&quot;#5th-element&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;C:&#92;Users&#92;Cramik&#92;Desktop&#92;asimov&amp;gt;stegolsb wavsteg -r -i DancingDiva2.wav -o output -n 2 -b 100000
+Files read                     in 0.02s
+Recovered 100000 bytes         in 0.01s
+Written output file            in 0.00s
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;https://cramik.github.io/blog/img/e8c68fda02468c9c653279cb35cbdc9c.png&quot; alt=&quot;e8c68fda02468c9c653279cb35cbdc9c.png&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/blog/img/d24001b6c64bd59b8c0ad914774635a4.png&quot; alt=&quot;d24001b6c64bd59b8c0ad914774635a4.png&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;xmi&quot;&gt;XMI &lt;a class=&quot;direct-link&quot; href=&quot;#xmi&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# Extract.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; xmi&lt;br&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;# Open the XMI file&lt;/span&gt;&lt;br&gt;xmi_obj &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; xmi&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;open_file&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;ARCHIVE.DATA (1).XMI&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;# List files/members within the XMI&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; f &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; xmi_obj&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;get_files&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; xmi_obj&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;is_pds&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;f&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;        &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; m &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; xmi_obj&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;get_members&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;f&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;            &lt;span class=&quot;token keyword&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string-interpolation&quot;&gt;&lt;span class=&quot;token string&quot;&gt;f&quot;&lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;f&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;m&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;)&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;        &lt;span class=&quot;token keyword&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;f&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;# Extract all contents to a folder&lt;/span&gt;&lt;br&gt;xmi_obj&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;set_output_folder&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;.&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;xmi_obj&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;extract_all&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Open the extracted zip, put FLAG file into hxd and switch to EBCDIC encoding in HXD (at the top)&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/blog/img/a916de101c3bed6b9bc225d6a6d30322.png&quot; alt=&quot;a916de101c3bed6b9bc225d6a6d30322.png&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;secret-file-2&quot;&gt;Secret File 2 &lt;a class=&quot;direct-link&quot; href=&quot;#secret-file-2&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;┌──(cramik㉿Android)-[/mnt/c/users/cramik/downloads]
+└─$ zip2john Confidential.zip
+ver 2.0 efh 5455 efh 7875 Confidential.zip/VeryVeryConfidential.png PKZIP Encr: TS_chk, cmplen=28002, decmplen=32661, crc=8947A8FD ts=11BC cs=11bc type=8
+ver 1.0 efh 5455 efh 7875 ** 2b ** Confidential.zip/protected.zip PKZIP Encr: TS_chk, cmplen=374345, decmplen=374333, crc=79E8FA33 ts=1294 cs=1294 type=0
+Confidential.zip:$pkzip$2*1*1*0*0*24*1294*{a bunch of junk}*$/pkzip$::Confidential.zip:VeryVeryConfidential.png, protected.zip:Confidential.zip
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;┌──(cramik㉿Android)-[/mnt/c/users/cramik/Desktop/SecTools/hashcat]
+└─$ john --mask=?a?a?a layerone.txt
+Using default input encoding: UTF-8
+Loaded 1 password hash (PKZIP [32/64])
+Will run 16 OpenMP threads
+Press &#39;q&#39; or Ctrl-C to abort, almost any other key for status
+soc              (Confidential.zip)
+1g 0:00:00:00 DONE (2025-05-25 12:27) 20.00g/s 2621Kp/s 2621Kc/s 2621KC/s +&amp;quot;2..ZBc
+Use the &amp;quot;--show&amp;quot; option to display all of the cracked passwords reliably
+Session completed.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;zip2john protected.zip &amp;gt; protected.txt&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;┌──(cramik㉿Android)-[/mnt/c/users/cramik/Desktop]
+└─$ john -1=?l?u --mask=?1?1?1ARE?d?d?d  protected.txt
+Using default input encoding: UTF-8
+Loaded 1 password hash (PKZIP [32/64])
+Will run 16 OpenMP threads
+Press &#39;q&#39; or Ctrl-C to abort, almost any other key for status
+catARE143        (protected.zip/Proof.png)
+1g 0:00:00:04 DONE (2025-05-25 12:35) 0.2398g/s 12486Kp/s 12486Kc/s 12486KC/s kWoARE143..zikARE143
+Use the &amp;quot;--show&amp;quot; option to display all of the cracked passwords reliably
+Session completed.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The first layer file is a pdf with a lot of 30s, 31s, and 20s. I went through all the effort of decoding it just to get rickrolled&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/blog/img/6b7a39ab0a0ffdbc02c25e2d0e3babf2.png&quot; alt=&quot;6b7a39ab0a0ffdbc02c25e2d0e3babf2.png&quot;&gt;&lt;br&gt;
+The real answer is easier&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/blog/img/f293d36e9642caa242e7d5f3019f1b2e.png&quot; alt=&quot;f293d36e9642caa242e7d5f3019f1b2e.png&quot;&gt;&lt;br&gt;
+The second layer file is even easier&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/blog/img/758e3e4fab2210fb327487a0075a51cf.png&quot; alt=&quot;758e3e4fab2210fb327487a0075a51cf.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;flag{4r3_y0u_d15tracted_by_th3_r4bb1t_h0l3}&lt;/p&gt;
+&lt;h2 id=&quot;leaked-coordinates&quot;&gt;Leaked Coordinates &lt;a class=&quot;direct-link&quot; href=&quot;#leaked-coordinates&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This one was really annoying because they used like a weird wikipedia name for the museum instead of the german one and I swear the hint telling you that in the challenge wasnt there initially, but basically you can look at the image or exiftools the coords to find the local &amp;quot;berlinspymuseum&amp;quot; which is the password for the image in the archive, I used aperisolve for the steganography and found base64 in the lsb &lt;a href=&quot;https://www.aperisolve.com/f339d31d61367434755be64a698551a3&quot;&gt;https://www.aperisolve.com/f339d31d61367434755be64a698551a3&lt;/a&gt;&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/blog/img/e45171389cd0a6fe410d7bfda1cd4e1b.png&quot; alt=&quot;e45171389cd0a6fe410d7bfda1cd4e1b.png&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/blog/img/aa276cb1a575070d450d9e9b4ef9bd62.png&quot; alt=&quot;aa276cb1a575070d450d9e9b4ef9bd62.png&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;discordant-glitches&quot;&gt;DISCORDant Glitches &lt;a class=&quot;direct-link&quot; href=&quot;#discordant-glitches&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://cramik.github.io/blog/img/6088dac68361f5e9af0d3223a682b029.png&quot; alt=&quot;6088dac68361f5e9af0d3223a682b029.png&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/blog/img/d76de3a583cdc7c2aa4dcb5957e5fb13.png&quot; alt=&quot;d76de3a583cdc7c2aa4dcb5957e5fb13.png&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;glitch-lotto&quot;&gt;Glitch Lotto &lt;a class=&quot;direct-link&quot; href=&quot;#glitch-lotto&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I avoided this one initially because I never looked at the js and was confused, but after looking at this js its pretty easy:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;generateWinningNumber(new Date(&#39;June 30, 2025 05:00:00&#39;))
+# Submit a bid with that number
+setTimeOverride(new Date(&#39;June 30, 2025 05:00:00&#39;))
+checkLotteryResult(&amp;quot;yourusername&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;https://cramik.github.io/blog/img/743c2694c1b515e66b73e5fe6eb05d0e.png&quot; alt=&quot;743c2694c1b515e66b73e5fe6eb05d0e.png&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;domain-of-lies&quot;&gt;Domain of Lies &lt;a class=&quot;direct-link&quot; href=&quot;#domain-of-lies&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I didn&#39;t know what the hint meant but the odds of it being xor were high so I xor&#39;d &amp;quot;flag&amp;quot; to the ciphertext to find the key started with Reyk = Reykjavik (Capital of Iceland)&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/blog/img/8a5cc400b7e7b72ec5aa1c573657ea5d.png&quot; alt=&quot;8a5cc400b7e7b72ec5aa1c573657ea5d.png&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://cramik.github.io/blog/img/8cea320b4bd070a3349d54174d852876.png&quot; alt=&quot;8cea320b4bd070a3349d54174d852876.png&quot;&gt;&lt;/p&gt;
 
 			
 		</content>
