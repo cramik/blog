@@ -20,7 +20,7 @@
  */
 
 const { JSDOM } = require("jsdom");
-const BASE_URL = require("../_data/metadata.json").url;
+const BASE_URL = require("../_data/metadata.js").url;
 
 /**
  * Validate json-ld being valid JSON and add the document images to the JSON.
@@ -45,7 +45,19 @@ const jsonLd = (rawContent, outputPath) => {
       const obj = JSON.parse(jsonLd.textContent);
 
       if (images.length) {
-        obj.image = images.map((img) => BASE_URL + img.src);
+        const prefix = process.env.PATH_PREFIX || "";
+        const cleanPrefix = prefix ? (prefix.startsWith("/") ? prefix : "/" + prefix).replace(/\/$/, "") : "";
+        obj.image = images.map((img) => {
+          let src = img.src;
+          if (!src.startsWith("/")) {
+            src = "/" + src;
+          }
+          if (cleanPrefix && !src.startsWith(cleanPrefix + "/")) {
+            src = cleanPrefix + src;
+          }
+          const domainOnly = BASE_URL.replace(/\/blog\/?$/, "").replace(/\/$/, "");
+          return domainOnly + src;
+        });
         jsonLd.textContent = JSON.stringify(obj);
         content = dom.serialize();
       }

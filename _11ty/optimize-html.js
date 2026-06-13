@@ -112,11 +112,19 @@ const optimizeAmp = async (rawContent, outputPath) => {
 
 const addPathPrefix = (rawContent, outputPath) => {
   let content = rawContent;
-  if (outputPath && outputPath.endsWith(".html") && !isAmp(content)) {
-    // Prepend the /blog prefix to root-relative asset URLs
-    content = content.replace(/(href|src|srcset)="\/(img|js|css|fonts)\//g, '$1="/blog/$2/');
-    content = content.replace(/(href|src)="\/favicon\.svg"/g, '$1="/blog/favicon.svg"');
-    content = content.replace(/content="\/img\//g, 'content="/blog/img/');
+  const prefix = process.env.PATH_PREFIX;
+  if (prefix && prefix !== "/" && outputPath && outputPath.endsWith(".html") && !isAmp(content)) {
+    // Normalize prefix to not end with slash for consistency (e.g. "/blog")
+    let cleanPrefix = prefix.startsWith("/") ? prefix : "/" + prefix;
+    if (cleanPrefix.endsWith("/")) {
+      cleanPrefix = cleanPrefix.slice(0, -1);
+    }
+    // Prepend the prefix to root-relative asset URLs
+    const regexAssets = new RegExp('(href|src|srcset)="\\/(' + ['img', 'js', 'css', 'fonts'].join('|') + ')\\/', 'g');
+    content = content.replace(regexAssets, `$1="${cleanPrefix}/$2/`);
+    
+    content = content.replace(/(href|src)="\/favicon\.svg"/g, `$1="${cleanPrefix}/favicon.svg"`);
+    content = content.replace(/content="\/img\//g, `content="${cleanPrefix}/img/`);
   }
   return content;
 };

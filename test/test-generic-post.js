@@ -3,8 +3,7 @@ const expect = require("expect.js");
 const { JSDOM } = require("jsdom");
 const readFileSync = require("fs").readFileSync;
 const existsSync = require("fs").existsSync;
-const metadata = require("../_data/metadata.json");
-const GA_ID = require("../_data/googleanalytics.js")();
+const metadata = require("../_data/metadata.js");
 
 /**
  * These tests kind of suck and they are kind of useful.
@@ -15,9 +14,11 @@ const GA_ID = require("../_data/googleanalytics.js")();
 
 describe("check build output for a generic post", () => {
   describe("sample post", () => {
+    const prefix = process.env.PATH_PREFIX || "";
+    const cleanPrefix = prefix ? (prefix.startsWith("/") ? prefix : "/" + prefix).replace(/\/$/, "") : "";
     const POST_FILENAME = "_site/posts/firstpost/index.html";
     const URL = metadata.url;
-    const POST_URL = URL + "/posts/firstpost/";
+    const POST_URL = URL.endsWith("/") ? URL + "posts/firstpost/" : URL + "/posts/firstpost/";
 
     if (!existsSync(POST_FILENAME)) {
       it("WARNING skipping tests because POST_FILENAME does not exist", () => {});
@@ -63,31 +64,9 @@ describe("check build output for a generic post", () => {
 
     it("should have script elements", () => {
       const scripts = doc.querySelectorAll("script[src]");
-      let has_ga_id = GA_ID ? 1 : 0;
-      expect(scripts).to.have.length(has_ga_id + 1); // NOTE: update this when adding more <script>
-      expect(scripts[0].getAttribute("src")).to.match(
-        /^\/js\/min\.js\?hash=\w+/
-      );
-    });
-
-    it("should have GA a setup", () => {
-      if (!GA_ID) {
-        return;
-      }
-      const scripts = doc.querySelectorAll("script[src]");
-      expect(scripts[1].getAttribute("src")).to.match(
-        /^\/js\/cached\.js\?hash=\w+/
-      );
-      const noscript = doc.querySelectorAll("noscript");
-      expect(noscript.length).to.be.greaterThan(0);
-      let count = 0;
-      for (let n of noscript) {
-        if (n.textContent.includes("/api/ga")) {
-          count++;
-          expect(n.textContent).to.contain(GA_ID);
-        }
-      }
-      expect(count).to.equal(1);
+      expect(scripts).to.have.length(1);
+      const expectedRegex = new RegExp("^" + cleanPrefix.replace(/\//g, "\\/") + "\\/js\\/min\\.js\\?hash=\\w+");
+      expect(scripts[0].getAttribute("src")).to.match(expectedRegex);
     });
 
     /*
@@ -151,7 +130,8 @@ describe("check build output for a generic post", () => {
         const picture = pictures[0];
         const sources = Array.from(picture.querySelectorAll("source"));
         expect(sources).to.have.length(3);
-        expect(img.src).to.match(/^\/img\/remote\/\w+-1920w\.jpg$/);
+        const imgRegex = new RegExp("^" + cleanPrefix.replace(/\//g, "\\/") + "\\/img\\/remote\\/\\w+-1920w\\.jpg$");
+        expect(img.src).to.match(imgRegex);
         expect(metaImage).to.match(new RegExp(URL));
         expect(metaImage).to.match(/\/img\/remote\/\w+\.jpg$/);
         const avif = sources.shift();
@@ -191,8 +171,9 @@ describe("check build output for a generic post", () => {
           "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster..."
         );
         expect(obj.image.length).to.be.greaterThan(0);
+        const domainOnly = URL.replace(/\/blog\/?$/, "").replace(/\/$/, "");
         obj.image.forEach((url, index) => {
-          expect(url).to.equal(URL + images[index].src);
+          expect(url).to.equal(domainOnly + images[index].getAttribute("src"));
         });
       });
 

@@ -24,10 +24,6 @@ eleventyExcludeFromCollections: true
 		<id>{{ absolutePostUrl }}</id>
 		<content type="html">
 		  {{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}
-			{% if googleanalytics %}
-				{% set titleUrlEncoded = post.data.title|encodeURIComponent %}
-				{% set urlUrlEncoded = post.url | encodeURIComponent %}
-			{% endif %}
 		</content>
 	</entry>
 	{%- endfor %}

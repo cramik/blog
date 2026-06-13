@@ -57,7 +57,6 @@ const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 const localImages = require("./third_party/eleventy-plugin-local-images/.eleventy.js");
 const CleanCSS = require("clean-css");
-const GA_ID = require("./_data/metadata.json").googleAnalyticsId;
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss);
@@ -176,8 +175,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addCollection("tagList", require("./_11ty/getTagList"));
   eleventyConfig.addPassthroughCopy("img");
   eleventyConfig.addPassthroughCopy("css");
-  // We need to copy cached.js only if GA is used
-  eleventyConfig.addPassthroughCopy(GA_ID ? "js" : "js/*[!cached].*");
+  eleventyConfig.addPassthroughCopy("js/min.js*");
   eleventyConfig.addPassthroughCopy("fonts");
   eleventyConfig.addPassthroughCopy("_headers");
 
@@ -221,7 +219,7 @@ module.exports = function (eleventyConfig) {
     // Best paired with the `url` filter: https://www.11ty.io/docs/filters/url/
 
     // You can also pass this in on the command line using `--pathprefix`
-    pathPrefix: "/blog/",
+    pathPrefix: process.env.PATH_PREFIX || "/",
 
     markdownTemplateEngine: "liquid",
     htmlTemplateEngine: "njk",
