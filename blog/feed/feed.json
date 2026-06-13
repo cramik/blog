@@ -1,7 +1,7 @@
 {
   "version": "https://jsonfeed.org/version/1",
   "title": "Cramik",
-  "home_page_url": "https://cramik.github.io/blog/",
+  "home_page_url": "https://cramik.github.io/blog",
   "feed_url": "https://cramik.github.io/blog/feed/feed.json",
   "description": "",
   "author": {

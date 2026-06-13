@@ -4,7 +4,7 @@
 	<subtitle></subtitle>
 	
 	<link href="https://cramik.github.io/blog/feed/feed.xml" rel="self"/>
-	<link href="https://cramik.github.io/blog/"/>
+	<link href="https://cramik.github.io/blog"/>
 	<updated>2026-06-13T00:00:00+00:00</updated>
 	<id>https://cramik.github.io/blog/</id>
 	<author>
@@ -39,7 +39,6 @@ Some decompiler&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://cramik.github.io/blog/img/wizardlike-level8.webp&quot; alt=&quot;Screenshot of level 8&quot; width=&quot;600&quot;&gt;&lt;br&gt;
 &lt;img src=&quot;https://cramik.github.io/blog/img/wizardlike-level2.webp&quot; alt=&quot;Screenshot of level 2&quot; width=&quot;600&quot;&gt;&lt;/p&gt;
 
-			
 		</content>
 	</entry>
 	
@@ -50,7 +49,6 @@ Some decompiler&lt;/p&gt;
 		<id>https://cramik.github.io/blog/posts/csaw-ctf-2023/</id>
 		<content type="html">
 		  
-			
 		</content>
 	</entry>
 	
@@ -147,7 +145,6 @@ while(password[-1]!=&#39;}&#39;):
 pickle.dump(test(),open(&#39;C:/Users/Cramik/Desktop/payload5.pkl&#39;,&#39;wb&#39;))
 &lt;/code&gt;&lt;/pre&gt;
 
-			
 		</content>
 	</entry>
 	
@@ -338,7 +335,6 @@ print(f&amp;quot;Final string: {test_string}&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;flag{1t_0Nly_T@k3s_4_l3ttlE_T!mE}&lt;/p&gt;
 
-			
 		</content>
 	</entry>
 	
@@ -494,7 +490,6 @@ a=remote(&amp;quot;147.182.245.126&amp;quot;,&amp;quot;33001&amp;quot;);b=a.recv
 &lt;pre&gt;&lt;code&gt;hashcat -m 16500 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsIm5vbmNlIjoiIn0.eyJpc3MiOiJ0dXJib3RhY3RpY2FsLm5ldCIsImV4cCI6IjE0NTA2NTkxMDIiLCJ1cG4iOiJjZm9kZXJhIiwiZnVsbF9uYW1lIjoiQ2xhaXIgRm9kZXJhIiwidXNlcm5hbWUiOiJDRm9kZXJhOTEiLCJwaG9uZV9udW1iZXIiOiIiLCJqdGkiOiJmdGlkMjM0MmEtMzI0M2QtMjM0My1kMzR5OHlnZmZlIiwic3R1ZmYiOjExMjIyLCJncm91cHMiOlsibG93X2FkbWluIiwicmVtb3RlX3VzZXIiLCJsYWJ0ZWNoIl0sIm9yZyI6IlR1cmJvVGFjdGljYWwiLCJzdWJfb3JnIjoiR3JvdXBfRCIsIm5idCI6NTc1NDczNzU0ODI5NTI3NTAwMDAsImxkZV9zIjpbeyJhc3RhdHVzIjoibnVsbCIsImJzdGF0dXMiOiJudWxsIiwiY3N0YXR1cyI6InZhbGlkIiwiZHN0YXR1cyI6Im51bGwifV19.kQKRFPLj_SqVeEiBjfKi7FKOEVoV71JgdFRxDTjp7TQ fasttrack.txt
 &lt;/code&gt;&lt;/pre&gt;
 
-			
 		</content>
 	</entry>
 	
@@ -666,7 +661,6 @@ checkLotteryResult(&amp;quot;yourusername&amp;quot;)
 &lt;img src=&quot;https://cramik.github.io/blog/img/8a5cc400b7e7b72ec5aa1c573657ea5d.png&quot; alt=&quot;8a5cc400b7e7b72ec5aa1c573657ea5d.png&quot; width=&quot;600&quot;&gt;&lt;br&gt;
 &lt;img src=&quot;https://cramik.github.io/blog/img/8cea320b4bd070a3349d54174d852876.png&quot; alt=&quot;8cea320b4bd070a3349d54174d852876.png&quot; width=&quot;600&quot;&gt;&lt;/p&gt;
 
-			
 		</content>
 	</entry>
 	
@@ -767,7 +761,6 @@ checkLotteryResult(&amp;quot;yourusername&amp;quot;)
 &lt;h2 id=&quot;summary&quot;&gt;Summary &lt;a class=&quot;direct-link&quot; href=&quot;#summary&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The &amp;quot;Stop Ads&amp;quot; extension is basically spyware wrapped in an ad-blocker&#39;s skin. It uses search ads to trick you into installing it, promises it won&#39;t track you, and then immediately starts harvesting your data. If you have this extension installed, delete it immediately from &lt;code&gt;chrome://extensions/&lt;/code&gt; and clear your cookies.&lt;/p&gt;
 
-			
 		</content>
 	</entry>
 </feed>
