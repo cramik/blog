@@ -198,7 +198,7 @@ module.exports = function (eleventyConfig) {
     permalink: true,
     permalinkClass: "direct-link",
     permalinkSymbol: "#",
-  });
+  }).use(require("markdown-it-imsize"));
   eleventyConfig.setLibrary("md", markdownLibrary);
 
   // After the build touch any file in the test directory to do a test run.

@@ -110,10 +110,22 @@ const optimizeAmp = async (rawContent, outputPath) => {
   return content;
 };
 
+const addPathPrefix = (rawContent, outputPath) => {
+  let content = rawContent;
+  if (outputPath && outputPath.endsWith(".html") && !isAmp(content)) {
+    // Prepend the /blog prefix to root-relative asset URLs
+    content = content.replace(/(href|src|srcset)="\/(img|js|css|fonts)\//g, '$1="/blog/$2/');
+    content = content.replace(/(href|src)="\/favicon\.svg"/g, '$1="/blog/favicon.svg"');
+    content = content.replace(/content="\/img\//g, 'content="/blog/img/');
+  }
+  return content;
+};
+
 module.exports = {
   initArguments: {},
   configFunction: async (eleventyConfig, pluginOptions = {}) => {
     eleventyConfig.addTransform("purifyCss", purifyCss);
+    eleventyConfig.addTransform("addPathPrefix", addPathPrefix);
     eleventyConfig.addTransform("minifyHtml", minifyHtml);
     eleventyConfig.addTransform("optimizeAmp", optimizeAmp);
   },

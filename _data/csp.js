@@ -40,8 +40,8 @@ const CSP = {
     ["script-src", SELF, /* Replaced by csp.js plugin */ "HASHES"],
     // Inline CSS is allowed.
     ["style-src", quote("unsafe-inline")],
-    // Images may also come from data-URIs.
-    ["img-src", SELF, "data:"],
+    // Images may also come from data-URIs and external hosts like pixabay and ibb.co.
+    ["img-src", SELF, "data:", "https://i.ibb.co/", "https://cdn.pixabay.com/"],
 
     // To add new rules, add new array literals here or extend those above with
     // additional allowed elements.
