@@ -1,0 +1,200 @@
+Category,Functional Action,whit3rabbit/camoufox-mcp,rlgrpe/camoufox-browser-cli,redf0x1/camofox-mcp,Sekinal/camoufox-mcp,RobithYusuf/mcp-camoufox
+Assertions & Locators,Verify Value,,,,verify_value,
+Assertions & Locators,Verify Text Visible,,,,verify_text_visible,
+Assertions & Locators,Verify List Visible,,,,verify_list_visible,
+Assertions & Locators,Verify Element Visible,,,,verify_element_visible,
+Assertions & Locators,Verify Element Hidden,,,,verify_element_hidden,
+Assertions & Locators,Expect Element,,,,expect_element,
+Assertions & Locators,Assert Url Matches,,,,,assert_url_matches
+Assertions & Locators,Assert Text Present,,,,,assert_text_present
+Assertions & Locators,Assert Element Visible,,,,,assert_element_visible
+Batch & Sequences,Navigate and Take Snapshot,,,navigate_and_snapshot,,navigate_and_snapshot
+Batch & Sequences,Fill Multiple Form Fields,,browser_fill_form,fill_form,fill_form,fill_form
+Batch & Sequences,Batch Actions Sequence,browse_sequence,,,batch_actions,batch_actions
+Browser Lifecycle,Reset Profile,,,,,reset_profile
+Browser Lifecycle,Launch Browser,browse_session_start,,create_tab,launch_browser,browser_launch
+Browser Lifecycle,Install Browser Binary,,browser_install,,,
+Browser Lifecycle,Get Browser/Session Health & Status,camoufox_status,,server_status,browser_health_check,server_status
+Browser Lifecycle,Close Browser,browse_session_close,browser_close,camofox_close_session,close_browser,browser_close
+Data Extraction,Scrape Page,,,,,scrape_page
+Data Extraction,Find Data Sources,,,,find_data_sources,
+Data Extraction,Find By Text,,,,,find_by_text
+Data Extraction,Find By Placeholder,,,,,find_by_placeholder
+Data Extraction,Find By Label,,,,,find_by_label
+Data Extraction,Find,browse_find,,,,
+Data Extraction,Extract Table,,,,,extract_table
+Data Extraction,Extract Resources,,,extract_resources,,
+Dialog Handles,Handle Dialog,,browser_handle_dialog,,,
+Dialog Handles,Handle Dialog,,,,handle_dialog,
+Dialog Handles,Dialog Handler,,,,dialog_handler,
+Dialog Handles,Dialog Handle,,,,,dialog_handle
+Downloads,List Downloads,,,list_downloads,,
+Downloads,Get Download,,,get_download,,
+Downloads,Delete Download,,,delete_download,,
+Downloads,Batch Download,,,batch_download,,
+Emulation,Emulate Network,,,,emulate_network,
+Emulation,Emulate Device,,,,emulate_device,
+Emulation,Clear Emulation,,,,clear_emulation,
+Frame Management,List Frames,,,,list_frames,
+Frame Management,List Frames,,,,,list_frames
+Frame Management,Frame Locator,,,,frame_locator,
+Frame Management,Frame Evaluate,,,,,frame_evaluate
+Frame Management,Frame By Url,,,,frame_by_url,
+Frame Management,Frame By Name,,,,frame_by_name,
+Interaction,Upload File,,browser_file_upload,,upload_file,upload_file
+Interaction,Uncheck Checkbox,,,,uncheck,uncheck
+Interaction,Type Text (Simulated Keyboard),,browser_type,type_text,type_text,type_text
+Interaction,Select Dropdown Option,,browser_select_option,,select_option,select_option
+Interaction,Scroll Window/Viewport,,,scroll,scroll,scroll
+Interaction,Press Keyboard Key,,browser_press_key,camofox_press_key,press_key,press_key
+Interaction,Hover Mouse over Element,,browser_hover,camofox_hover,hover,hover
+Interaction,Fill Input Field,,browser_type,type_text,fill,fill
+Interaction,Drag & Drop,,browser_drag,,drag_and_drop,drag_and_drop
+Interaction,Click Element,,browser_click,click,click,click
+Interaction,Click by Text Content,,,,click_text,click_text
+Interaction,Click by ARIA Role,,,,click_role,click_role
+Interaction,Check Checkbox,,,,check,check
+JavaScript Execution,Inject Initialization Script,,,,inject_init_script,inject_init_script
+JavaScript Execution,Evaluate on Specific Element,,,,evaluate_on_element,
+JavaScript Execution,Evaluate Javascript,,browser_evaluate,camofox_evaluate_js,evaluate,evaluate
+Metrics & Performance,Reset Metrics,,,,reset_metrics,
+Metrics & Performance,Page Stats,,,,,page_stats
+Metrics & Performance,Get Tool Metrics,,,,get_tool_metrics,
+Metrics & Performance,Get Stats,,,get_stats,,
+Metrics & Performance,Get Resource Timing,,,,get_resource_timing,
+Metrics & Performance,Get Performance Metrics,,,,get_performance_metrics,
+Metrics & Performance,Get Network Stats,,,,get_network_stats,
+Metrics & Performance,Get Navigation Timing,,,,get_navigation_timing,
+Metrics & Performance,Get Memory Info,,,,get_memory_info,
+Metrics & Performance,Analyze Performance,,,,analyze_performance,
+Mouse XY Movements,Mouse Wheel Scroll,,,,mouse_wheel,
+Mouse XY Movements,Mouse Move Coordinates,,,,mouse_move_xy,mouse_move
+Mouse XY Movements,Mouse Drag Coordinates,,,,mouse_drag_xy,
+Mouse XY Movements,Mouse Click Coordinates,,,,mouse_click_xy,mouse_click_xy
+Navigation,Reload/Refresh Page,,,refresh,reload,reload
+Navigation,Navigate to URL (Goto),browse,browser_navigate,navigate,goto,navigate
+Navigation,Go Forward,,,go_forward,go_forward,go_forward
+Navigation,Go Back,,browser_navigate_back,go_back,go_back,go_back
+Navigation,Get Page Title,,,,get_page_title,
+Navigation,Get Current URL,,,,get_url,get_url
+Network & Console logs,Get Recorded Network Requests,browse_network_summary,browser_network_requests,,get_network_log,network_get
+Network & Console logs,Get Bounded Console Messages,browse_console,browser_console_messages,,get_console_logs,console_get
+Network & Console logs,Export HTTP Archive (HAR),,,,export_har,export_har
+Network Operations,Wait For Request,,,,wait_for_request,
+Network Operations,Wait For Network Idle,,,,,wait_for_network_idle
+Network Operations,Set Network Capture,,,,set_network_capture,
+Network Operations,Network Start,,,,,network_start
+Network Operations,Network Get Detail,,,,,network_get_detail
+Network Operations,List Network Presets,,,,list_network_presets,
+Network Operations,Clear Network Log,,,,clear_network_log,
+Network Operations,Analyze Network Patterns,,,,analyze_network_patterns,
+Observation & Extraction,Query Selector All,,,camofox_query_selector,query_selector_all,query_selector_all
+Observation & Extraction,Inspect Element Details,,,,inspect_element,inspect_element
+Observation & Extraction,Get Text Content,,,,get_text,get_text
+Observation & Extraction,Get Page Source (HTML),,,camofox_get_page_html,get_html,get_html
+Observation & Extraction,Get Element Attribute,,,,get_attribute,get_attribute
+Observation & Extraction,Get DOM/Accessibility Snapshot,browse_snapshot,browser_snapshot,snapshot,get_accessibility_snapshot,browser_snapshot
+Observation & Extraction,Get All Page Links,browse_links,,get_links,,get_links
+Pointer & Scrolling,Scroll Element And Snapshot,,,camofox_scroll_element_and_snapshot,,
+Pointer & Scrolling,Scroll Element,,,camofox_scroll_element,,
+Pointer & Scrolling,Scroll And Snapshot,,,scroll_and_snapshot,,
+Pointer & Scrolling,Mouse Up,,,,mouse_up,
+Pointer & Scrolling,Mouse Replay,,,,,mouse_replay
+Pointer & Scrolling,Mouse Record,,,,,mouse_record
+Pointer & Scrolling,Mouse Drift,,,,,mouse_drift
+Pointer & Scrolling,Mouse Down,,,,mouse_down,
+Pointer & Scrolling,Humanize Click,,,,,humanize_click
+Pointer & Scrolling,Click And Wait,,,,,click_and_wait
+Pointer & Scrolling,Click And Snapshot,,,,,click_and_snapshot
+Pointer & Scrolling,Batch Click,,,batch_click,,
+Profile Management,Save Profile,,,save_profile,,
+Profile Management,Load Profile,,,load_profile,,
+Profile Management,List Profiles,,,list_profiles,,
+Profile Management,Delete Profile,,,delete_profile,,
+Screenshots & Viewport,Save Page as PDF,,,,save_as_pdf,save_pdf
+Screenshots & Viewport,Resize Viewport/Window,,browser_resize,,set_viewport_size,set_viewport_size
+Screenshots & Viewport,Capture Screenshot,browse_screenshot,browser_take_screenshot,screenshot,screenshot,screenshot
+Session Management,Snapshot,browse_session_snapshot,,,,
+Session Management,Set Session Storage,,,,set_session_storage,
+Session Management,Sessionstorage Set,,,,,sessionstorage_set
+Session Management,Session Warmup,,,,,session_warmup
+Session Management,Resume,browse_session_resume,,,,
+Session Management,Navigate,browse_session_navigate,,,,
+Session Management,Get Session Metrics,,,,get_session_metrics,
+Session Management,Action,browse_session_action,,,,
+Specific Tools / Extensions,Youtube Transcript,,,youtube_transcript,,
+Specific Tools / Extensions,Web Search,,,web_search,,
+Specific Tools / Extensions,Wait For Text,,,camofox_wait_for_text,,
+Specific Tools / Extensions,Wait For Function,,,,wait_for_function,
+Specific Tools / Extensions,Wait For Any Of,,,,,wait_for_any_of
+Specific Tools / Extensions,Wait And Snapshot,,,,,wait_and_snapshot
+Specific Tools / Extensions,Type And Submit,,,type_and_submit,,
+Specific Tools / Extensions,Tracing Status,,,,tracing_status,
+Specific Tools / Extensions,Toggle Display,,,toggle_display,,
+Specific Tools / Extensions,Test Selector,,,,test_selector,
+Specific Tools / Extensions,Tabs,,browser_tabs,,,
+Specific Tools / Extensions,Stop Tracing,,,,stop_tracing,
+Specific Tools / Extensions,Start Tracing,,,,start_tracing,
+Specific Tools / Extensions,Snapshot State,,,,snapshot_state,
+Specific Tools / Extensions,Set Timezone,,,,set_timezone,
+Specific Tools / Extensions,Set Reduced Motion,,,,set_reduced_motion,
+Specific Tools / Extensions,Set Locale,,,,set_locale,
+Specific Tools / Extensions,Set Geolocation,,,,set_geolocation,
+Specific Tools / Extensions,Set Color Scheme,,,,set_color_scheme,
+Specific Tools / Extensions,Resolve Blobs,,,resolve_blobs,,
+Specific Tools / Extensions,Reload And Snapshot,,,,,reload_and_snapshot
+Specific Tools / Extensions,Recover,,,,browser_recover,
+Specific Tools / Extensions,Outline,browse_outline,,,,
+Specific Tools / Extensions,Monitor Fingerprinting,,,,monitor_fingerprinting,
+Specific Tools / Extensions,Login Classic,,,,,login_classic
+Specific Tools / Extensions,List Presets,,,list_presets,,
+Specific Tools / Extensions,List Init Scripts,,,,list_init_scripts,
+Specific Tools / Extensions,List Device Presets,,,,list_device_presets,
+Specific Tools / Extensions,Humanize Type,,,,,humanize_type
+Specific Tools / Extensions,Get Viewport Size,,,,get_viewport_size,
+Specific Tools / Extensions,Get Viewport Size,,,,,get_viewport_size
+Specific Tools / Extensions,Get Page Errors,,,,get_page_errors,
+Specific Tools / Extensions,Get Page Errors,,,,,get_page_errors
+Specific Tools / Extensions,Get Long Tasks,,,,get_long_tasks,
+Specific Tools / Extensions,Get Browser Info,,,,get_browser_info,
+Specific Tools / Extensions,Get Aria Snapshot,,,,get_aria_snapshot,
+Specific Tools / Extensions,Generate Locator,,,,generate_locator,
+Specific Tools / Extensions,Forms,browse_forms,,,,
+Specific Tools / Extensions,Fill Placeholder,,,,fill_placeholder,
+Specific Tools / Extensions,Fill By Label,,,,fill_by_label,
+Specific Tools / Extensions,Diff State,,,,diff_state,
+Specific Tools / Extensions,Detect Content Pattern,,,,,detect_content_pattern
+Specific Tools / Extensions,Describe Page,,,,,describe_page
+Specific Tools / Extensions,Console Start,,,,,console_start
+Specific Tools / Extensions,Back And Snapshot,,,,,back_and_snapshot
+Specific Tools / Extensions,Auth Capture,,,,,auth_capture
+Specific Tools / Extensions,Analyze Resource Loading,,,,analyze_resource_loading,
+Specific Tools / Extensions,Analyze Page Structure,,,,analyze_page_structure,
+Specific Tools / Extensions,Accessibility Snapshot,,,,,accessibility_snapshot
+Stealth & Humanization,Detect Anti-Bot Protection Shield,,,,detect_antibot_protection,detect_anti_bot
+Stealth & Humanization,Bypass Cloudflare Turnstile Checkbox,,,,,click_turnstile
+Storage,Storage State Save,,,,,storage_state_save
+Storage,Storage State Load,,,,,storage_state_load
+Storage,Localstorage Clear,,,,,localstorage_clear
+Storage,Cookie Import File,,,,,cookie_import_file
+Storage,Cookie Export File,,,,,cookie_export_file
+Storage,Cookie Export,,,,,cookie_export
+Storage,Clear Local Storage,,,,clear_local_storage,
+Storage,Clear Cookies,,,,clear_cookies,
+Storage & Session Cookies,Set LocalStorage,,,,set_local_storage,localstorage_set
+Storage & Session Cookies,Set Cookie,,,,set_cookie,cookie_set
+Storage & Session Cookies,Import Session Cookies,,,import_cookies,,cookie_import
+Storage & Session Cookies,Get SessionStorage,,,,get_session_storage,sessionstorage_get
+Storage & Session Cookies,Get LocalStorage,,,,get_local_storage,localstorage_get
+Storage & Session Cookies,Get Cookies,,,,get_cookies,cookie_list
+Storage & Session Cookies,Delete Cookie,,,,,cookie_delete
+Structured Data Extraction,Extract Structured Data,,,extract_structured,,extract_structured
+Tab Management,Switch/Select Tab,,,,switch_page,tab_select
+Tab Management,List Open Tabs,,,list_tabs,list_pages,tab_list
+Tab Management,Create New Tab/Page,,,,new_page,tab_new
+Tab Management,Close Tab/Page,,,close_tab,close_page,tab_close
+Waiting,Wait for URL Pattern,,,,wait_for_url,wait_for_url
+Waiting,Wait for Selector,,,camofox_wait_for_selector,wait_for_selector,
+Waiting,Wait for Response,,,,wait_for_response,wait_for_response
+Waiting,Wait for Load State,,,,wait_for_load_state,wait_for_navigation
+Waiting,General Sleep Wait,,browser_wait_for,camofox_wait_for,wait,wait_for
