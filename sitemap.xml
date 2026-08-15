@@ -13,22 +13,7 @@
   
   <url>
     <loc>https://cramik.github.io/blog/posts/picoctf-2022-wizardlike-unique/</loc>
-    <lastmod>2026-06-13T20:15:16.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
-    <loc>https://cramik.github.io/blog/posts/csaw-ctf-2023/</loc>
-    <lastmod>2026-06-13T20:15:16.000Z</lastmod>
+    <lastmod>2026-08-15T03:34:47.000Z</lastmod>
   </url>
   
   
@@ -43,7 +28,7 @@
   
   <url>
     <loc>https://cramik.github.io/blog/posts/buckeye-ctf-2023/</loc>
-    <lastmod>2026-06-13T20:15:16.000Z</lastmod>
+    <lastmod>2026-08-15T03:34:47.000Z</lastmod>
   </url>
   
   
@@ -58,7 +43,7 @@
   
   <url>
     <loc>https://cramik.github.io/blog/posts/cisa-ics-2024/</loc>
-    <lastmod>2026-06-13T20:15:16.000Z</lastmod>
+    <lastmod>2026-08-15T03:34:47.000Z</lastmod>
   </url>
   
   
@@ -73,7 +58,7 @@
   
   <url>
     <loc>https://cramik.github.io/blog/posts/deadface-ctf-2024/</loc>
-    <lastmod>2026-06-13T20:15:16.000Z</lastmod>
+    <lastmod>2026-08-15T03:34:47.000Z</lastmod>
   </url>
   
   
@@ -88,7 +73,7 @@
   
   <url>
     <loc>https://cramik.github.io/blog/posts/layerone-ctf-2025/</loc>
-    <lastmod>2026-06-13T20:15:16.000Z</lastmod>
+    <lastmod>2026-08-15T03:34:47.000Z</lastmod>
   </url>
   
   
@@ -103,7 +88,52 @@
   
   <url>
     <loc>https://cramik.github.io/blog/posts/reversing-shady-adblocker/</loc>
-    <lastmod>2026-06-13T20:15:16.000Z</lastmod>
+    <lastmod>2026-08-15T03:34:47.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://cramik.github.io/blog/posts/camoufox-mcp-comparison/</loc>
+    <lastmod>2026-08-15T03:34:47.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://cramik.github.io/blog/posts/android-privacy-frameworks/</loc>
+    <lastmod>2026-08-15T03:34:47.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://cramik.github.io/blog/posts/credly-badge-stats/</loc>
+    <lastmod>2026-08-15T03:34:47.000Z</lastmod>
   </url>
   
   
@@ -116,7 +146,7 @@
   
   <url>
     <loc>https://cramik.github.io/blog/posts/</loc>
-    <lastmod>2026-06-13T20:15:32.239Z</lastmod>
+    <lastmod>2026-08-15T03:35:03.931Z</lastmod>
   </url>
   
   
@@ -129,7 +159,7 @@
   
   <url>
     <loc>https://cramik.github.io/blog/</loc>
-    <lastmod>2026-06-13T20:15:32.261Z</lastmod>
+    <lastmod>2026-08-15T03:35:03.953Z</lastmod>
   </url>
   
   
@@ -142,7 +172,7 @@
   
   <url>
     <loc>https://cramik.github.io/blog/page-list/</loc>
-    <lastmod>2026-06-13T20:15:32.263Z</lastmod>
+    <lastmod>2026-08-15T03:35:03.955Z</lastmod>
   </url>
   
   
@@ -155,7 +185,33 @@
   
   <url>
     <loc>https://cramik.github.io/blog/tags/</loc>
-    <lastmod>2026-06-13T20:15:32.263Z</lastmod>
+    <lastmod>2026-08-15T03:35:03.956Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <url>
+    <loc>https://cramik.github.io/blog/tags/android-reverse-engineering-xposed/</loc>
+    <lastmod>2026-08-15T03:35:03.956Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <url>
+    <loc>https://cramik.github.io/blog/tags/automation-mcp/</loc>
+    <lastmod>2026-08-15T03:35:03.956Z</lastmod>
   </url>
   
   
@@ -168,6 +224,19 @@
   
   <url>
     <loc>https://cramik.github.io/blog/tags/ctf/</loc>
-    <lastmod>2026-06-13T20:15:32.263Z</lastmod>
+    <lastmod>2026-08-15T03:35:03.956Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <url>
+    <loc>https://cramik.github.io/blog/tags/data-scraping/</loc>
+    <lastmod>2026-08-15T03:35:03.956Z</lastmod>
   </url>
 </urlset>

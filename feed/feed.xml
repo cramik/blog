@@ -5,7 +5,7 @@
 	
 	<link href="https://cramik.github.io/blog/feed/feed.xml" rel="self"/>
 	<link href="https://cramik.github.io/blog"/>
-	<updated>2026-06-13T00:00:00+00:00</updated>
+	<updated>2026-08-14T00:00:00+00:00</updated>
 	<id>https://cramik.github.io/blog/</id>
 	<author>
 		<name>Cramik</name>
@@ -39,16 +39,6 @@ Some decompiler&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://cramik.github.io/blog/img/wizardlike-level8.webp&quot; alt=&quot;Screenshot of level 8&quot; width=&quot;600&quot;&gt;&lt;br&gt;
 &lt;img src=&quot;https://cramik.github.io/blog/img/wizardlike-level2.webp&quot; alt=&quot;Screenshot of level 2&quot; width=&quot;600&quot;&gt;&lt;/p&gt;
 
-		</content>
-	</entry>
-	
-	<entry>
-		<title>CSAW CTF 2023</title>
-		<link href="https://cramik.github.io/blog/posts/csaw-ctf-2023/"/>
-		<updated>2023-09-15T00:00:00+00:00</updated>
-		<id>https://cramik.github.io/blog/posts/csaw-ctf-2023/</id>
-		<content type="html">
-		  
 		</content>
 	</entry>
 	
@@ -760,6 +750,430 @@ checkLotteryResult(&amp;quot;yourusername&amp;quot;)
 &lt;/ol&gt;
 &lt;h2 id=&quot;summary&quot;&gt;Summary &lt;a class=&quot;direct-link&quot; href=&quot;#summary&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The &amp;quot;Stop Ads&amp;quot; extension is basically spyware wrapped in an ad-blocker&#39;s skin. It uses search ads to trick you into installing it, promises it won&#39;t track you, and then immediately starts harvesting your data. If you have this extension installed, delete it immediately from &lt;code&gt;chrome://extensions/&lt;/code&gt; and clear your cookies.&lt;/p&gt;
+
+		</content>
+	</entry>
+	
+	<entry>
+		<title>Picking a Camoufox MCP Server</title>
+		<link href="https://cramik.github.io/blog/posts/camoufox-mcp-comparison/"/>
+		<updated>2026-07-02T00:00:00+00:00</updated>
+		<id>https://cramik.github.io/blog/posts/camoufox-mcp-comparison/</id>
+		<content type="html">
+		  &lt;p&gt;I wanted something with better anti-detection than vanilla Playwright/Puppeteer for some scraping work, so I went looking at &lt;a href=&quot;https://camoufox.com/&quot;&gt;Camoufox&lt;/a&gt; — the Firefox fork with anti-detection patches baked in at the C++ level instead of bolted on with JS overrides. Turns out there isn&#39;t one obvious &amp;quot;the&amp;quot; MCP server for it, there are at least five, and they take pretty different approaches to wrapping the same underlying browser. I went through all five to figure out which one actually fit what I needed.&lt;/p&gt;
+&lt;p&gt;Full tool-by-tool CSV mapping (199 rows) is linked at the bottom if you want to cross-reference specific tool calls.&lt;/p&gt;
+&lt;h2 id=&quot;quick-reference&quot;&gt;Quick reference &lt;a class=&quot;direct-link&quot; href=&quot;#quick-reference&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Repo&lt;/th&gt;
+&lt;th&gt;Language&lt;/th&gt;
+&lt;th style=&quot;text-align:right&quot;&gt;Tools&lt;/th&gt;
+&lt;th&gt;Philosophy&lt;/th&gt;
+&lt;th&gt;Host OS&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;https://github.com/whit3rabbit/camoufox-mcp&quot;&gt;whit3rabbit/camoufox-mcp&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;TypeScript&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;17&lt;/td&gt;
+&lt;td&gt;Bounded, high-level actions to cut round-trips&lt;/td&gt;
+&lt;td&gt;Cross-platform&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;https://github.com/rlgrpe/camoufox-browser-cli&quot;&gt;rlgrpe/camoufox-browser-cli&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Python (FastMCP)&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;21&lt;/td&gt;
+&lt;td&gt;CLI wrapped as MCP, persistent daemon&lt;/td&gt;
+&lt;td&gt;Linux/macOS only&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;https://github.com/redf0x1/camofox-mcp&quot;&gt;redf0x1/camofox-mcp&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;TypeScript&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;47&lt;/td&gt;
+&lt;td&gt;Split server/client, remote-friendly&lt;/td&gt;
+&lt;td&gt;Cross-platform&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;https://github.com/Sekinal/camoufox-mcp&quot;&gt;Sekinal/camoufox-mcp&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Python&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;127&lt;/td&gt;
+&lt;td&gt;Full Playwright surface exposed 1:1&lt;/td&gt;
+&lt;td&gt;Docker&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;https://github.com/RobithYusuf/mcp-camoufox&quot;&gt;RobithYusuf/mcp-camoufox&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;JavaScript&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;99&lt;/td&gt;
+&lt;td&gt;Scraping/stealth-first&lt;/td&gt;
+&lt;td&gt;Cross-platform&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;That tool-count spread (17 to 127) tells you most of what you need to know before even reading code — these aren&#39;t five implementations of the same idea, they&#39;re five different bets on how much control an LLM agent actually needs.&lt;/p&gt;
+&lt;h2 id=&quot;the-three-api-patterns&quot;&gt;The three API patterns &lt;a class=&quot;direct-link&quot; href=&quot;#the-three-api-patterns&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;whit3rabbit goes bounded and high-level.&lt;/strong&gt; Instead of an agent chaining &lt;code&gt;click(selector)&lt;/code&gt; → &lt;code&gt;fill(selector, text)&lt;/code&gt; → separate round-trips, &lt;code&gt;browse&lt;/code&gt; does nav-and-scrape in one call (&lt;code&gt;url&lt;/code&gt;, &lt;code&gt;outputMode&lt;/code&gt;, &lt;code&gt;maxChars&lt;/code&gt;, &lt;code&gt;selector&lt;/code&gt;, &lt;code&gt;screenshot&lt;/code&gt;), and &lt;code&gt;browse_sequence&lt;/code&gt; takes an array of typed actions (&lt;code&gt;click&lt;/code&gt;, &lt;code&gt;hover&lt;/code&gt;, &lt;code&gt;fill&lt;/code&gt;, &lt;code&gt;type&lt;/code&gt;, &lt;code&gt;select&lt;/code&gt;, &lt;code&gt;press&lt;/code&gt;, &lt;code&gt;waitFor&lt;/code&gt;, &lt;code&gt;scroll&lt;/code&gt;, &lt;code&gt;evaluate&lt;/code&gt;) that all execute inside one browser-side pass. &lt;code&gt;browse_session_*&lt;/code&gt; gives you a persistent context when you need state across calls. It&#39;s the fewest tools of the five, and honestly for most scraping tasks that&#39;s fine — you rarely need to micromanage the mouse.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Sekinal goes granular and mirrors Playwright almost 1:1.&lt;/strong&gt; This is the one to reach for if you actually need fine control: &lt;code&gt;emulate_device&lt;/code&gt;, &lt;code&gt;emulate_network&lt;/code&gt;, &lt;code&gt;set_geolocation&lt;/code&gt;, &lt;code&gt;set_timezone&lt;/code&gt;, &lt;code&gt;set_locale&lt;/code&gt;, &lt;code&gt;set_color_scheme&lt;/code&gt; for emulation; &lt;code&gt;get_performance_metrics&lt;/code&gt;, &lt;code&gt;get_navigation_timing&lt;/code&gt;, &lt;code&gt;get_resource_timing&lt;/code&gt;, &lt;code&gt;get_memory_info&lt;/code&gt;, &lt;code&gt;get_long_tasks&lt;/code&gt; for performance debugging; &lt;code&gt;mouse_drag_xy&lt;/code&gt;, &lt;code&gt;mouse_wheel&lt;/code&gt;, &lt;code&gt;mouse_down&lt;/code&gt;, &lt;code&gt;mouse_up&lt;/code&gt; for pixel-level pointer control. It also ships a VNC bridge on port &lt;code&gt;6080&lt;/code&gt; so you can watch the agent drive the browser live, which is genuinely useful when something&#39;s misbehaving and you don&#39;t want to guess blind.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;RobithYusuf goes pragmatic and stealth-first.&lt;/strong&gt; &lt;code&gt;click_turnstile&lt;/code&gt; uses Bezier-curve mouse paths specifically to beat Cloudflare Turnstile checkboxes, plus &lt;code&gt;detect_anti_bot&lt;/code&gt;, &lt;code&gt;mouse_drift&lt;/code&gt;, and record/replay (&lt;code&gt;mouse_record&lt;/code&gt;/&lt;code&gt;mouse_replay&lt;/code&gt;) for humanized paths. On the data side there&#39;s &lt;code&gt;scrape_page&lt;/code&gt;, &lt;code&gt;extract_structured&lt;/code&gt;, &lt;code&gt;extract_table&lt;/code&gt;, and session portability via &lt;code&gt;cookie_export&lt;/code&gt;/&lt;code&gt;cookie_import&lt;/code&gt; and &lt;code&gt;storage_state_save&lt;/code&gt;/&lt;code&gt;storage_state_load&lt;/code&gt; — handy if you want to reuse a logged-in session across runs instead of re-authenticating every time.&lt;/p&gt;
+&lt;h2 id=&quot;where-the-other-two-fit&quot;&gt;Where the other two fit &lt;a class=&quot;direct-link&quot; href=&quot;#where-the-other-two-fit&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;rlgrpe&lt;/strong&gt; is basically CLI args reshaped into MCP tool calls, running against a persistent background daemon (&lt;code&gt;browser_install&lt;/code&gt; / &lt;code&gt;browser_close&lt;/code&gt;) — lightweight, but Linux/macOS only, so it&#39;s out if you&#39;re on Windows.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;redf0x1&lt;/strong&gt; splits into a server/client model (&lt;code&gt;create_tab&lt;/code&gt;, &lt;code&gt;camofox_close_session&lt;/code&gt;) meant for remote deployment — the browser runtime lives elsewhere, which is the right call if you&#39;re running this from something that isn&#39;t meant to host a browser (a lightweight VPS, a serverless function, etc).&lt;/p&gt;
+&lt;h2 id=&quot;the-dependency-pinning-problem&quot;&gt;The dependency-pinning problem &lt;a class=&quot;direct-link&quot; href=&quot;#the-dependency-pinning-problem&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Anyone shipping &lt;code&gt;camoufox-js&lt;/code&gt; is fighting the same fire: recent Playwright releases (1.60+) broke navigation hooks and reject the &lt;code&gt;isMobile&lt;/code&gt; flag on Firefox instances. whit3rabbit deals with it by hard-pinning &lt;code&gt;playwright-core@1.59.0&lt;/code&gt; and &lt;code&gt;camoufox-js@0.10.2&lt;/code&gt; in &lt;code&gt;package.json&lt;/code&gt;. RobithYusuf pulls compatibility binaries dynamically at &lt;code&gt;npx&lt;/code&gt; runtime instead. redf0x1 sidesteps it entirely by keeping the JS bindings server-side only, so your client never touches the pinned version at all.&lt;/p&gt;
+&lt;p&gt;On the Python side, rlgrpe&#39;s daemon just doesn&#39;t run on Windows, full stop, while Sekinal ducks the whole host-OS problem by shipping everything as a Docker container.&lt;/p&gt;
+&lt;h2 id=&quot;what-i&#39;d-actually-use&quot;&gt;What I&#39;d actually use &lt;a class=&quot;direct-link&quot; href=&quot;#what-i&#39;d-actually-use&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cloudflare/Turnstile-heavy scraping&lt;/strong&gt; → RobithYusuf. The dedicated Turnstile bypass and structured extraction tools are built for exactly this.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Debugging something that&#39;s breaking&lt;/strong&gt; → Sekinal. Being able to actually watch the browser over VNC while &lt;code&gt;emulate_network&lt;/code&gt; throttles things beats guessing from logs.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Low-latency batch automation&lt;/strong&gt; → whit3rabbit. Sequence-based actions run inside the browser process, so you&#39;re not paying round-trip latency per step.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Remote/cloud hosting&lt;/strong&gt; → redf0x1, since the browser runtime doesn&#39;t have to live next to the agent.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For most one-shot scraping over interactive debugging, the low round-trip count on whit3rabbit&#39;s is probably the better default — you rarely need 127 tools when you mostly just need to navigate, extract, and move on.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Full tool-mapping CSV: &lt;a href=&quot;https://cramik.github.io/blog/posts/camoufox-mcp-comparison/camoufox_mcp_tool_comparison.csv&quot;&gt;camoufox_mcp_tool_comparison.csv&lt;/a&gt;&lt;/p&gt;
+
+		</content>
+	</entry>
+	
+	<entry>
+		<title>Reverse Engineering Six Android Device Spoofing Apps</title>
+		<link href="https://cramik.github.io/blog/posts/android-privacy-frameworks/"/>
+		<updated>2026-07-26T00:00:00+00:00</updated>
+		<id>https://cramik.github.io/blog/posts/android-privacy-frameworks/</id>
+		<content type="html">
+		  &lt;p&gt;There&#39;s a whole category of Xposed/LSPosed modules built around faking your Android device&#39;s identity — Android ID, IMEI, WiFi scan results, all of it — mostly aimed at app testing, ad-fraud evasion, or just not wanting to get device-fingerprinted. I&#39;d seen a handful of these mentioned around but never actually looked at how they&#39;re implemented, so I pulled apart six of the more popular ones (DeviceEmulator, Geergit, Mantle, XPL-EX, androidfaker, and PrivacyKit) to see what&#39;s actually happening under the hood.&lt;/p&gt;
+&lt;p&gt;They all land on roughly the same idea — hook the APIs that leak device identity and hand back fake values — but the actual approaches range from &amp;quot;swap a static field&amp;quot; to a Room database with cloud sync and an LLM generating hooks on the fly. Here&#39;s what each one is doing.&lt;/p&gt;
+&lt;h3 id=&quot;1.-deviceemulator-v5.0.2&quot;&gt;1. DeviceEmulator v5.0.2 &lt;a class=&quot;direct-link&quot; href=&quot;#1.-deviceemulator-v5.0.2&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h4 id=&quot;architecture&quot;&gt;Architecture &lt;a class=&quot;direct-link&quot; href=&quot;#architecture&quot;&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Hooking Framework&lt;/strong&gt;: Xposed (&lt;code&gt;IXposedHookLoadPackage&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Entry Point&lt;/strong&gt;: &lt;code&gt;dev.device.emulator.device_emulator.XposedInit.java&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Configuration&lt;/strong&gt;: &lt;code&gt;SharedPreferences&lt;/code&gt;-based with per-feature toggles&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Hook Organization&lt;/strong&gt;: 33+ dedicated hook classes in &lt;code&gt;hook/&lt;/code&gt; package&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;key-hooking-methods&quot;&gt;Key Hooking Methods &lt;a class=&quot;direct-link&quot; href=&quot;#key-hooking-methods&quot;&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;h5 id=&quot;android-id-spoofing-(hfe.java)&quot;&gt;Android ID Spoofing (&lt;code&gt;Hfe.java&lt;/code&gt;) &lt;a class=&quot;direct-link&quot; href=&quot;#android-id-spoofing-(hfe.java)&quot;&gt;#&lt;/a&gt;&lt;/h5&gt;
+&lt;p&gt;Hooks &lt;code&gt;ContentProvider&lt;/code&gt; queries directed at &lt;code&gt;GServices&lt;/code&gt; to intercept queries for &lt;code&gt;android_id&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// Hooks ContentProvider query for GServices&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;// Intercepts content://com.google.android.gsf.gservices&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;// Replaces android_id when queried&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;lowerCase&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;startsWith&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;content://com.google.android.gsf.gservices&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;AbstractC0903e&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; obj&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;android_id&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;        &lt;span class=&quot;token comment&quot;&gt;// Replace with hex string from config&lt;/span&gt;&lt;br&gt;        matrixCursor&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;addRow&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;android_id&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Long&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;valueOf&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Long&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;parseLong&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;lowerCase2&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&quot;mcc%2Fmnc-spoofing-(cmd.java%2C-lgi.java)&quot;&gt;MCC/MNC Spoofing (&lt;code&gt;Cmd.java&lt;/code&gt;, &lt;code&gt;Lgi.java&lt;/code&gt;) &lt;a class=&quot;direct-link&quot; href=&quot;#mcc%2Fmnc-spoofing-(cmd.java%2C-lgi.java)&quot;&gt;#&lt;/a&gt;&lt;/h5&gt;
+&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// Hook TelephonyManager getSimOperator&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token class-name&quot;&gt;XposedHelpers&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setIntField&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;methodHookParam&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getResult&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;mcc&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; i&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token class-name&quot;&gt;XposedHelpers&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setIntField&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;methodHookParam&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getResult&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;mnc&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; i6&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;// Hook PersistableBundle getString for &quot;mccmnc&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;str&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;equals&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;mccmnc&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;    methodHookParam&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setResult&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;E1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getValues&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;toArray&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&quot;wifi-scan-result-spoofing-(wuk.java)&quot;&gt;WiFi Scan Result Spoofing (&lt;code&gt;Wuk.java&lt;/code&gt;) &lt;a class=&quot;direct-link&quot; href=&quot;#wifi-scan-result-spoofing-(wuk.java)&quot;&gt;#&lt;/a&gt;&lt;/h5&gt;
+&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// Hook WiFi scan results&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;ScanResult&lt;/span&gt; scanResult &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; result&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;    scanResult&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;BSSID &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; E1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;// Spoofed MAC&lt;/span&gt;&lt;br&gt;    scanResult&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;SSID &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; strH&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;     &lt;span class=&quot;token comment&quot;&gt;// Spoofed SSID&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;VERSION&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;SDK_INT &lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;33&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;        &lt;span class=&quot;token class-name&quot;&gt;XposedHelpers&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setObjectField&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;scanResult&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;wifiSsid&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; wifiSsidFromBytes&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&quot;device-id-via-mediadrm-(dmi.java)&quot;&gt;Device ID via MediaDrm (&lt;code&gt;Dmi.java&lt;/code&gt;) &lt;a class=&quot;direct-link&quot; href=&quot;#device-id-via-mediadrm-(dmi.java)&quot;&gt;#&lt;/a&gt;&lt;/h5&gt;
+&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// Hook MediaDrm getPropertyString for &quot;deviceUniqueId&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; obj&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;equals&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;deviceUniqueId&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;    methodHookParam&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setResult&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;hexStringToByteArray&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getValues&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;2.-geergit-v2.7&quot;&gt;2. Geergit v2.7 &lt;a class=&quot;direct-link&quot; href=&quot;#2.-geergit-v2.7&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h4 id=&quot;architecture-2&quot;&gt;Architecture &lt;a class=&quot;direct-link&quot; href=&quot;#architecture-2&quot;&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Hooking Framework&lt;/strong&gt;: Xposed (&lt;code&gt;IXposedHookLoadPackage&lt;/code&gt; + &lt;code&gt;IXposedHookZygoteInit&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Entry Point&lt;/strong&gt;: &lt;code&gt;com.pyshivam.geergit.xposed.Xposed.java&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Configuration&lt;/strong&gt;: Per-package &lt;code&gt;SharedPreferences&lt;/code&gt; with MCC/MNC/operator config&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Hook Organization&lt;/strong&gt;: Modular hook classes in &lt;code&gt;t0/&lt;/code&gt; package&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;key-hooking-methods-2&quot;&gt;Key Hooking Methods &lt;a class=&quot;direct-link&quot; href=&quot;#key-hooking-methods-2&quot;&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;h5 id=&quot;contentprovider-hooking-(c1788oooo00o)&quot;&gt;ContentProvider Hooking (&lt;code&gt;C1788OooO00o&lt;/code&gt;) &lt;a class=&quot;direct-link&quot; href=&quot;#contentprovider-hooking-(c1788oooo00o)&quot;&gt;#&lt;/a&gt;&lt;/h5&gt;
+&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// Case 2: Hook query with Parcel manipulation&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;bArrMarshall&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;84&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token comment&quot;&gt;// Replace operator name in Parcel data&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token keyword&quot;&gt;byte&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; bArrCopyOfRange &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Arrays&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;copyOfRange&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;bytes&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; bytes&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token comment&quot;&gt;// Find and replace in Parcel marshaled data&lt;/span&gt;&lt;br&gt;    iAUx &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;AbstractC1904OooOOOo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;aUx&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;bArrMarshall2&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; bArrCopyOfRange&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&quot;accountmanager-spoofing-(c1788oooo00o)&quot;&gt;AccountManager Spoofing (&lt;code&gt;C1788OooO00o&lt;/code&gt;) &lt;a class=&quot;direct-link&quot; href=&quot;#accountmanager-spoofing-(c1788oooo00o)&quot;&gt;#&lt;/a&gt;&lt;/h5&gt;
+&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// Case 17: Return spoofed account&lt;/span&gt;&lt;br&gt;methodHookParam&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setResult&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Account&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Account&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;this&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/span&gt;Aux&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;aUX&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;account_name&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;com.google&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;// Case 19: Replace account in map&lt;/span&gt;&lt;br&gt;map&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;put&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Account&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;this&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/span&gt;Aux&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;aUX&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;account_name&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;com.google&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; it&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;3.-mantle-v2.5.1&quot;&gt;3. Mantle v2.5.1 &lt;a class=&quot;direct-link&quot; href=&quot;#3.-mantle-v2.5.1&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h4 id=&quot;architecture-3&quot;&gt;Architecture &lt;a class=&quot;direct-link&quot; href=&quot;#architecture-3&quot;&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Hooking Framework&lt;/strong&gt;: Xposed (&lt;code&gt;IXposedHookLoadPackage&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Entry Point&lt;/strong&gt;: &lt;code&gt;com.mantle.xposed.XposedEntry.java&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Configuration&lt;/strong&gt;: Room database with &lt;code&gt;ProfileFS&lt;/code&gt; data class&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cloud Sync&lt;/strong&gt;: Firestore integration for profile sync&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;key-hooking-methods-3&quot;&gt;Key Hooking Methods &lt;a class=&quot;direct-link&quot; href=&quot;#key-hooking-methods-3&quot;&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;h5 id=&quot;anti-tamper-bypass&quot;&gt;Anti-Tamper Bypass &lt;a class=&quot;direct-link&quot; href=&quot;#anti-tamper-bypass&quot;&gt;#&lt;/a&gt;&lt;/h5&gt;
+&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// Hook self-package to disable anti-tamper&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Intrinsics&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;il&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;lpparam&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;packageName&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;com.mantle&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token class-name&quot;&gt;XposedHelpers&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setStaticLongField&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;br&gt;        &lt;span class=&quot;token class-name&quot;&gt;XposedHelpers&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;findClass&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;com.mantle.security.AntiTamper&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; lpparam&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;classLoader&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;        &lt;span class=&quot;token string&quot;&gt;&quot;_mantleModuleToken&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;84942882360389L&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;    &lt;br&gt;    &lt;span class=&quot;token class-name&quot;&gt;XposedHelpers&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;findAndHookMethod&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;br&gt;        &lt;span class=&quot;token string&quot;&gt;&quot;com.mantle.xposed.ModuleStatusChecker&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; lpparam&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;classLoader&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;        &lt;span class=&quot;token string&quot;&gt;&quot;isModuleActive&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;Z01&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;4.-xpl-ex-v1.4.3-(xprivacylua)&quot;&gt;4. XPL-EX v1.4.3 (XPrivacyLua) &lt;a class=&quot;direct-link&quot; href=&quot;#4.-xpl-ex-v1.4.3-(xprivacylua)&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h4 id=&quot;architecture-4&quot;&gt;Architecture &lt;a class=&quot;direct-link&quot; href=&quot;#architecture-4&quot;&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Hooking Framework&lt;/strong&gt;: Xposed&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Entry Point&lt;/strong&gt;: Manifest metadata (&lt;code&gt;xposedmodule&lt;/code&gt;, &lt;code&gt;xposedscope&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Configuration&lt;/strong&gt;: Database-driven with Lua scripting support&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;IPC&lt;/strong&gt;: VXP ContentProvider for cross-process communication&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&quot;language-xml&quot;&gt;&lt;code class=&quot;language-xml&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;meta-data&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;android:&lt;/span&gt;name&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;xposedmodule&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;android:&lt;/span&gt;value&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;true&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;/&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;meta-data&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;android:&lt;/span&gt;name&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;xposeddescription&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;android:&lt;/span&gt;value&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;@string/app_name&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;/&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;meta-data&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;android:&lt;/span&gt;name&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;xposedminversion&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;android:&lt;/span&gt;value&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;82&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;/&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;meta-data&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;android:&lt;/span&gt;name&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;xposedscope&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;android:&lt;/span&gt;resource&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;@array/scopes&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;/&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;5.-androidfaker&quot;&gt;5. androidfaker &lt;a class=&quot;direct-link&quot; href=&quot;#5.-androidfaker&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h4 id=&quot;architecture-5&quot;&gt;Architecture &lt;a class=&quot;direct-link&quot; href=&quot;#architecture-5&quot;&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Hooking Framework&lt;/strong&gt;: Xposed (&lt;code&gt;IXposedHookLoadPackage&lt;/code&gt; + &lt;code&gt;IXposedHookZygoteInit&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Entry Point&lt;/strong&gt;: &lt;code&gt;com.android1500.androidfaker.xposed.MainHook.java&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Hook Approach&lt;/strong&gt;: Direct &lt;code&gt;Build.class&lt;/code&gt; static field modification&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&quot;build.class-static-field-spoofing-(x0%2Faux.java)&quot;&gt;Build.class Static Field Spoofing (&lt;code&gt;x0/aux.java&lt;/code&gt;) &lt;a class=&quot;direct-link&quot; href=&quot;#build.class-static-field-spoofing-(x0%2Faux.java)&quot;&gt;#&lt;/a&gt;&lt;/h5&gt;
+&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// Direct Build.class field modification&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;c&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;m9837do&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Boolean&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;TYPE&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token class-name&quot;&gt;XposedHelpers&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setStaticBooleanField&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; strM13780do&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Boolean&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; string&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;booleanValue&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;c&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;m9837do&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;TYPE&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token class-name&quot;&gt;XposedHelpers&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setStaticIntField&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; strM13780do&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; string&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;intValue&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;c&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;m9837do&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Long&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;TYPE&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token class-name&quot;&gt;XposedHelpers&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setStaticLongField&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; strM13780do&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Long&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; string&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;longValue&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token class-name&quot;&gt;XposedHelpers&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setStaticObjectField&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; strM13780do&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; string&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;6.-privacykit-v1.11&quot;&gt;6. PrivacyKit v1.11 &lt;a class=&quot;direct-link&quot; href=&quot;#6.-privacykit-v1.11&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h4 id=&quot;architecture-6&quot;&gt;Architecture &lt;a class=&quot;direct-link&quot; href=&quot;#architecture-6&quot;&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Hooking Framework&lt;/strong&gt;: LSPosed (&lt;code&gt;libxposed.service&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Entry Point&lt;/strong&gt;: &lt;code&gt;com.sal.privacykit.xposed.XposedServiceConnection.java&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Configuration&lt;/strong&gt;: Room database with Profile system, AI-powered hook generation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&quot;ai-powered-hook-generation&quot;&gt;AI-Powered Hook Generation &lt;a class=&quot;direct-link&quot; href=&quot;#ai-powered-hook-generation&quot;&gt;#&lt;/a&gt;&lt;/h5&gt;
+&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// Generates custom hooks based on observed evidence&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;generate&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;AiProvider&lt;/span&gt; provider&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; apiKey&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;br&gt;    &lt;span class=&quot;token class-name&quot;&gt;JSONObject&lt;/span&gt; evidenceReport&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; userIntent&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;long&lt;/span&gt; timeout&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;    &lt;br&gt;    &lt;span class=&quot;token class-name&quot;&gt;Pair&lt;/span&gt;&lt;span class=&quot;token generics&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Observation&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;ManualFinding&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt; partition &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;partitionObservations&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;observations&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; prompt &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;buildPrompt&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;packageName&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; userIntent&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; actionable&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; raw &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; completion&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;complete&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;provider&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; apiKey&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; prompt&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; jsonMode&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; continuation&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;    &lt;br&gt;    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Result&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;extractRulesArray&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;raw&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; manualFindings&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; note&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;how-they-stack-up&quot;&gt;How they stack up &lt;a class=&quot;direct-link&quot; href=&quot;#how-they-stack-up&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Laying the six out side by side, the range in sophistication is pretty wide for apps that are all nominally solving the same problem:&lt;/p&gt;
+&lt;h4 id=&quot;hooking-approach&quot;&gt;Hooking approach &lt;a class=&quot;direct-link&quot; href=&quot;#hooking-approach&quot;&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;App&lt;/th&gt;
+&lt;th&gt;Hooking Method&lt;/th&gt;
+&lt;th&gt;Aggressiveness&lt;/th&gt;
+&lt;th&gt;Flexibility&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;DeviceEmulator&lt;/td&gt;
+&lt;td&gt;Result replacement&lt;/td&gt;
+&lt;td&gt;Medium&lt;/td&gt;
+&lt;td&gt;Medium&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Geergit&lt;/td&gt;
+&lt;td&gt;Result replacement + Parcel manipulation&lt;/td&gt;
+&lt;td&gt;High&lt;/td&gt;
+&lt;td&gt;High&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Mantle&lt;/td&gt;
+&lt;td&gt;ContentProvider export&lt;/td&gt;
+&lt;td&gt;Low&lt;/td&gt;
+&lt;td&gt;High&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;XPL-EX&lt;/td&gt;
+&lt;td&gt;Database-driven + Lua scripting&lt;/td&gt;
+&lt;td&gt;Variable&lt;/td&gt;
+&lt;td&gt;Very High&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;androidfaker&lt;/td&gt;
+&lt;td&gt;Static field modification&lt;/td&gt;
+&lt;td&gt;Very High&lt;/td&gt;
+&lt;td&gt;Low&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;PrivacyKit&lt;/td&gt;
+&lt;td&gt;AI-powered + Evidence-based&lt;/td&gt;
+&lt;td&gt;Low&lt;/td&gt;
+&lt;td&gt;Very High&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&quot;feature-matrix&quot;&gt;Feature matrix &lt;a class=&quot;direct-link&quot; href=&quot;#feature-matrix&quot;&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Feature&lt;/th&gt;
+&lt;th&gt;DeviceEmulator&lt;/th&gt;
+&lt;th&gt;Geergit&lt;/th&gt;
+&lt;th&gt;Mantle&lt;/th&gt;
+&lt;th&gt;XPL-EX&lt;/th&gt;
+&lt;th&gt;androidfaker&lt;/th&gt;
+&lt;th&gt;PrivacyKit&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Android ID&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;IMEI/IMSI&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;MCC/MNC&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✗&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;WiFi&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Bluetooth&lt;/td&gt;
+&lt;td&gt;✗&lt;/td&gt;
+&lt;td&gt;✗&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;GPS&lt;/td&gt;
+&lt;td&gt;✗&lt;/td&gt;
+&lt;td&gt;✗&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✗&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;KeyStore&lt;/td&gt;
+&lt;td&gt;✗&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✗&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✗&lt;/td&gt;
+&lt;td&gt;✗&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;androidfaker&#39;s approach (directly overwriting &lt;code&gt;Build&lt;/code&gt; class static fields) is the crudest of the six and it shows in the aggressiveness/flexibility tradeoff — it&#39;s the easiest to detect but also the easiest to reason about. PrivacyKit sits at the other end: an evidence-based system that feeds observed app behavior into an LLM to generate hooks on the fly is a lot more work to build, but it&#39;s also the only one of the six that isn&#39;t hardcoding a fixed set of fields up front. XPL-EX&#39;s Lua scripting sits in between — no AI involved, but the database-driven config still gives it more flexibility than any of the static hook lists.&lt;/p&gt;
+&lt;hr&gt;
+
+		</content>
+	</entry>
+	
+	<entry>
+		<title>I Scraped Half a Million Credly Badges, Here&#39;s What&#39;s In There</title>
+		<link href="https://cramik.github.io/blog/posts/credly-badge-stats/"/>
+		<updated>2026-08-14T00:00:00+00:00</updated>
+		<id>https://cramik.github.io/blog/posts/credly-badge-stats/</id>
+		<content type="html">
+		  &lt;p&gt;Credly hosts the &amp;quot;digital badge&amp;quot; pages for a huge chunk of the certification industry — AWS, Cisco, CompTIA, PMI, random corporate LMS courses, all of it. Every earned badge gets its own public page at &lt;code&gt;credly.com/badges/&amp;lt;uuid&amp;gt;&lt;/code&gt; with the badge name, issuer, description, and who it was issued to. I got curious how big that dataset actually is and what it would tell me about who&#39;s handing out credentials and how, so I built a scraper and pointed it at as much of Credly as I could reach.&lt;/p&gt;
+&lt;p&gt;After crawling and cleaning it up, I ended up with &lt;strong&gt;486,578 issued badges&lt;/strong&gt; covering &lt;strong&gt;387,664 unique certifications&lt;/strong&gt; from &lt;strong&gt;2,251 distinct issuers&lt;/strong&gt;. Every badge on Credly is tagged with a cost — &lt;code&gt;free&lt;/code&gt;, &lt;code&gt;paid&lt;/code&gt;, or &lt;code&gt;none&lt;/code&gt; (meaning Credly just doesn&#39;t have pricing info for it) — so I split the numbers three ways.&lt;/p&gt;
+&lt;h2 id=&quot;the-dataset&quot;&gt;The dataset &lt;a class=&quot;direct-link&quot; href=&quot;#the-dataset&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th style=&quot;text-align:right&quot;&gt;Issued badges&lt;/th&gt;
+&lt;th style=&quot;text-align:right&quot;&gt;Unique certifications&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Free&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;62,415&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;44,072&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Paid&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;182,733&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;158,492&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;None (no price listed)&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;241,430&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;185,100&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Total&lt;/strong&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;&lt;strong&gt;486,578&lt;/strong&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;&lt;strong&gt;387,664&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The gap between &amp;quot;issued badges&amp;quot; and &amp;quot;unique certifications&amp;quot; is the interesting part — it&#39;s the difference between counting every time someone earned a badge versus counting how many distinct badges exist. A badge issued to 20,000 people only counts once in the second column.&lt;/p&gt;
+&lt;h2 id=&quot;who-actually-issues-these&quot;&gt;Who actually issues these &lt;a class=&quot;direct-link&quot; href=&quot;#who-actually-issues-these&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Ranked by unique certifications (so one issuer spamming the same badge to thousands of people doesn&#39;t inflate their count):&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Issuer&lt;/th&gt;
+&lt;th style=&quot;text-align:right&quot;&gt;Unique certs&lt;/th&gt;
+&lt;th style=&quot;text-align:right&quot;&gt;Issued badges&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Cisco&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;209,073&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;211,984&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Microsoft&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;27,928&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;38,463&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Amazon Web Services Training and Certification&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;18,234&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;28,257&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;IBM&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;17,727&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;28,963&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Coursera&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;6,350&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;9,884&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;The Linux Foundation&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;5,257&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;8,547&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Project Management Institute&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;4,743&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;6,667&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CompTIA&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;4,059&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;5,000&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SAFe by Scaled Agile, Inc.&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;3,968&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;6,190&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SAP&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;3,076&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;4,470&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Cisco isn&#39;t just first, it&#39;s not close — it accounts for over half of every unique certification in the entire dataset. That tracks with how NetAcad and Cisco&#39;s badge program work: they mint a new distinct badge per course/module/cohort instead of reusing one badge across years, which inflates the unique-cert count relative to how many people actually earned something.&lt;/p&gt;
+&lt;p&gt;The issued-vs-unique gap also tells you something about how each issuer runs their program. Cisco&#39;s ratio is close to 1:1 (211,984 issued for 209,073 unique certs) — mostly one-off badges. Microsoft&#39;s is closer to 1.4:1, and AWS Training and Certification&#39;s about the same — a smaller number of popular badges getting issued to a lot of people over and over, which is what you&#39;d expect from something like an AWS foundational cert versus a one-time Cisco course badge.&lt;/p&gt;
+&lt;h2 id=&quot;free-vs.-paid-vs.-none%2C-by-issuer&quot;&gt;Free vs. paid vs. none, by issuer &lt;a class=&quot;direct-link&quot; href=&quot;#free-vs.-paid-vs.-none%2C-by-issuer&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Splitting the top issuers out by cost bucket shows some clearly different business models:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cisco&lt;/strong&gt; leans heavily on &lt;code&gt;none&lt;/code&gt; and &lt;code&gt;paid&lt;/code&gt; (117,174 paid / 77,358 none / 14,541 free unique certs) — a mix of free intro badges and gated certification exams.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Microsoft, AWS Training and Certification, and CompTIA&lt;/strong&gt; are 100% &lt;code&gt;none&lt;/code&gt; — Credly just doesn&#39;t have pricing data tied to their programs.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;http://scrum.org/&quot;&gt;Scrum.org&lt;/a&gt;&lt;/strong&gt; is 100% &lt;code&gt;paid&lt;/code&gt; — every single one of their 2,116 unique certs is tagged paid.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SAFe by Scaled Agile&lt;/strong&gt; is almost entirely &lt;code&gt;none&lt;/code&gt; (3,901 of 3,968), a near-total mirror of Cisco&#39;s split but skewed the other way.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Full CSVs with every issuer are linked at the bottom if you want to dig through the long tail — there are 2,251 issuers total and the top 10 above only cover about two-thirds of the unique-cert volume.&lt;/p&gt;
+&lt;h2 id=&quot;poking-at-the-data-yourself&quot;&gt;Poking at the data yourself &lt;a class=&quot;direct-link&quot; href=&quot;#poking-at-the-data-yourself&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I built a quick random-badge picker out of the deduplicated dataset — hit it, filter by free/paid/none, and it&#39;ll show you a real badge name, image, and issuer pulled at random: &lt;a href=&quot;https://cramik.github.io/credly.html&quot;&gt;cramik.github.io/credly.html&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Raw stats&lt;/strong&gt;: &lt;a href=&quot;https://cramik.github.io/blog/posts/credly-badge-stats/issuer_stats_all_issued.csv&quot;&gt;issuer_stats_all_issued.csv&lt;/a&gt; (every issued badge, by issuer) and &lt;a href=&quot;https://cramik.github.io/blog/posts/credly-badge-stats/issuer_stats_dedup_certs.csv&quot;&gt;issuer_stats_dedup_certs.csv&lt;/a&gt; (deduplicated by unique certification), both broken down by free/paid/none.&lt;/p&gt;
 
 		</content>
 	</entry>
