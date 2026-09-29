@@ -5,7 +5,7 @@
 	
 	<link href="https://cramik.github.io/blog/feed/feed.xml" rel="self"/>
 	<link href="https://cramik.github.io/blog"/>
-	<updated>2026-08-18T00:00:00+00:00</updated>
+	<updated>2026-09-28T00:00:00+00:00</updated>
 	<id>https://cramik.github.io/blog/</id>
 	<author>
 		<name>Cramik</name>
@@ -1276,6 +1276,204 @@ checkLotteryResult(&amp;quot;yourusername&amp;quot;)
 &lt;p&gt;A third thing, also only visible from the code: bitchat&#39;s Nostr fallback path (used to reach a mutually-favorited contact over the internet when there&#39;s no BLE path between you) labels its encryption &amp;quot;NIP-44 v2&amp;quot; on the wire, but it isn&#39;t the standard NIP-44 that the rest of the Nostr ecosystem implements. The published NIP-44 spec calls for ChaCha20 plus a separate HMAC-SHA256 authentication step, with the plaintext padded into fixed length buckets specifically to stop message-length fingerprinting. bitchat-android&#39;s implementation (&lt;code&gt;NostrCrypto.kt&lt;/code&gt;) instead runs XChaCha20-Poly1305 as a single AEAD call, with no plaintext padding whatsoever, and its own code comments admit it: &amp;quot;Match iOS: derive HKDF input from the compressed shared point,&amp;quot; describing a key-derivation step that isn&#39;t in the public spec either. Functionally this still gets you confidentiality and authenticity between two bitchat installs, but it means bitchat&#39;s Nostr DMs are opaque to (and unreadable by) any standard Nostr client, and they skip the length-hiding padding a spec-compliant NIP-44 implementation would apply. If part of the appeal of the Nostr fallback is &amp;quot;falls back to the wider Nostr network,&amp;quot; that&#39;s not quite what&#39;s happening; it falls back to Nostr relays as a transport, but only other bitchat clients can actually read what gets sent.&lt;/p&gt;
 &lt;h2 id=&quot;where-that-leaves-things&quot;&gt;Where that leaves things &lt;a class=&quot;direct-link&quot; href=&quot;#where-that-leaves-things&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Briar is the most institutionally mature of the four. Dagger DI, a database migration chain running to nearly 50 versions, and reproducible Docker builds so published APKs can be verified against source all point the same way: it gets there by deliberately keeping its trust surface small, pairwise contacts only, no ad-hoc relay through strangers. Knit is the newest and, in some ways, the most cryptographically deliberate, with real thought put into the specific hard problem of combining forward secrecy with storage that has to evict old messages. bitchat&#39;s two versions are the most ambitious in scope. Physical message-carrying couriers are a genuinely novel idea, and they&#39;re paired with the most publicly candid self-assessment of the group, admitted weaknesses included. None of these are better or worse versions of the same app. They&#39;re four different, defensible answers to what off-grid messaging should trade away.&lt;/p&gt;
+
+		</content>
+	</entry>
+	
+	<entry>
+		<title>Prowler vs. Microsoft Secure Score vs. ScubaGear: Three M365 Audits, Same Tenant</title>
+		<link href="https://cramik.github.io/blog/posts/m365-prowler-secure-score-scubagear/"/>
+		<updated>2026-09-28T00:00:00+00:00</updated>
+		<id>https://cramik.github.io/blog/posts/m365-prowler-secure-score-scubagear/</id>
+		<content type="html">
+		  &lt;p&gt;There are at least three different ways to ask &amp;quot;is this Microsoft 365 tenant configured securely?&amp;quot;, and they don&#39;t agree with each other nearly as much as you&#39;d hope. I&#39;ve got a test tenant I use for poking at M365 tooling deliberately left close to Microsoft&#39;s defaults, no hardening pass applied and it seemed like a good excuse to actually run all three side by side instead of just trusting whichever one I happened to reach for first:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/prowler-cloud/prowler&quot;&gt;Prowler&lt;/a&gt;&lt;/strong&gt; - the open-source CSPM, which added an M365 provider a while back alongside its AWS/Azure/GCP checks.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Microsoft Secure Score&lt;/strong&gt; - the recommendation engine baked into the Microsoft 365 Defender portal.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/cisagov/ScubaGear&quot;&gt;ScubaGear&lt;/a&gt;&lt;/strong&gt; - CISA&#39;s tool for assessing a tenant against its own M365 Secure Configuration Baselines.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Since a test tenant like this one is basically Microsoft&#39;s out-of-the-box configuration with a handful of users dropped in, it&#39;s a decent stand-in for &amp;quot;what does a tenant look like before anyone&#39;s gone through and hardened it,&amp;quot; which turns out to be exactly the gap each of these tools is trying to close, just from different angles.&lt;/p&gt;
+&lt;h2 id=&quot;getting-scubagear-running&quot;&gt;Getting ScubaGear running &lt;a class=&quot;direct-link&quot; href=&quot;#getting-scubagear-running&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;If you haven&#39;t used it before, ScubaGear is a PowerShell module, and setup is refreshingly small:&lt;/p&gt;
+&lt;pre class=&quot;language-powershell&quot;&gt;&lt;code class=&quot;language-powershell&quot;&gt;&lt;span class=&quot;token function&quot;&gt;Install-Module&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;Name ScubaGear &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;Scope CurrentUser&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;Import-Module&lt;/span&gt; ScubaGear&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;Initialize-SCuBA&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;Initialize-SCuBA&lt;/code&gt; pulls down the PowerShell modules ScubaGear depends on (Microsoft Graph, Exchange Online Management, MicrosoftTeams, powershell-yaml) and installs &lt;a href=&quot;https://www.openpolicyagent.org/&quot;&gt;Open Policy Agent&lt;/a&gt;, which is what actually evaluates the Rego policies behind each baseline control, into a &lt;code&gt;.scubagear&lt;/code&gt; folder in your home directory.&lt;/p&gt;
+&lt;p&gt;It only runs on Windows PowerShell 5.1. That&#39;s a hard requirement tied to some of its underlying libraries, not a version they haven&#39;t gotten around to bumping yet, so there&#39;s no point fighting it into PowerShell 7.&lt;/p&gt;
+&lt;p&gt;From there, kicking off a full scan is one line:&lt;/p&gt;
+&lt;pre class=&quot;language-powershell&quot;&gt;&lt;code class=&quot;language-powershell&quot;&gt;&lt;span class=&quot;token function&quot;&gt;Invoke-SCuBA&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;ProductNames &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;M365Environment commercial&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That pops interactive sign-in windows one at a time (Graph first, then Exchange Online, Teams, and SharePoint) and drops an HTML report plus raw CSV/JSON results into a timestamped folder. Worth noting: whatever account you sign in with needs enough read access to reach every product you&#39;re asking about. I didn&#39;t have Exchange/Security Reader on the account I used, and the run silently skipped the Exchange Online and Defender baselines rather than erroring, so if a product&#39;s missing from your output folder, that&#39;s the first thing to check.&lt;/p&gt;
+&lt;h2 id=&quot;the-headline-numbers&quot;&gt;The headline numbers &lt;a class=&quot;direct-link&quot; href=&quot;#the-headline-numbers&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Three tools, three different ways of counting, so these aren&#39;t directly comparable, but they&#39;re a useful gut-check on how out-of-the-box this tenant really was.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Tool&lt;/th&gt;
+&lt;th&gt;Scope this run&lt;/th&gt;
+&lt;th&gt;Result&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Prowler&lt;/td&gt;
+&lt;td&gt;164 checks across Entra ID, SharePoint, admin center, Defender&lt;/td&gt;
+&lt;td&gt;78 failing (1 critical, 33 high, 42 medium, 2 low)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;ScubaGear&lt;/td&gt;
+&lt;td&gt;67 CISA baseline controls across Entra ID, SharePoint, Teams, Power Platform&lt;/td&gt;
+&lt;td&gt;29 failing, 12 warnings, 14 passing&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Secure Score&lt;/td&gt;
+&lt;td&gt;4 category exports (identity, apps/mail, data, devices)&lt;/td&gt;
+&lt;td&gt;38 open, tenant-policy-level recommendations&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Roughly half of everything either tool checked was still sitting on a default. That&#39;s the expected shape for a tenant nobody&#39;s gone through with a checklist yet, which is sort of the point of running it this way.&lt;/p&gt;
+&lt;p&gt;One caveat before the numbers get more granular: Prowler evaluates several conditional access checks once &lt;em&gt;per policy&lt;/em&gt;, not once per tenant. If you&#39;ve got six conditional access policies that all forget to require token protection, that&#39;s six failing rows in Prowler&#39;s CSV for one underlying gap. Once you collapse duplicates, those 78 failing rows are actually 58 distinct checks. That&#39;s the number I used for everything below, so a &amp;quot;Prowler: 5&amp;quot; isn&#39;t secretly hiding a single check repeated five times.&lt;/p&gt;
+&lt;h2 id=&quot;breaking-it-down-by-category&quot;&gt;Breaking it down by category &lt;a class=&quot;direct-link&quot; href=&quot;#breaking-it-down-by-category&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Instead of &amp;quot;78 vs. 29 vs. 38,&amp;quot; here&#39;s the same findings sorted into the themes each tool actually targets. The three tools don&#39;t share a check library, so this is a best-effort crosswalk rather than an exact match, but it gives a much better sense of &lt;em&gt;where&lt;/em&gt; each one is looking than the topline counts.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Category&lt;/th&gt;
+&lt;th&gt;What it covers&lt;/th&gt;
+&lt;th&gt;Prowler&lt;/th&gt;
+&lt;th&gt;ScubaGear&lt;/th&gt;
+&lt;th&gt;Secure Score&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Risk-based conditional access&lt;/td&gt;
+&lt;td&gt;Detecting and blocking risky sign-ins and risky users automatically&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;2 of 3 fail&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;MFA, auth methods &amp;amp; credential hygiene&lt;/td&gt;
+&lt;td&gt;MFA enforcement, phishing-resistance, stale/leaked credentials&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;5 fail, 3 warn of 9&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CA: session, device &amp;amp; token controls&lt;/td&gt;
+&lt;td&gt;Sign-in frequency, managed-device rules, token/session-theft protection&lt;/td&gt;
+&lt;td&gt;21&lt;/td&gt;
+&lt;td&gt;N/A&lt;/td&gt;
+&lt;td&gt;N/A&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;App registration &amp;amp; consent governance&lt;/td&gt;
+&lt;td&gt;Who can register apps, what they can ask users to consent to&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;2 of 3 fail&lt;/td&gt;
+&lt;td&gt;0 (zero-weight)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Privileged role management (PIM)&lt;/td&gt;
+&lt;td&gt;Time-bound, approved, alerted-on admin roles vs. standing access&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;6 fail, 1 warn of 9&lt;/td&gt;
+&lt;td&gt;N/A&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Device registration &amp;amp; management&lt;/td&gt;
+&lt;td&gt;Entra-joined device defaults: local admin, LAPS, BitLocker, join limits&lt;/td&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;Not a baseline product&lt;/td&gt;
+&lt;td&gt;N/A&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Group, guest &amp;amp; tenant creation governance&lt;/td&gt;
+&lt;td&gt;Who can create groups, guest accounts, or tenants unapproved&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;0 of 3 fail&lt;/td&gt;
+&lt;td&gt;N/A&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Hybrid identity &amp;amp; directory sync&lt;/td&gt;
+&lt;td&gt;On-prem/cloud identity sync configuration&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;N/A&lt;/td&gt;
+&lt;td&gt;N/A&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Admin portal &amp;amp; license hygiene&lt;/td&gt;
+&lt;td&gt;Admin account licensing, who can reach admin portals&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;N/A&lt;/td&gt;
+&lt;td&gt;N/A&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SharePoint external sharing &amp;amp; guest permissions&lt;/td&gt;
+&lt;td&gt;What external users/guests can access or re-share&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;3 of 3 fail&lt;/td&gt;
+&lt;td&gt;N/A&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SharePoint link, session &amp;amp; auth settings&lt;/td&gt;
+&lt;td&gt;Default link permissions, expiration windows, modern auth&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;5 of 5 fail&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Teams external access &amp;amp; governance&lt;/td&gt;
+&lt;td&gt;Federation, anonymous meeting access, app/email integrations&lt;/td&gt;
+&lt;td&gt;Not assessed&lt;/td&gt;
+&lt;td&gt;3 fail, 5 warn of 20&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Power Platform governance&lt;/td&gt;
+&lt;td&gt;Who can create environments, whether DLP policies exist&lt;/td&gt;
+&lt;td&gt;Not assessed&lt;/td&gt;
+&lt;td&gt;3 of 9 fail&lt;/td&gt;
+&lt;td&gt;N/A&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Exchange Online &amp;amp; Defender for Office&lt;/td&gt;
+&lt;td&gt;Anti-phishing, anti-spam, mail flow, mailbox auditing&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;Not in this run&lt;/td&gt;
+&lt;td&gt;26&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Endpoint threat visibility&lt;/td&gt;
+&lt;td&gt;Defender for Endpoint visibility into credential exposure&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;Not a baseline product&lt;/td&gt;
+&lt;td&gt;N/A&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Data classification / Purview&lt;/td&gt;
+&lt;td&gt;Sensitivity labeling and classification policy coverage&lt;/td&gt;
+&lt;td&gt;Not assessed&lt;/td&gt;
+&lt;td&gt;Not a baseline product&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;A few things jump out just from the shape of that table. Prowler&#39;s single biggest bucket (21 unique checks) is conditional access session/device/token controls, an area ScubaGear&#39;s baseline barely touches; CISA cares whether risk-based CA and MFA exist at all, not the finer-grained policy hygiene Prowler goes after. Flip it around and ScubaGear is the only one of the three with real depth on privileged role lifecycle (PIM) and the only one that looks at Power Platform at all. And Secure Score&#39;s 26-item Exchange/Defender for Office bucket dwarfs everything else in this table; it&#39;s clearly the deepest lens on mail security, for the obvious reason that Microsoft owns both the product and the scoring engine.&lt;/p&gt;
+&lt;h2 id=&quot;where-all-three-actually-agree&quot;&gt;Where all three actually agree &lt;a class=&quot;direct-link&quot; href=&quot;#where-all-three-actually-agree&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Out of everything, only two themes got flagged by every single tool. I&#39;d treat unanimous findings like these as the highest-confidence, do-first items on any tenant, test or not:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Identity Protection risk policies aren&#39;t turned on.&lt;/strong&gt; Prowler failed three separate checks around sign-in risk and user risk conditional access policies; ScubaGear&#39;s &lt;code&gt;MS.AAD.2.1v1&lt;/code&gt; and &lt;code&gt;MS.AAD.2.3v1&lt;/code&gt; failed for the same reason; and it&#39;s the single largest point value in the whole Secure Score export (+10.6% each for enabling sign-in risk and user risk policies).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;MFA is enabled, but not the phishing-resistant kind.&lt;/strong&gt; All three tools noticed a gap between &amp;quot;MFA exists&amp;quot; and &amp;quot;MFA is actually good.&amp;quot; Prowler flagged the absence of a conditional access policy requiring phishing-resistant MFA for admins; ScubaGear&#39;s &lt;code&gt;MS.AAD.3.1v1&lt;/code&gt;/&lt;code&gt;3.2v1&lt;/code&gt;/&lt;code&gt;3.6v1&lt;/code&gt; failed on the same requirement; and Secure Score only gave partial credit (4.2 out of 9 points) for the MFA recommendation it does track.&lt;/p&gt;
+&lt;h2 id=&quot;where-two-out-of-three-agree&quot;&gt;Where two out of three agree &lt;a class=&quot;direct-link&quot; href=&quot;#where-two-out-of-three-agree&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;A step down in confidence, but still solid: Prowler and ScubaGear lined up almost exactly on &lt;strong&gt;SharePoint and OneDrive&lt;/strong&gt;. Prowler failed five separate checks (external sharing unrestricted, guest re-sharing allowed, OneDrive sync permitted from unmanaged devices, and modern auth not required), while ScubaGear failed every single one of its eight SharePoint controls (&lt;code&gt;MS.SHAREPOINT.1.1&lt;/code&gt; through &lt;code&gt;3.3&lt;/code&gt;): external sharing, default link permissions, and link expiration/reauth windows. Secure Score touches the edges of this (inactive session sign-out, modern auth for SharePoint apps) but doesn&#39;t score external sharing directly, so it shows up as a partial rather than a third confirmation.&lt;/p&gt;
+&lt;p&gt;Same story with &lt;strong&gt;app registration governance&lt;/strong&gt;: non-admins can register apps, user consent isn&#39;t locked down, and there&#39;s no admin consent workflow. Prowler and ScubaGear both catch it; Secure Score lists a related item but at zero score weight, since it already credits a related, already-completed control elsewhere.&lt;/p&gt;
+&lt;h2 id=&quot;what-only-one-tool-caught&quot;&gt;What only one tool caught &lt;a class=&quot;direct-link&quot; href=&quot;#what-only-one-tool-caught&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This is the part that actually justifies running more than one of these:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Only Prowler&lt;/strong&gt; flagged that Microsoft Defender for Endpoint wasn&#39;t enabled at all, which meant Defender XDR&#39;s Security Exposure Management had no visibility into whether any privileged user&#39;s credentials showed up on a risky device. Worth being precise about what this is: it&#39;s not a confirmed exposure, it&#39;s a blind spot; the check fails because there&#39;s nothing to evaluate without MDE turned on in the first place. Still the tenant&#39;s single &amp;quot;critical&amp;quot; severity finding, and neither of the other two tools does this kind of device-threat correlation at all.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Only ScubaGear&lt;/strong&gt; went deep on Entra Privileged Identity Management, recording six separate CISA &amp;quot;Shall&amp;quot; failures around role activation approval, alerting, and permanent vs. time-bound privileged assignments. Neither Prowler nor Secure Score has an equivalent check. It&#39;s also the only one of the three that assesses Power Platform at all (environment creation restrictions, DLP policy), which is easy to forget even exists until a baseline tool goes and checks it.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Only Secure Score&lt;/strong&gt; surfaces Purview sensitivity labeling, and it&#39;s not a small miss. Publishing a data classification policy alone is worth +22% in that export, and the full label rollout (auto-labeling, extending it into the Purview data map) is worth +44% combined, more points than anything else in the entire dataset. Neither CSPM tool looks at Purview at all. Secure Score also carries a long tail (26 items) of Defender for Office anti-phishing detail: impersonation protection, quarantine actions, mailbox auditing, Safe Links. ScubaGear would probably mirror some of that if it had Exchange access on this run, but doesn&#39;t right now.&lt;/p&gt;
+&lt;h2 id=&quot;takeaways&quot;&gt;Takeaways &lt;a class=&quot;direct-link&quot; href=&quot;#takeaways&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;None of these three tools is wrong, exactly; they&#39;re just answering different questions with different depth. Prowler and ScubaGear largely agree where they overlap, which is reassuring: an independent CSPM and a government baseline converging on the same failing controls is a decent signal that those controls are actually worth fixing first. But each one also has a real blind spot the others don&#39;t cover (such as Prowler&#39;s device-threat correlation, ScubaGear&#39;s Entra PIM and Power Platform depth, or Secure Score&#39;s Purview and Defender for Office detail), so picking just one and calling it done leaves real gaps.&lt;/p&gt;
+&lt;p&gt;If you&#39;re doing this for real: fix what&#39;s unanimous first (risk-based conditional access, phishing-resistant MFA), then go through the two-out-of-three items (external sharing, app consent), and don&#39;t skip re-running ScubaGear with full Exchange/Security Reader access; that one gap in this run&#39;s permissions is hiding an entire baseline&#39;s worth of results.&lt;/p&gt;
 
 		</content>
 	</entry>
