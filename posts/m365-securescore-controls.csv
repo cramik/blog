@@ -1,0 +1,468 @@
+"Control_ID","Category","Name","Status","Score_Impact","Points_Achieved","Product"
+"ss_appssaas_admins-and-agents-can-use-the-zendesk-support-mobile-app","appssaas","Admins and agents can use the Zendesk Support mobile app","undefined","-","-","MDA_Zendesk"
+"ss_appssaas_apply-access-control-rule-acl-validation-when-server-side-records-are-accessed-using-glideajax-apis-within-a-client-script","appssaas","Apply access control rule (ACL) validation when server-side records are accessed using GlideAjax APIs within a client script","undefined","-","-","MDA_SNOW"
+"ss_appssaas_atlassian-mobile-app-security-app-data-protection","appssaas","Atlassian mobile app security - App data protection","undefined","-","-","MDA_Atlassian"
+"ss_appssaas_block-onedrive-for-business-sync-from-unmanaged-devices","appssaas","Block OneDrive for Business sync from unmanaged devices","undefined","-","-","SPO"
+"ss_appssaas_block-users-in-specific-domains-from-joining-meetings-and-webinars","appssaas","Block users in specific domains from joining meetings and webinars","undefined","-","-","MDA_Zoom"
+"ss_appssaas_block-users-who-reached-the-message-limit","appssaas","Block users who reached the message limit","default","+0.51%","0 out of 1","MDO"
+"ss_appssaas_configure-which-users-are-allowed-to-present-in-teams-meetings","appssaas","Configure which users are allowed to present in Teams meetings","default","+1.01%","0 out of 2","MS Teams"
+"ss_appssaas_create-safe-links-policies-for-email-messages","appssaas","Create Safe Links policies for email messages","completed","-","9 out of 9","MDO"
+"ss_appssaas_create-zero-hour-auto-purge-policies-for-malware","appssaas","Create zero-hour auto purge policies for malware","completed","-","6 out of 6","MDO"
+"ss_appssaas_create-zero-hour-auto-purge-policies-for-phishing-messages","appssaas","Create zero-hour auto purge policies for phishing messages","completed","-","3 out of 3","MDO"
+"ss_appssaas_create-zero-hour-auto-purge-policies-for-spam-messages","appssaas","Create zero-hour auto purge policies for spam messages","completed","-","1 out of 1","MDO"
+"ss_appssaas_deploy-a-log-collector-to-discover-shadow-it-activity","appssaas","Deploy a log collector to discover shadow IT activity","default","+0.51%","0 out of 1","MCAS"
+"ss_appssaas_disable-allow-members-to-change-repository-visibilities-for-this-organization","appssaas","Disable 'Allow members to change repository visibilities for this organization'","undefined","-","-","MDA_GitHub"
+"ss_appssaas_disable-private-repository-forking","appssaas","Disable private repository forking","undefined","-","-","MDA_GitHub"
+"ss_appssaas_don-t-add-allowed-ip-addresses-in-the-connection-filter-policy","appssaas","Don't add allowed IP addresses in the connection filter policy ","completed","-","1 out of 1","MDO"
+"ss_appssaas_enable-clickjack-protection-for-customer-visualforce-pages-with-headers-disabled","appssaas","Enable clickjack protection for customer VisualForce pages with headers disabled","undefined","-","-","MDA_SF"
+"ss_appssaas_enable-clickjack-protection-for-customer-visualforce-pages-with-standard-headers","appssaas","Enable clickjack protection for customer VisualForce pages with standard headers","undefined","-","-","MDA_SF"
+"ss_appssaas_enable-clickjack-protection-for-non-setup-for-salesforce-pages","appssaas","Enable clickjack protection for non-Setup for Salesforce pages","undefined","-","-","MDA_SF"
+"ss_appssaas_enable-clickjack-protection-for-setup-pages","appssaas","Enable clickjack protection for Setup pages","undefined","-","-","MDA_SF"
+"ss_appssaas_enable-client-generated-scripts-sandbox","appssaas","Enable client generated scripts sandbox","undefined","-","-","MDA_SNOW"
+"ss_appssaas_enable-content-security-policy-protection-for-email-templates","appssaas","Enable Content Security Policy protection for email templates","undefined","-","-","MDA_SF"
+"ss_appssaas_enable-content-sniffing-protection","appssaas","Enable Content Sniffing protection","undefined","-","-","MDA_SF"
+"ss_appssaas_enable-csrf-protection-on-get-requests-on-non-setup-pages","appssaas","Enable CSRF protection on GET requests on non-setup pages","undefined","-","-","MDA_SF"
+"ss_appssaas_enable-csrf-protection-on-post-requests-on-non-setup-pages","appssaas","Enable CSRF protection on POST requests on non-setup pages","undefined","-","-","MDA_SF"
+"ss_appssaas_enable-default-deny-with-new-acl-rules","appssaas","Enable default deny with new ACL rules","undefined","-","-","MDA_SNOW"
+"ss_appssaas_enable-high-security-plugin","appssaas","Enable high security plugin","undefined","-","-","MDA_SNOW"
+"ss_appssaas_enable-impersonated-domain-protection","appssaas","Enable impersonated domain protection","default","+4.04%","0 out of 8","MDO"
+"ss_appssaas_enable-impersonated-user-protection","appssaas","Enable impersonated user protection","default","+4.04%","0 out of 8","MDO"
+"ss_appssaas_enable-multi-factor-authentication","appssaas","Enable multi-factor authentication","undefined","-","-","MDA_Zoom"
+"ss_appssaas_enable-session-timeout-for-client-users","appssaas","Enable session timeout for client users","undefined","-","-","MDA_Zoom"
+"ss_appssaas_enable-session-timeout-for-web-users","appssaas","Enable session timeout for web users","undefined","-","-","MDA_Zoom"
+"ss_appssaas_enable-soap-content-type-checking","appssaas","Enable SOAP content type checking","undefined","-","-","MDA_SNOW"
+"ss_appssaas_enable-soap-request-strict-security","appssaas","Enable SOAP request strict security","undefined","-","-","MDA_SNOW"
+"ss_appssaas_enable-the-domain-impersonation-safety-tip","appssaas","Enable the domain impersonation safety tip","default","+1.52%","0 out of 3","MDO"
+"ss_appssaas_enable-the-user-impersonation-safety-tip","appssaas","Enable the user impersonation safety tip","default","+1.52%","0 out of 3","MDO"
+"ss_appssaas_enable-the-user-impersonation-unusual-characters-safety-tip","appssaas","Enable the user impersonation unusual characters safety tip?","default","+1.52%","0 out of 3","MDO"
+"ss_appssaas_enable-url-allow-list-for-cross-origin-iframe-communication","appssaas","Enable URL allow list for cross-origin iframe communication","undefined","-","-","MDA_SNOW"
+"ss_appssaas_enabled-email-notification-delivery-for-this-enterprise-is-restricted-to-verified-or-approved-domains","appssaas","Enabled 'email notification delivery for this enterprise is restricted to verified or approved domains'","undefined","-","-","MDA_GitHub"
+"ss_appssaas_enforce-end-to-end-encryption-in-all-zoom-meetings","appssaas","Enforce end to end encryption in all Zoom meetings","undefined","-","-","MDA_Zoom"
+"ss_appssaas_enhance-password-requirements","appssaas","Enhance password requirements","undefined","-","-","MDA_Zoom"
+"ss_appssaas_ensure-additional-storage-providers-are-restricted-in-outlook-on-the-web","appssaas","Ensure additional storage providers are restricted in Outlook on the web","default","+2.53%","0 out of 5","EXO"
+"ss_appssaas_ensure-all-forms-of-mail-forwarding-are-blocked-and-or-disabled","appssaas","Ensure all forms of mail forwarding are blocked and/or disabled","default","+2.53%","0 out of 5","MDO"
+"ss_appssaas_ensure-dlp-policies-are-enabled-for-microsoft-teams","appssaas","Ensure DLP policies are enabled for Microsoft Teams","undefined","-","-","MIP"
+"ss_appssaas_ensure-exchange-online-spam-policies-are-set-to-notify-administrators","appssaas","Ensure Exchange Online Spam Policies are set to notify administrators","default","+1.52%","0 out of 3","MDO"
+"ss_appssaas_ensure-external-sharing-of-calendars-is-not-available","appssaas","Ensure 'External sharing' of calendars is not available","default","+2.53%","0 out of 5","EXO"
+"ss_appssaas_ensure-internal-phishing-protection-for-forms-is-enabled","appssaas","Ensure internal phishing protection for Forms is enabled","undefined","-","-","FORMS"
+"ss_appssaas_ensure-mailbox-auditing-for-all-users-is-enabled","appssaas","Ensure mailbox auditing for all users is Enabled","default","+1.52%","0 out of 3","EXO"
+"ss_appssaas_ensure-mailtips-are-enabled-for-end-users","appssaas","Ensure MailTips are enabled for end users","default","+1.52%","0 out of 3","EXO"
+"ss_appssaas_ensure-microsoft-365-audit-log-search-is-enabled","appssaas","Ensure Microsoft 365 audit log search is Enabled","completed","-","3 out of 3","MIP"
+"ss_appssaas_ensure-microsoft-defender-for-cloud-apps-is-enabled-and-configured","appssaas","Ensure Microsoft Defender for Cloud Apps is enabled and configured","undefined","-","-","MCAS"
+"ss_appssaas_ensure-office-365-management-activity-api-is-enabled-for-some-workloads-see-description","appssaas","Ensure Office 365 Management Activity API is Enabled for some workloads (see description)","undefined","-","-","MIP"
+"ss_appssaas_ensure-safe-attachments-policy-is-enabled","appssaas","Ensure Safe Attachments policy is enabled","completed","-","5 out of 5","MDO"
+"ss_appssaas_ensure-safe-links-for-office-applications-is-enabled","appssaas","Ensure Safe Links for Office Applications is Enabled","default","+1.52%","0 out of 3","MDO"
+"ss_appssaas_ensure-sharepoint-external-sharing-is-managed-through-domain-whitelist-blacklists","appssaas","Ensure SharePoint external sharing is managed through domain whitelist/blacklists","undefined","-","-","SPO"
+"ss_appssaas_ensure-spam-confidence-level-scl-is-configured-in-mail-transport-rules-with-specific-domains","appssaas","Ensure Spam confidence level (SCL) is configured in mail transport rules with specific domains","completed","-","3 out of 3","EXO"
+"ss_appssaas_ensure-that-an-anti-phishing-policy-has-been-created","appssaas","Ensure that an anti-phishing policy has been created","default","+1.52%","0 out of 3","MDO"
+"ss_appssaas_ensure-that-intelligence-for-impersonation-protection-is-enabled","appssaas","Ensure that intelligence for impersonation protection is enabled","default","+4.04%","0 out of 8","MDO"
+"ss_appssaas_ensure-that-mailbox-intelligence-is-enabled","appssaas","Ensure that mailbox intelligence is enabled","completed","-","8 out of 8","MDO"
+"ss_appssaas_ensure-that-no-sender-domains-are-allowed-for-anti-spam-policies","appssaas","Ensure that no sender domains are allowed for anti-spam policies","completed","-","2 out of 2","MDO"
+"ss_appssaas_ensure-that-spf-records-are-published-for-all-exchange-domains","appssaas","Ensure that SPF records are published for all Exchange Domains","undefined","-","-","EXO"
+"ss_appssaas_ensure-that-sways-cannot-be-shared-with-people-outside-of-your-organization","appssaas","Ensure that Sways cannot be shared with people outside of your organization","undefined","-","-","SWAY"
+"ss_appssaas_ensure-the-common-attachment-types-filter-is-enabled","appssaas","Ensure the Common Attachment Types Filter is enabled","completed","-","5 out of 5","MDO"
+"ss_appssaas_ensure-the-customer-lockbox-feature-is-enabled","appssaas","Ensure the customer lockbox feature is enabled","default","+0.51%","0 out of 1","EXO"
+"ss_appssaas_ensure-users-installing-outlook-add-ins-is-not-allowed","appssaas","Ensure users installing Outlook add-ins is not allowed","default","+1.52%","0 out of 3","EXO"
+"ss_appssaas_limit-external-participants-from-having-control-in-a-teams-meeting","appssaas","Limit external participants from having control in a Teams meeting","completed","-","1 out of 1","MS Teams"
+"ss_appssaas_move-messages-that-are-detected-as-impersonated-users-by-mailbox-intelligence","appssaas","Move messages that are detected as impersonated users by mailbox intelligence","default","+4.04%","0 out of 8","MDO"
+"ss_appssaas_only-invited-users-should-be-automatically-admitted-to-teams-meetings","appssaas","Only invited users should be automatically admitted to Teams meetings","default","+0.51%","1 out of 2","MS Teams"
+"ss_appssaas_quarantine-messages-that-are-detected-from-impersonated-domains","appssaas","Quarantine messages that are detected from impersonated domains","default","+3.03%","0 out of 6","MDO"
+"ss_appssaas_quarantine-messages-that-are-detected-from-impersonated-users","appssaas","Quarantine messages that are detected from impersonated users","default","+3.03%","0 out of 6","MDO"
+"ss_appssaas_regulate-apps-with-priority-account-consent","appssaas","Regulate apps with priority account consent","undefined","-","-","AppG"
+"ss_appssaas_regulate-cloud-app-access-to-sensitive-data","appssaas","Regulate cloud app access to sensitive data","undefined","-","-","AppG"
+"ss_appssaas_remote-site","appssaas","Remote Site","undefined","-","-","MDA_SF"
+"ss_appssaas_require-httponly-attribute","appssaas","Require HttpOnly attribute","undefined","-","-","MDA_SF"
+"ss_appssaas_restrict-anonymous-users-from-joining-meetings","appssaas","Restrict anonymous users from joining meetings","default","+0.51%","0 out of 1","MS Teams"
+"ss_appssaas_restrict-anonymous-users-from-starting-teams-meetings","appssaas","Restrict anonymous users from starting Teams meetings","completed","-","1 out of 1","MS Teams"
+"ss_appssaas_restrict-dial-in-users-from-bypassing-a-meeting-lobby","appssaas","Restrict dial-in users from bypassing a meeting lobby ","completed","-","1 out of 1","MS Teams"
+"ss_appssaas_retain-spam-in-quarantine-for-30-days","appssaas","Retain spam in quarantine for 30 days","default","+0.51%","0 out of 1","MDO"
+"ss_appssaas_set-a-daily-message-limit","appssaas","Set a daily message limit","completed","-","1 out of 1","MDO"
+"ss_appssaas_set-action-to-take-on-bulk-spam-detection","appssaas","Set action to take on bulk spam detection","completed","-","3 out of 3","MDO"
+"ss_appssaas_set-action-to-take-on-high-confidence-phishing-detection","appssaas","Set action to take on high confidence phishing detection","completed","-","5 out of 5","MDO"
+"ss_appssaas_set-action-to-take-on-high-confidence-spam-detection","appssaas","Set action to take on high confidence spam detection","default","+2.53%","0 out of 5","MDO"
+"ss_appssaas_set-action-to-take-on-phishing-detection","appssaas","Set action to take on phishing detection","default","+2.53%","0 out of 5","MDO"
+"ss_appssaas_set-action-to-take-on-spam-detection","appssaas","Set action to take on spam detection","completed","-","5 out of 5","MDO"
+"ss_appssaas_set-automatic-email-forwarding-rules-to-be-system-controlled","appssaas","Set automatic email forwarding rules to be system controlled","completed","-","1 out of 1","MDO"
+"ss_appssaas_set-client-callable-script-includes-to-private","appssaas","Set client-callable script includes to private","undefined","-","-","MDA_SNOW"
+"ss_appssaas_set-default-cache-control-http-header-value-to-private","appssaas","Set default cache-control HTTP header value to private","undefined","-","-","MDA_SNOW"
+"ss_appssaas_set-maximum-number-of-external-recipients-that-a-user-can-email-per-hour","appssaas","Set maximum number of external recipients that a user can email per hour","completed","-","1 out of 1","MDO"
+"ss_appssaas_set-maximum-number-of-internal-recipients-that-a-user-can-send-to-within-an-hour","appssaas","Set maximum number of internal recipients that a user can send to within an hour","completed","-","1 out of 1","MDO"
+"ss_appssaas_set-the-email-bulk-complaint-level-bcl-threshold-to-be-6-or-lower","appssaas","Set the email bulk complaint level (BCL) threshold to be 6 or lower","default","+0.51%","0 out of 1","MDO"
+"ss_appssaas_set-the-phishing-email-level-threshold-at-2-or-higher","appssaas","Set the phishing email level threshold at 2 or higher","default","+4.04%","0 out of 8","MDO"
+"ss_appssaas_turn-on-microsoft-defender-for-office-365-in-sharepoint-onedrive-and-microsoft-teams","appssaas","Turn on Microsoft Defender for Office 365 in SharePoint, OneDrive, and Microsoft Teams","completed","-","5 out of 5","MDO"
+"ss_appssaas_turn-on-safe-attachments-in-block-mode","appssaas","Turn on Safe Attachments in block mode","completed","-","8 out of 8","MDO"
+"ss_appssaas_turn-on-safe-documents-for-office-clients","appssaas","Turn on Safe Documents for Office Clients","completed","-","5 out of 5","MDO"
+"ss_data_ensure-dlp-policies-are-enabled","data","Ensure DLP policies are enabled","completed","-","5 out of 5","MIP"
+"ss_data_ensure-that-auto-labeling-data-classification-policies-are-set-up-and-used","data","Ensure that Auto-labeling data classification policies are set up and used","default","+11.11%","0 out of 1","MIP"
+"ss_data_extend-m365-sensitivity-labeling-to-assets-in-microsoft-purview-data-map","data","Extend M365 sensitivity labeling to assets in Microsoft Purview data map","default","+11.11%","0 out of 1","MIP"
+"ss_data_publish-m365-sensitivity-label-data-classification-policies","data","Publish M365 sensitivity label data classification policies","default","+22.22%","0 out of 2","MIP"
+"ss_devices_block-abuse-of-exploited-vulnerable-signed-drivers","devices","Block abuse of exploited vulnerable signed drivers","","-","-",
+"ss_devices_block-adobe-reader-from-creating-child-processes","devices","Block Adobe Reader from creating child processes","","-","-",
+"ss_devices_block-all-office-applications-from-creating-child-processes","devices","Block all Office applications from creating child processes","","-","-",
+"ss_devices_block-credential-stealing-from-the-windows-local-security-authority-subsystem-lsass-exe","devices","Block credential stealing from the Windows local security authority subsystem (lsass.exe)","","-","-",
+"ss_devices_block-executable-content-from-email-client-and-webmail","devices","Block executable content from email client and webmail","","-","-",
+"ss_devices_block-executable-files-from-running-unless-they-meet-a-prevalence-age-or-trusted-list-criterion","devices","Block executable files from running unless they meet a prevalence, age, or trusted list criterion","","-","-",
+"ss_devices_block-execution-of-potentially-obfuscated-scripts","devices","Block execution of potentially obfuscated scripts","","-","-",
+"ss_devices_block-file-transfer-over-rdp","devices","Block file transfer over RDP","","-","-",
+"ss_devices_block-flash-activation-in-office-documents","devices","Block Flash activation in Office documents","","-","-",
+"ss_devices_block-javascript-or-vbscript-from-launching-downloaded-executable-content","devices","Block JavaScript or VBScript from launching downloaded executable content","","-","-",
+"ss_devices_block-office-applications-from-creating-executable-content","devices","Block Office applications from creating executable content","","-","-",
+"ss_devices_block-office-applications-from-injecting-code-into-other-processes","devices","Block Office applications from injecting code into other processes","","-","-",
+"ss_devices_block-office-communication-application-from-creating-child-processes","devices","Block Office communication application from creating child processes","","-","-",
+"ss_devices_block-outbound-network-connections-from-microsoft-html-application-host-mshta-exe","devices","Block outbound network connections from Microsoft HTML Application Host (mshta.exe)","","-","-",
+"ss_devices_block-outdated-activex-controls-for-internet-explorer","devices","Block outdated ActiveX controls for Internet Explorer","","-","-",
+"ss_devices_block-persistence-through-wmi-event-subscription","devices","Block persistence through WMI event subscription","","-","-",
+"ss_devices_block-process-creations-originating-from-psexec-and-wmi-commands","devices","Block process creations originating from PSExec and WMI commands","","-","-",
+"ss_devices_block-rebooting-machine-in-safe-mode","devices","Block rebooting machine in Safe Mode","","-","-",
+"ss_devices_block-untrusted-and-unsigned-processes-that-run-from-usb","devices","Block untrusted and unsigned processes that run from USB","","-","-",
+"ss_devices_block-use-of-copied-or-impersonated-system-tools","devices","Block use of copied or impersonated system tools","","-","-",
+"ss_devices_block-webpages-from-automatically-running-flash-plugins","devices","Block webpages from automatically running Flash plugins","","-","-",
+"ss_devices_block-webshell-creation-for-servers","devices","Block Webshell creation for Servers","","-","-",
+"ss_devices_block-win32-api-calls-from-office-macros","devices","Block Win32 API calls from Office macros","","-","-",
+"ss_devices_change-service-account-to-avoid-cached-password-in-windows-registry","devices","Change service account to avoid cached password in windows registry","","-","-",
+"ss_devices_change-service-executable-path-to-a-common-protected-location","devices","Change service executable path to a common protected location","","-","-",
+"ss_devices_devices-should-have-vulnerability-findings-resolved","devices","Devices should have vulnerability findings resolved","","-","-",
+"ss_devices_disable-allow-basic-authentication-for-winrm-client","devices","Disable 'Allow Basic authentication' for WinRM Client","","-","-",
+"ss_devices_disable-allow-basic-authentication-for-winrm-service","devices","Disable 'Allow Basic authentication' for WinRM Service","","-","-",
+"ss_devices_disable-allow-running-plugins-that-are-outdated","devices","Disable 'Allow running plugins that are outdated'","","-","-",
+"ss_devices_disable-always-install-with-elevated-privileges","devices","Disable 'Always install with elevated privileges'","","-","-",
+"ss_devices_disable-anonymous-enumeration-of-sam-accounts","devices","Disable 'Anonymous enumeration of SAM accounts'","","-","-",
+"ss_devices_disable-anonymous-enumeration-of-shares","devices","Disable Anonymous enumeration of shares","","-","-",
+"ss_devices_disable-autofill","devices","Disable 'AutoFill'","","-","-",
+"ss_devices_disable-autoplay-for-all-drives","devices","Disable 'Autoplay' for all drives","","-","-",
+"ss_devices_disable-autoplay-for-non-volume-devices","devices","Disable 'Autoplay for non-volume devices'","","-","-",
+"ss_devices_disable-configure-offer-remote-assistance","devices","Disable 'Configure Offer Remote Assistance'","","-","-",
+"ss_devices_disable-continue-running-background-apps-when-google-chrome-is-closed","devices","Disable 'Continue running background apps when Google Chrome is closed'","","-","-",
+"ss_devices_disable-domain-member-disable-machine-account-password-changes","devices","Disable 'Domain member: Disable machine account password changes'","","-","-",
+"ss_devices_disable-enumerate-administrator-accounts-on-elevation","devices","Disable 'Enumerate administrator accounts on elevation'","","-","-",
+"ss_devices_disable-flash-on-adobe-acrobat-pro-xi","devices","Disable Flash on Adobe Acrobat Pro XI","","-","-",
+"ss_devices_disable-flash-on-adobe-reader-dc","devices","Disable Flash on Adobe Reader DC","","-","-",
+"ss_devices_disable-insecure-administration-protocol-telnet","devices","Disable insecure administration protocol ? Telnet","","-","-",
+"ss_devices_disable-insecure-guest-logons-in-smb","devices","Disable 'Insecure guest logons' in SMB","","-","-",
+"ss_devices_disable-installation-and-configuration-of-network-bridge-on-your-dns-domain-network","devices","Disable 'Installation and configuration of Network Bridge on your DNS domain network'","","-","-",
+"ss_devices_disable-ip-source-routing","devices","Disable IP source routing","","-","-",
+"ss_devices_disable-javascript-on-adobe-2015","devices","Disable JavaScript on Adobe 2015","","-","-",
+"ss_devices_disable-javascript-on-adobe-acrobat-2017","devices","Disable JavaScript on Adobe Acrobat 2017","","-","-",
+"ss_devices_disable-javascript-on-adobe-acrobat-pro-xi","devices","Disable JavaScript on Adobe Acrobat Pro XI","","-","-",
+"ss_devices_disable-javascript-on-adobe-dc","devices","Disable JavaScript on Adobe DC","","-","-",
+"ss_devices_disable-javascript-on-adobe-reader-2015","devices","Disable JavaScript on Adobe Reader 2015","","-","-",
+"ss_devices_disable-javascript-on-adobe-reader-2017","devices","Disable JavaScript on Adobe Reader 2017","","-","-",
+"ss_devices_disable-javascript-on-adobe-reader-dc","devices","Disable JavaScript on Adobe Reader DC","","-","-",
+"ss_devices_disable-merging-of-local-microsoft-defender-firewall-connection-rules-with-group-policy-firewall-rules-for-the-public-profile","devices","Disable merging of local Microsoft Defender Firewall connection rules with group policy firewall rules for the Public profile","","-","-",
+"ss_devices_disable-merging-of-local-microsoft-defender-firewall-rules-with-group-policy-firewall-rules-for-the-public-profile","devices","Disable merging of local Microsoft Defender Firewall rules with group policy firewall rules for the Public profile","","-","-",
+"ss_devices_disable-microsoft-defender-firewall-notifications-when-programs-are-blocked-for-domain-profile","devices","Disable Microsoft Defender Firewall notifications when programs are blocked for Domain profile","","-","-",
+"ss_devices_disable-microsoft-defender-firewall-notifications-when-programs-are-blocked-for-private-profile","devices","Disable Microsoft Defender Firewall notifications when programs are blocked for Private profile","","-","-",
+"ss_devices_disable-microsoft-defender-firewall-notifications-when-programs-are-blocked-for-public-profile","devices","Disable Microsoft Defender Firewall notifications when programs are blocked for Public profile","","-","-",
+"ss_devices_disable-network-access-let-everyone-permissions-apply-to-anonymous-users","devices","Disable 'Network access: Let Everyone permissions apply to anonymous users'","","-","-",
+"ss_devices_disable-ntlm-authentication-for-windows","devices","Disable NTLM authentication for Windows","","-","-",
+"ss_devices_disable-password-manager","devices","Disable 'Password Manager'","","-","-",
+"ss_devices_disable-remote-registry-service-on-windows","devices","Disable Remote Registry Service on Windows","","-","-",
+"ss_devices_disable-running-or-installing-downloaded-software-with-invalid-signature","devices","Disable running or installing downloaded software with invalid signature","","-","-",
+"ss_devices_disable-sending-unencrypted-password-to-third-party-smb-servers","devices","Disable sending unencrypted password to third-party SMB servers","","-","-",
+"ss_devices_disable-smbv1-client-driver","devices","Disable SMBv1 client driver","","-","-",
+"ss_devices_disable-smbv1-server","devices","Disable SMBv1 server","","-","-",
+"ss_devices_disable-solicited-remote-assistance","devices","Disable Solicited Remote Assistance","","-","-",
+"ss_devices_disable-store-lan-manager-hash-value-on-next-password-change","devices","Disable 'Store LAN Manager hash value on next password change'","","-","-",
+"ss_devices_disable-the-built-in-administrator-account","devices","Disable the built-in Administrator account","","-","-",
+"ss_devices_disable-the-built-in-guest-account","devices","Disable the built-in Guest account","","-","-",
+"ss_devices_disable-the-local-storage-of-passwords-and-credentials","devices","Disable the local storage of passwords and credentials","","-","-",
+"ss_devices_disable-wdigest-authentication","devices","Disable 'WDigest Authentication'","","-","-",
+"ss_devices_disallow-offline-access-to-shares","devices","Disallow offline access to shares","","-","-",
+"ss_devices_enable-apply-uac-restrictions-to-local-accounts-on-network-logons","devices","Enable 'Apply UAC restrictions to local accounts on network logons'","","-","-",
+"ss_devices_enable-automatic-updates","devices","Enable Automatic Updates","","-","-",
+"ss_devices_enable-block-third-party-cookies","devices","Enable 'Block third party cookies'","","-","-",
+"ss_devices_enable-cloud-delivered-protection","devices","Enable cloud-delivered protection","","-","-",
+"ss_devices_enable-domain-member-digitally-encrypt-or-sign-secure-channel-data-always","devices","Enable 'Domain member: Digitally encrypt or sign secure channel data (always)'","","-","-",
+"ss_devices_enable-domain-member-digitally-sign-secure-channel-data-when-possible","devices","Enable 'Domain member: Digitally sign secure channel data (when possible)'","","-","-",
+"ss_devices_enable-domain-member-require-strong-windows-2000-or-later-session-key","devices","Enable 'Domain member: Require strong (Windows 2000 or later) session key'","","-","-",
+"ss_devices_enable-edr-in-block-mode","devices","Enable EDR in block mode","","-","-",
+"ss_devices_enable-explorer-data-execution-prevention-dep","devices","Enable Explorer Data Execution Prevention (DEP)","","-","-",
+"ss_devices_enable-filevault-disk-encryption-in-macos","devices","Enable FileVault Disk Encryption in macOS","","-","-",
+"ss_devices_enable-gatekeeper-in-macos","devices","Enable Gatekeeper in macOS","","-","-",
+"ss_devices_enable-hide-option-to-enable-or-disable-updates","devices","Enable 'Hide Option to Enable or Disable Updates'","","-","-",
+"ss_devices_enable-limit-local-account-use-of-blank-passwords-to-console-logon-only","devices","Enable 'Limit local account use of blank passwords to console logon only'","","-","-",
+"ss_devices_enable-local-machine-zone-lockdown-security","devices","Enable 'Local Machine Zone Lockdown Security'","","-","-",
+"ss_devices_enable-local-security-authority-lsa-protection","devices","Enable 'Local Security Authority (LSA) protection'","","-","-",
+"ss_devices_enable-local-security-authority-lsa-protection-on-windows-11-22h2-and-higher","devices","Enable 'Local Security Authority (LSA) protection' on Windows 11 22h2 and higher","","-","-",
+"ss_devices_enable-memory-integrity-hvci","devices","Enable Memory Integrity (HVCI)","","-","-",
+"ss_devices_enable-microsoft-defender-antivirus-cloud-delivered-protection-for-linux","devices","Enable Microsoft Defender Antivirus cloud-delivered protection for Linux","","-","-",
+"ss_devices_enable-microsoft-defender-antivirus-cloud-delivered-protection-in-macos","devices","Enable Microsoft Defender Antivirus cloud-delivered protection in macOS","","-","-",
+"ss_devices_enable-microsoft-defender-antivirus-email-scanning","devices","Enable Microsoft Defender Antivirus email scanning","","-","-",
+"ss_devices_enable-microsoft-defender-antivirus-real-time-behavior-monitoring","devices","Enable Microsoft Defender Antivirus real-time behavior monitoring","","-","-",
+"ss_devices_enable-microsoft-defender-antivirus-real-time-behavior-monitoring-for-linux","devices","Enable Microsoft Defender Antivirus real-time behavior monitoring for Linux","","-","-",
+"ss_devices_enable-microsoft-defender-antivirus-real-time-behavior-monitoring-in-macos","devices","Enable Microsoft Defender Antivirus real-time behavior monitoring in macOS","","-","-",
+"ss_devices_enable-microsoft-defender-antivirus-scanning-of-downloaded-files-and-attachments","devices","Enable Microsoft Defender Antivirus scanning of downloaded files and attachments","","-","-",
+"ss_devices_enable-microsoft-defender-for-endpoint-plug-in-for-wsl","devices","Enable 'Microsoft Defender for Endpoint Plug-in for WSL'","","-","-",
+"ss_devices_enable-microsoft-network-client-digitally-sign-communications-always","devices","Enable 'Microsoft network client: Digitally sign communications (always)'","","-","-",
+"ss_devices_enable-network-protection","devices","Enable 'Network Protection'","","-","-",
+"ss_devices_enable-require-additional-authentication-at-startup","devices","Enable 'Require additional authentication at startup'","","-","-",
+"ss_devices_enable-require-domain-users-to-elevate-when-setting-a-network-s-location","devices","Enable 'Require domain users to elevate when setting a network's location'","","-","-",
+"ss_devices_enable-safe-dll-search-mode","devices","Enable 'Safe DLL Search Mode'","","-","-",
+"ss_devices_enable-scanning-of-removable-drives-during-a-full-scan","devices","Enable scanning of removable drives during a full scan","","-","-",
+"ss_devices_enable-set-domain-member-digitally-encrypt-secure-channel-data-when-possible","devices","Enable Set 'Domain member: Digitally encrypt secure channel data (when possible)'","","-","-",
+"ss_devices_enable-system-integrity-protection-sip-in-macos","devices","Enable System Integrity Protection (SIP) in macOS","","-","-",
+"ss_devices_enable-uefi-secure-boot-mode","devices","Enable UEFI Secure Boot mode","","-","-",
+"ss_devices_enable-virtualization-based-security-vbs","devices","Enable Virtualization-based Security (VBS)","","-","-",
+"ss_devices_encrypt-all-bitlocker-supported-drives","devices","Encrypt all BitLocker-supported drives","","-","-",
+"ss_devices_encrypt-ldap-client-traffic-to-protect-sensitive-data-in-transit","devices","Encrypt LDAP client traffic to protect sensitive data in transit","","-","-",
+"ss_devices_enforce-ldap-channel-binding-to-protect-authentication-sessions-from-interception","devices","Enforce LDAP channel binding to protect authentication sessions from interception","","-","-",
+"ss_devices_ensure-bitlocker-drive-compatibility","devices","Ensure BitLocker drive compatibility","","-","-",
+"ss_devices_ensure-devices-are-updated-to-secure-boot-2023-certificates-and-boot-manager","devices","Ensure devices are updated to Secure Boot 2023 certificates and boot manager","","-","-",
+"ss_devices_ensure-laps-is-enabled-on-every-endpoint-and-server","devices","Ensure LAPS is enabled on every endpoint and server","","-","-",
+"ss_devices_ensure-microsoft-vulnerable-driver-blocklist-is-enabled","devices","Ensure Microsoft Vulnerable Driver Blocklist is enabled","","-","-",
+"ss_devices_ensure-screensaver-is-set-to-start-in-20-minutes-or-less-in-macos","devices","Ensure screensaver is set to start in 20 minutes or less in macOS","","-","-",
+"ss_devices_ensure-that-tpm-2-0-is-present-enabled-and-activated","devices","Ensure that TPM 2.0 is present, enabled, and activated","","-","-",
+"ss_devices_fix-microsoft-defender-for-endpoint-impaired-communications","devices","Fix Microsoft Defender for Endpoint impaired communications","","-","-",
+"ss_devices_fix-microsoft-defender-for-endpoint-impaired-communications-for-linux","devices","Fix Microsoft Defender for Endpoint impaired communications for Linux","","-","-",
+"ss_devices_fix-microsoft-defender-for-endpoint-impaired-communications-in-macos","devices","Fix Microsoft Defender for Endpoint impaired communications in macOS","","-","-",
+"ss_devices_fix-microsoft-defender-for-endpoint-sensor-data-collection","devices","Fix Microsoft Defender for Endpoint sensor data collection","","-","-",
+"ss_devices_fix-microsoft-defender-for-endpoint-sensor-data-collection-for-linux","devices","Fix Microsoft Defender for Endpoint sensor data collection for Linux","","-","-",
+"ss_devices_fix-microsoft-defender-for-endpoint-sensor-data-collection-in-macos","devices","Fix Microsoft Defender for Endpoint sensor data collection in macOS","","-","-",
+"ss_devices_fix-unquoted-service-path-for-windows-services","devices","Fix unquoted service path for Windows services","","-","-",
+"ss_devices_fix-windows-defender-antivirus-cloud-service-connectivity","devices","Fix Windows Defender Antivirus cloud service connectivity","","-","-",
+"ss_devices_install-microsoft-defender-for-endpoint-sensor-for-linux","devices","Install Microsoft Defender for Endpoint sensor for Linux","","-","-",
+"ss_devices_install-microsoft-defender-for-endpoint-sensor-for-macos","devices","Install Microsoft Defender for Endpoint sensor for MacOS","","-","-",
+"ss_devices_mitigate-critical-vulnerabilities-on-devices","devices","Mitigate critical vulnerabilities on devices","","-","-",
+"ss_devices_onboard-devices-to-microsoft-defender-for-endpoint","devices","Onboard devices to Microsoft Defender for Endpoint","","-","-",
+"ss_devices_onboard-microsoft-defender-for-iot-to-protect-ot-devices","devices","Onboard Microsoft Defender for IoT to protect OT devices","","-","-",
+"ss_devices_prohibit-use-of-internet-connection-sharing-on-your-dns-domain-network","devices","Prohibit use of Internet Connection Sharing on your DNS domain network","","-","-",
+"ss_devices_reduce-unnecessary-inbound-internet-exposure-on-internet-facing-devices","devices","Reduce unnecessary inbound internet exposure on internet-facing devices","","-","-",
+"ss_devices_remove-insecure-administration-protocols-snmp-v1-and-snmp-v2","devices","Remove insecure administration protocols SNMP V1 and SNMP V2","","-","-",
+"ss_devices_remove-share-write-permission-set-to-everyone","devices","Remove share write permission set to ?Everyone?","","-","-",
+"ss_devices_remove-shares-from-the-root-folder","devices","Remove shares from the root folder","","-","-",
+"ss_devices_require-authentication-for-telnet-management-interface","devices","Require authentication for Telnet management interface","","-","-",
+"ss_devices_require-authentication-for-vnc-management-interface","devices","Require authentication for VNC management interface","","-","-",
+"ss_devices_require-ldap-client-signing-to-prevent-tampering-and-protect-directory-authentication","devices","Require LDAP client signing to prevent tampering and protect directory authentication","","-","-",
+"ss_devices_require-ldap-server-signing-to-ensure-integrity-of-directory-traffic","devices","Require LDAP server signing to ensure integrity of directory traffic","","-","-",
+"ss_devices_resolve-open-incidents-on-devices","devices","Resolve open incidents on devices","","-","-",
+"ss_devices_resolve-open-recommendations-with-high-exposure","devices","Resolve open recommendations with high exposure","","-","-",
+"ss_devices_restrict-anonymous-access-to-named-pipes-and-shares","devices","Restrict anonymous access to named pipes and Shares","","-","-",
+"ss_devices_resume-bitlocker-protection-on-all-drives","devices","Resume BitLocker protection on all drives","","-","-",
+"ss_devices_secure-asymmetric-keys-with-high-risk-level","devices","Secure Asymmetric Keys with high risk level","","-","-",
+"ss_devices_secure-asymmetric-keys-with-high-risk-level-to-crqc","devices","Secure Asymmetric Keys with high risk level to CRQC","","-","-",
+"ss_devices_secure-home-folders-in-macos","devices","Secure Home Folders in macOS","","-","-",
+"ss_devices_secure-microsoft-defender-firewall-domain-profile","devices","Secure Microsoft Defender Firewall domain profile","","-","-",
+"ss_devices_secure-microsoft-defender-firewall-private-profile","devices","Secure Microsoft Defender firewall private profile","","-","-",
+"ss_devices_secure-microsoft-defender-firewall-public-profile","devices","Secure Microsoft Defender Firewall public profile","","-","-",
+"ss_devices_secure-rsa-keys-with-high-risk-level","devices","Secure RSA Keys with high risk level","","-","-",
+"ss_devices_secure-your-devices-with-critical-vulnerabilities-linked-to-a-site","devices","Secure your devices with critical vulnerabilities linked to a site","","-","-",
+"ss_devices_secure-your-iot-devices-with-critical-vulnerabilities","devices","Secure your IoT devices with critical vulnerabilities","","-","-",
+"ss_devices_secure-your-iot-devices-with-high-exposure-level","devices","Secure your IoT devices with high exposure level","","-","-",
+"ss_devices_set-account-lockout-duration-to-15-minutes-or-more","devices","Set 'Account lockout duration' to 15 minutes or more","","-","-",
+"ss_devices_set-account-lockout-threshold-to-1-10-invalid-login-attempts","devices","Set 'Account lockout threshold' to 1-10 invalid login attempts","","-","-",
+"ss_devices_set-account-lockout-threshold-to-5-or-lower-in-macos","devices","Set account lockout threshold to 5 or lower in macOS","","-","-",
+"ss_devices_set-controlled-folder-access-to-enabled-or-audit-mode","devices","Set controlled folder access to enabled or audit mode","","-","-",
+"ss_devices_set-default-behavior-for-autorun-to-enabled-do-not-execute-any-autorun-commands","devices","Set default behavior for 'AutoRun' to 'Enabled: Do not execute any autorun commands'","","-","-",
+"ss_devices_set-enforce-password-history-to-24-or-more-password-s","devices","Set 'Enforce password history' to '24 or more password(s)'","","-","-",
+"ss_devices_set-enforce-password-history-to-24-or-more-password-s-in-macos","devices","Set 'Enforce password history' to '24 or more password(s)' in macOS","","-","-",
+"ss_devices_set-folder-access-based-enumeration-for-shares","devices","Set folder access-based enumeration for shares","","-","-",
+"ss_devices_set-interactive-logon-machine-inactivity-limit-to-1-900-seconds","devices","Set 'Interactive logon: Machine inactivity limit' to '1-900 seconds'","","-","-",
+"ss_devices_set-ipv6-source-routing-to-highest-protection","devices","Set IPv6 source routing to highest protection","","-","-",
+"ss_devices_set-lan-manager-authentication-level-to-send-ntlmv2-response-only-refuse-lm-ntlm","devices","Set LAN Manager authentication level to 'Send NTLMv2 response only. Refuse LM & NTLM'","","-","-",
+"ss_devices_set-maximum-password-age-to-60-or-fewer-days-but-not-0","devices","Set 'Maximum password age' to '60 or fewer days, but not 0'","","-","-",
+"ss_devices_set-maximum-password-age-to-90-or-fewer-days-but-not-0-in-macos","devices","Set 'Maximum password age' to '90 or fewer days, but not 0' in macOS","","-","-",
+"ss_devices_set-microsoft-defender-smartscreen-app-and-file-checking-to-block-or-warn","devices","Set Microsoft Defender SmartScreen app and file checking to block or warn","","-","-",
+"ss_devices_set-microsoft-defender-smartscreen-microsoft-edge-site-and-download-checking-to-block-or-warn","devices","Set Microsoft Defender SmartScreen Microsoft Edge site and download checking to block or warn","","-","-",
+"ss_devices_set-minimum-password-age-to-1-or-more-day-s","devices","Set 'Minimum password age' to '1 or more day(s)'","","-","-",
+"ss_devices_set-minimum-password-length-to-14-or-more-characters","devices","Set 'Minimum password length' to '14 or more characters'","","-","-",
+"ss_devices_set-minimum-password-length-to-15-or-more-characters-in-macos","devices","Set minimum password length to 15 or more characters in macOS","","-","-",
+"ss_devices_set-minimum-pin-length-for-startup-to-6-or-more-characters","devices","Set 'Minimum PIN length for startup' to '6 or more characters'","","-","-",
+"ss_devices_set-remote-desktop-security-level-to-tls","devices","Set 'Remote Desktop security level' to 'TLS'","","-","-",
+"ss_devices_set-reset-account-lockout-counter-after-to-15-minutes-or-more","devices","Set 'Reset account lockout counter after' to 15 minutes or more","","-","-",
+"ss_devices_set-user-account-control-uac-to-automatically-deny-elevation-requests","devices","Set User Account Control (UAC) to automatically deny elevation requests","","-","-",
+"ss_devices_set-user-authentication-for-remote-connections-by-using-network-level-authentication-to-enabled","devices","Set user authentication for remote connections by using Network Level Authentication to 'Enabled'","","-","-",
+"ss_devices_smb-server-security-hardening-against-authentication-relay-attacks","devices","SMB server security hardening against authentication relay attacks","","-","-",
+"ss_devices_turn-off-custom-kernel-commandline-in-windows-subsystem-for-linux","devices","Turn off custom kernel/commandline in Windows Subsystem for Linux","","-","-",
+"ss_devices_turn-on-all-system-level-exploit-protection-settings","devices","Turn on all system-level Exploit protection settings","","-","-",
+"ss_devices_turn-on-firewall-in-macos","devices","Turn on Firewall in macOS","","-","-",
+"ss_devices_turn-on-microsoft-defender-antivirus","devices","Turn on Microsoft Defender Antivirus","","-","-",
+"ss_devices_turn-on-microsoft-defender-antivirus-pua-protection-in-block-mode-for-linux","devices","Turn on Microsoft Defender Antivirus PUA protection in block mode for Linux","","-","-",
+"ss_devices_turn-on-microsoft-defender-antivirus-pua-protection-in-block-mode-in-macos","devices","Turn on Microsoft Defender Antivirus PUA protection in block mode in macOS","","-","-",
+"ss_devices_turn-on-microsoft-defender-antivirus-real-time-protection-for-linux","devices","Turn on Microsoft Defender Antivirus real-time protection for Linux","","-","-",
+"ss_devices_turn-on-microsoft-defender-antivirus-real-time-protection-in-macos","devices","Turn on Microsoft Defender Antivirus real-time protection in macOS","","-","-",
+"ss_devices_turn-on-microsoft-defender-antivirus-tamper-protection-for-linux","devices","Turn on Microsoft Defender Antivirus Tamper Protection for Linux","","-","-",
+"ss_devices_turn-on-microsoft-defender-credential-guard","devices","Turn on Microsoft Defender Credential Guard","","-","-",
+"ss_devices_turn-on-microsoft-defender-firewall","devices","Turn on Microsoft Defender Firewall","","-","-",
+"ss_devices_turn-on-microsoft-defender-for-endpoint-for-iot-device-discovery","devices","Turn on Microsoft Defender for Endpoint for IoT device discovery","","-","-",
+"ss_devices_turn-on-microsoft-defender-for-endpoint-sensor","devices","Turn on Microsoft Defender for Endpoint sensor","","-","-",
+"ss_devices_turn-on-pua-protection-in-block-mode","devices","Turn on PUA protection in block mode","","-","-",
+"ss_devices_turn-on-real-time-protection","devices","Turn on real-time protection","","-","-",
+"ss_devices_turn-on-tamper-protection","devices","Turn on Tamper Protection","","-","-",
+"ss_devices_turn-on-tamper-protection-for-macos","devices","Turn on Tamper Protection for MacOS","","-","-",
+"ss_devices_unrestricted-access-accounts-for-linux","devices","Unrestricted Access Accounts for Linux","","-","-",
+"ss_devices_unsafe-installation-of-a-cryptographic-library-was-detected","devices","Unsafe installation of a cryptographic library was detected","","-","-",
+"ss_devices_update-microsoft-defender-antivirus-definitions","devices","Update Microsoft Defender Antivirus definitions","","-","-",
+"ss_devices_update-microsoft-defender-antivirus-definitions-for-linux","devices","Update Microsoft Defender Antivirus definitions for Linux","","-","-",
+"ss_devices_update-microsoft-defender-antivirus-definitions-in-macos","devices","Update Microsoft Defender Antivirus definitions in macOS","","-","-",
+"ss_devices_update-microsoft-defender-for-endpoint-core-components","devices","Update Microsoft Defender for Endpoint core components","","-","-",
+"ss_devices_use-advanced-protection-against-ransomware","devices","Use advanced protection against ransomware","","-","-",
+"ss_identity_identify-entra-id-privileged-accounts-that-are-also-privileged-in-active-directory","identity","?Identify Entra ID privileged accounts that are also privileged in Active Directory","undefined","-","-","Azure ATP"
+"ss_identity_accounts-with-non-default-primary-group-id","identity","Accounts with non-default Primary Group ID","undefined","-","-","Azure ATP"
+"ss_identity_activate-security-jump-start-acl-rules-plugin","identity","Activate security jump start (ACL rules) plugin","undefined","-","-","MDA_SNOW"
+"ss_identity_adopt-sso-single-sign-on-in-netdocuments","identity","Adopt SSO (Single sign on) in netDocuments","undefined","-","-","MDA_NetDocuments"
+"ss_identity_adopt-sso-single-sign-on-in-workplace-by-meta","identity","Adopt SSO (Single sign on) in Workplace by Meta","undefined","-","-","MDA_Workplace"
+"ss_identity_assign-multi-factor-authentication-for-okta-privileged-user-accounts","identity","Assign multi-factor authentication for Okta privileged user accounts","undefined","-","-","Azure ATP"
+"ss_identity_assign-multi-factor-authentication-for-pingone-privileged-user-accounts","identity","Assign multi-factor authentication for PingOne privileged user accounts","undefined","-","-","Azure ATP"
+"ss_identity_assign-multi-factor-authentication-for-sailpoint-privileged-user-accounts","identity","Assign multi-factor authentication for SailPoint privileged user accounts ","undefined","-","-","Azure ATP"
+"ss_identity_atlassian-mobile-app-security-app-access-requirement","identity","Atlassian mobile app security - App access requirement","undefined","-","-","MDA_Atlassian"
+"ss_identity_atlassian-mobile-app-security-users-that-are-affected-by-policies","identity","Atlassian mobile app security - Users that are affected by policies","undefined","-","-","MDA_Atlassian"
+"ss_identity_block-account-assumption","identity","Block account assumption","undefined","-","-","MDA_Zendesk"
+"ss_identity_block-admins-to-set-passwords","identity","Block admins to set passwords","undefined","-","-","MDA_Zendesk"
+"ss_identity_block-customers-to-bypass-ip-restrictions","identity","Block customers to bypass IP restrictions","undefined","-","-","MDA_Zendesk"
+"ss_identity_built-in-active-directory-guest-account-is-enabled","identity","Built-in Active Directory Guest account is enabled","undefined","-","-","Azure ATP"
+"ss_identity_change-domain-controller-computer-account-old-password","identity","Change Domain Controller computer account old password","undefined","-","-","Azure ATP"
+"ss_identity_change-password-for-accounts-with-leaked-credentials","identity","Change password for accounts with leaked credentials","completed","-","5 out of 5","AzureAD"
+"ss_identity_change-password-for-cyberark-identity-privileged-user-accounts","identity","Change password for CyberArk Identity  privileged User accounts ","undefined","-","-","Azure ATP"
+"ss_identity_change-password-for-entra-seamless-sso-account","identity","Change password for Entra seamless SSO account","undefined","-","-","Azure ATP"
+"ss_identity_change-password-for-krbtgt-account","identity","Change password for krbtgt account","undefined","-","-","Azure ATP"
+"ss_identity_change-password-for-okta-privileged-user-accounts","identity","Change password for Okta privileged User accounts","undefined","-","-","Azure ATP"
+"ss_identity_change-password-for-on-prem-account-with-potentially-leaked-credentials","identity","Change password for on-prem account with potentially leaked credentials","undefined","-","-","Azure ATP"
+"ss_identity_change-password-for-pingone-privileged-user-accounts","identity","Change password for PingOne privileged User accounts","undefined","-","-","Azure ATP"
+"ss_identity_change-password-for-sailpoint-privileged-user-accounts","identity","Change password for SailPoint privileged User accounts ","undefined","-","-","Azure ATP"
+"ss_identity_change-password-for-users-with-leaked-credentials","identity","Change password for users with leaked credentials","default","-","-","AzureAD"
+"ss_identity_change-password-of-built-in-domain-administrator-account","identity","Change password of built-in domain Administrator account","undefined","-","-","Azure ATP"
+"ss_identity_configure-vpn-integration","identity","Configure VPN integration","undefined","-","-","Azure ATP"
+"ss_identity_designate-more-than-one-global-admin","identity","Designate more than one global admin","completed","-","1 out of 1","AzureAD"
+"ss_identity_disable-administrators-can-log-in-as-any-user","identity","Disable Administrators Can Log In As Any User","undefined","-","-","MDA_SF"
+"ss_identity_disable-allow-members-to-view-dependency-insights","identity","Disable 'Allow members to view dependency insights'","undefined","-","-","MDA_GitHub"
+"ss_identity_disable-allow-repository-administrators-to-invite-outside-collaborators-to-repositories-for-this-organization","identity","Disable 'Allow repository administrators to invite outside collaborators to repositories for this organization","undefined","-","-","MDA_GitHub"
+"ss_identity_disable-caching-and-autocomplete-on-login-page-via-session-settings","identity","Disable Caching and Autocomplete on Login Page via Session settings","undefined","-","-","MDA_SF"
+"ss_identity_disable-members-will-be-able-to-create-public-repositories-visible-to-anyone","identity","Disable 'Members will be able to create public repositories, visible to anyone'","undefined","-","-","MDA_GitHub"
+"ss_identity_disable-members-with-admin-permissions-for-repositories-can-delete-or-transfer-repositories","identity","Disable 'members with admin permissions for repositories can delete or transfer repositories'","undefined","-","-","MDA_GitHub"
+"ss_identity_disable-password-less-authentication","identity","Disable password-less authentication","undefined","-","-","MDA_SNOW"
+"ss_identity_disable-print-spooler-service-on-domain-controllers","identity","Disable Print spooler service on domain controllers","undefined","-","-","Azure ATP"
+"ss_identity_edit-insecure-certificate-enrollment-iis-endpoints-esc8","identity","Edit insecure certificate enrollment IIS endpoints (ESC8)","undefined","-","-","Azure ATP"
+"ss_identity_edit-misconfigured-certificate-authority-acl-esc7","identity","Edit misconfigured Certificate Authority ACL (ESC7)","undefined","-","-","Azure ATP"
+"ss_identity_edit-misconfigured-certificate-templates-acl-esc4","identity","Edit misconfigured certificate templates ACL (ESC4)","undefined","-","-","Azure ATP"
+"ss_identity_edit-misconfigured-certificate-templates-owner-esc4","identity","Edit misconfigured certificate templates owner (ESC4)","undefined","-","-","Azure ATP"
+"ss_identity_edit-misconfigured-enrollment-agent-certificate-template-esc3","identity","Edit misconfigured enrollment agent certificate template (ESC3)","undefined","-","-","Azure ATP"
+"ss_identity_edit-overly-permissive-certificate-template-with-privileged-eku-any-purpose-eku-or-no-eku-esc2","identity","Edit overly permissive Certificate Template with privileged EKU (Any purpose EKU or No EKU) (ESC2)","undefined","-","-","Azure ATP"
+"ss_identity_edit-vulnerable-certificate-authority-setting-esc6","identity","Edit vulnerable Certificate Authority setting (ESC6)","undefined","-","-","Azure ATP"
+"ss_identity_enable-absolute-session-timeout","identity","Enable absolute session timeout","undefined","-","-","MDA_SNOW"
+"ss_identity_enable-and-adopt-two-factor-authentication-2fa","identity","Enable and adopt two-factor authentication (2FA)","undefined","-","-","MDA_Zendesk"
+"ss_identity_enable-anti-csrf-token","identity","Enable anti-CSRF token","undefined","-","-","MDA_SNOW"
+"ss_identity_enable-conditional-access-policies-to-block-legacy-authentication","identity","Enable Conditional Access policies to block legacy authentication","completed","-","8 out of 8","AzureAD"
+"ss_identity_enable-contextual-security-role-management-plugin","identity","Enable Contextual Security: Role Management plugin","undefined","-","-","MDA_SNOW"
+"ss_identity_enable-enforcing-jsonv2-requests-with-basic-authorization","identity","Enable enforcing JSONv2 requests with basic authorization","undefined","-","-","MDA_SNOW"
+"ss_identity_enable-enforcing-soap-requests-with-basic-authorization","identity","Enable enforcing SOAP requests with basic authorization","undefined","-","-","MDA_SNOW"
+"ss_identity_enable-external-authentication-google-or-microsoft-or-sso","identity","Enable external Authentication (google or microsoft or SSO)","undefined","-","-","MDA_Zendesk"
+"ss_identity_enable-ip-restrictions","identity","Enable IP restrictions","undefined","-","-","MDA_Zendesk"
+"ss_identity_enable-managing-failed-login-attempts","identity","Enable managing failed login attempts","undefined","-","-","MDA_SNOW"
+"ss_identity_enable-microsoft-entra-id-identity-protection-sign-in-risk-policies","identity","Enable Microsoft Entra ID Identity Protection sign-in risk policies","default","+10.61%","0 out of 7","AzureAD"
+"ss_identity_enable-microsoft-entra-id-identity-protection-user-risk-policies","identity","Enable Microsoft Entra ID Identity Protection user risk policies","default","+10.61%","0 out of 7","AzureAD"
+"ss_identity_enable-multi-factor-authentication","identity","Enable multi-factor authentication","undefined","-","-","MDA_Okta"
+"ss_identity_enable-multi-factor-authentication-mfa","identity","Enable multi-factor authentication (MFA)","undefined","-","-","MDA_CitrixSF"
+"ss_identity_enable-password-expiration-policies","identity","Enable Password expiration policies","undefined","-","-","MDA_Atlassian"
+"ss_identity_enable-password-minimum-length","identity","Enable password minimum length","undefined","-","-","MDA_CitrixSF"
+"ss_identity_enable-password-minimum-numeric-characters","identity","Enable password minimum numeric characters","undefined","-","-","MDA_CitrixSF"
+"ss_identity_enable-password-minimum-special-characters","identity","Enable password minimum special characters","undefined","-","-","MDA_CitrixSF"
+"ss_identity_enable-password-reset-policy-checks","identity","Enable Password Reset Policy Checks","undefined","-","-","MDA_SNOW"
+"ss_identity_enable-script-request-authorization","identity","Enable script request authorization","undefined","-","-","MDA_SNOW"
+"ss_identity_enable-session-activity-timeout","identity","Enable session activity timeout","undefined","-","-","MDA_SNOW"
+"ss_identity_enable-session-timeout-for-users","identity","Enable session timeout for users","undefined","-","-","MDA_Zendesk"
+"ss_identity_enable-session-timeout-for-web-users","identity","Enable session timeout for web users","undefined","-","-","MDA_Okta"
+"ss_identity_enable-single-sign-on-sso","identity","Enable Single Sign on (SSO)","undefined","-","-","MDA_CitrixSF"
+"ss_identity_enable-single-sing-on-sso","identity","Enable Single Sing On (SSO)","undefined","-","-","MDA_Atlassian"
+"ss_identity_enable-unload-request-authorization","identity","Enable unload request authorization","undefined","-","-","MDA_SNOW"
+"ss_identity_enable-web-session-timeout-for-web-users","identity","Enable web session timeout for web users","undefined","-","-","MDA_Dropbox"
+"ss_identity_enable-zendesk-authentication","identity","Enable Zendesk authentication","undefined","-","-","MDA_Zendesk"
+"ss_identity_enforce-encryption-for-rpc-certificate-enrollment-interface-esc11","identity","Enforce encryption for RPC certificate enrollment interface (ESC11)","undefined","-","-","Azure ATP"
+"ss_identity_enforce-ip-allow-list-configuration-for-org-resources","identity","Enforce IP allow list configuration for org resources","undefined","-","-","MDA_GitHub"
+"ss_identity_enforce-login-ip-ranges-on-every-request","identity","Enforce login IP ranges on every request","undefined","-","-","MDA_SF"
+"ss_identity_enforce-password-history","identity","Enforce password history","undefined","-","-","MDA_SF"
+"ss_identity_enhance-login-maximum-attempts-lockout-timer","identity","Enhance 'login maximum attempts' - Lockout timer","undefined","-","-","MDA_CitrixSF"
+"ss_identity_enhance-login-maximum-attempts-number-of-attempts","identity","Enhance 'login maximum attempts' - Number of attempts","undefined","-","-","MDA_CitrixSF"
+"ss_identity_enhance-password-requirements","identity","Enhance password requirements","undefined","-","-","MDA_Okta"
+"ss_identity_ensure-administrative-accounts-are-separate-and-cloud-only","identity","Ensure Administrative accounts are separate and cloud-only","undefined","-","-","AzureAD"
+"ss_identity_ensure-all-external-and-guest-accounts-are-not-granted-privileged-roles","identity","Ensure all External and Guest accounts are not granted privileged roles","undefined","-","-","Azure ATP"
+"ss_identity_ensure-custom-banned-passwords-lists-are-used","identity","Ensure custom banned passwords lists are used","undefined","-","-","AzureAD"
+"ss_identity_ensure-linkedin-account-connections-is-disabled","identity","Ensure 'LinkedIn account connections' is disabled","undefined","-","-","AzureAD"
+"ss_identity_ensure-microsoft-azure-management-is-limited-to-administrative-roles","identity","Ensure 'Microsoft Azure Management' is limited to administrative roles","undefined","-","-","AzureAD"
+"ss_identity_ensure-modern-authentication-for-exchange-online-is-enabled","identity","Ensure modern authentication for Exchange Online is enabled","completed","-","3 out of 3","EXO"
+"ss_identity_ensure-modern-authentication-for-sharepoint-applications-is-required","identity","Ensure modern authentication for SharePoint applications is required","default","+1.52%","0 out of 1","SPO"
+"ss_identity_ensure-multifactor-authentication-is-enabled-for-all-users","identity","Ensure multifactor authentication is enabled for all users","default","+7.27%","4.2 out of 9","AzureAD"
+"ss_identity_ensure-multifactor-authentication-is-enabled-for-all-users-in-administrative-roles","identity","Ensure multifactor authentication is enabled for all users in administrative roles","completed","-","10 out of 10","AzureAD"
+"ss_identity_ensure-no-privileged-saas-apps-accounts-exist-outside-of-idp-control","identity","Ensure no privileged SaaS apps accounts exist outside of IDP control","undefined","-","-","Azure ATP"
+"ss_identity_ensure-non-admin-accounts-cannot-reset-passwords-for-sensitive-groups","identity","Ensure non-admin accounts cannot reset passwords for sensitive groups","undefined","-","-","Azure ATP"
+"ss_identity_ensure-non-admin-identities-cannot-write-dacl-permissions-on-sensitive-groups","identity","Ensure non-admin identities cannot Write DACL permissions on sensitive groups","undefined","-","-","Azure ATP"
+"ss_identity_ensure-password-protection-is-enabled-for-on-prem-active-directory","identity","Ensure password protection is enabled for on-prem Active Directory","undefined","-","-","AzureAD"
+"ss_identity_ensure-phishing-resistant-mfa-strength-is-required-for-administrators","identity","Ensure 'Phishing-resistant MFA strength' is required for Administrators","undefined","-","-","AzureAD"
+"ss_identity_ensure-privileged-accounts-are-not-delegated","identity","Ensure privileged accounts are not delegated","undefined","-","-","Azure ATP"
+"ss_identity_ensure-self-service-password-reset-enabled-is-set-to-all","identity","Ensure 'Self service password reset enabled' is set to 'All'","completed","-","1 out of 1","AzureAD"
+"ss_identity_ensure-service-accounts-are-not-assigned-domain-name-admin-or-global-admin-roles","identity","Ensure service accounts are not assigned Domain Name Admin or Global Admin roles","undefined","-","-","Azure ATP"
+"ss_identity_ensure-sign-in-frequency-is-enabled-and-browser-sessions-are-not-persistent-for-administrative-users","identity","Ensure Sign-in frequency is enabled and browser sessions are not persistent for Administrative users","undefined","-","-","AzureAD"
+"ss_identity_ensure-that-only-organizationally-managed-approved-public-groups-exist","identity","Ensure that only organizationally managed/approved public groups exist","undefined","-","-","AzureAD"
+"ss_identity_ensure-that-password-hash-sync-is-enabled-for-hybrid-deployments","identity","Ensure that password hash sync is enabled for hybrid deployments","undefined","-","-","AzureAD"
+"ss_identity_ensure-that-sharepoint-guest-users-cannot-share-items-they-don-t-own","identity","Ensure that SharePoint guest users cannot share items they don't own","undefined","-","-","SPO"
+"ss_identity_ensure-the-admin-consent-workflow-is-enabled","identity","Ensure the admin consent workflow is enabled","undefined","-","-","AzureAD"
+"ss_identity_ensure-the-password-expiration-policy-is-set-to-set-passwords-to-never-expire-recommended","identity","Ensure the 'Password expiration policy' is set to 'Set passwords to never expire (recommended)'","completed","-","8 out of 8","AzureAD"
+"ss_identity_ensure-third-party-integrated-applications-are-not-allowed","identity","Ensure third party integrated applications are not allowed","undefined","-","-","AzureAD"
+"ss_identity_ensure-user-consent-to-apps-accessing-company-data-on-their-behalf-is-not-allowed","identity","Ensure user consent to apps accessing company data on their behalf is not allowed","completed","-","4 out of 4","AzureAD"
+"ss_identity_ensure-user-owned-apps-and-services-is-restricted","identity","Ensure 'User owned apps and services' is restricted","undefined","-","-","Admincenter"
+"ss_identity_force-admin-relogin-after-login-as-user","identity","Force (admin) relogin after Login-As-User","undefined","-","-","MDA_SF"
+"ss_identity_force-logout-on-session-timeout","identity","Force logout on session timeout","undefined","-","-","MDA_SF"
+"ss_identity_gpo-assigns-unprivileged-identities-to-local-groups-with-elevated-privileges","identity","GPO assigns unprivileged identities to local groups with elevated privileges","undefined","-","-","Azure ATP"
+"ss_identity_gpo-can-be-modified-by-unprivileged-accounts","identity","GPO can be modified by unprivileged accounts","undefined","-","-","Azure ATP"
+"ss_identity_high-number-of-cyberark-identity-accounts-with-a-privileged-role-assigned","identity","High number of CyberArk Identity accounts with a privileged role assigned","undefined","-","-","Azure ATP"
+"ss_identity_high-number-of-okta-accounts-with-privileged-role-assigned","identity","High number of Okta accounts with privileged role assigned","undefined","-","-","Azure ATP"
+"ss_identity_high-number-of-pingone-accounts-with-a-privileged-role-assigned","identity","High number of PingOne accounts with a privileged role assigned","undefined","-","-","Azure ATP"
+"ss_identity_high-number-of-sailpoint-accounts-with-a-privileged-role-assigned","identity","High number of SailPoint accounts with a privileged role assigned ","undefined","-","-","Azure ATP"
+"ss_identity_highly-privileged-okta-api-token","identity","Highly Privileged Okta Api Token","undefined","-","-","Azure ATP"
+"ss_identity_identify-service-accounts-in-privileged-groups","identity","Identify service accounts in privileged groups","undefined","-","-","Azure ATP"
+"ss_identity_install-defender-for-identity-sensor-on-adcs-servers","identity","Install Defender for Identity Sensor on ADCS servers ","undefined","-","-","Azure ATP"
+"ss_identity_install-defender-for-identity-sensor-on-adfs-servers","identity","Install Defender for Identity Sensor on ADFS servers ","undefined","-","-","Azure ATP"
+"ss_identity_install-defender-for-identity-sensor-on-all-domain-controllers","identity","Install Defender for Identity Sensor on all Domain Controllers","undefined","-","-","Azure ATP"
+"ss_identity_install-defender-for-identity-sensor-on-entra-connect-servers","identity","Install Defender for Identity Sensor on Entra Connect servers","undefined","-","-","Azure ATP"
+"ss_identity_let-users-verify-their-identity-by-text-sms","identity","Let users verify their identity by text (SMS)","undefined","-","-","MDA_SF"
+"ss_identity_limit-the-number-of-cyberark-identity-accounts-with-system-admin-role","identity","Limit the number of CyberArk Identity accounts with system admin role","undefined","-","-","Azure ATP"
+"ss_identity_limit-the-number-of-okta-super-admins-accounts","identity","Limit the Number of Okta Super Admins Accounts","undefined","-","-","Azure ATP"
+"ss_identity_limit-the-number-of-pingone-accounts-with-organization-admin-role","identity","Limit the number of PingOne accounts with organization admin role","undefined","-","-","Azure ATP"
+"ss_identity_limit-the-number-of-sailpoint-accounts-with-system-admin-role","identity","Limit the number of SailPoint accounts with system admin role ","undefined","-","-","Azure ATP"
+"ss_identity_locate-accounts-in-built-in-operator-groups","identity","Locate accounts in built-in Operator Groups","undefined","-","-","Azure ATP"
+"ss_identity_lock-sessions-to-the-domain-in-which-they-were-first-used","identity","Lock sessions to the domain in which they were first used","undefined","-","-","MDA_SF"
+"ss_identity_lockout-effective-period","identity","Lockout effective period","undefined","-","-","MDA_SF"
+"ss_identity_maximum-invalid-login-attempts","identity","Maximum invalid login attempts","undefined","-","-","MDA_SF"
+"ss_identity_minimum-password-length","identity","Minimum password length","undefined","-","-","MDA_SF"
+"ss_identity_modify-unsecure-kerberos-delegations-to-prevent-impersonation","identity","Modify unsecure Kerberos delegations to prevent impersonation","undefined","-","-","Azure ATP"
+"ss_identity_obscure-secret-answer-for-password-resets","identity","Obscure secret answer for password resets","undefined","-","-","MDA_SF"
+"ss_identity_password-complexity-requirement","identity","Password complexity requirement","undefined","-","-","MDA_SF"
+"ss_identity_password-expiry-requirements","identity","Password expiry requirements","undefined","-","-","MDA_Okta"
+"ss_identity_password-question-requirement","identity","Password question requirement","undefined","-","-","MDA_SF"
+"ss_identity_prevent-certificate-enrollment-with-arbitrary-application-policies-esc15","identity","Prevent Certificate Enrollment with arbitrary Application Policies (ESC15)","undefined","-","-","Azure ATP"
+"ss_identity_prevent-users-to-request-a-certificate-valid-for-arbitrary-users-based-on-the-certificate-template-esc1","identity","Prevent users to request a certificate valid for arbitrary users based on the certificate template (ESC1)","undefined","-","-","Azure ATP"
+"ss_identity_protect-and-manage-local-admin-passwords-with-microsoft-laps","identity","Protect and manage local admin passwords with Microsoft LAPS","undefined","-","-","Azure ATP"
+"ss_identity_reduce-lateral-movement-path-risk-to-sensitive-entities","identity","Reduce lateral movement path risk to sensitive entities","undefined","-","-","Azure ATP"
+"ss_identity_remove-access-rights-on-suspicious-accounts-with-the-admin-sdholder-permission","identity","Remove access rights on suspicious accounts with the Admin SDHolder permission","undefined","-","-","Azure ATP"
+"ss_identity_remove-discoverable-passwords-in-active-directory-account-attributes","identity","Remove discoverable passwords in Active Directory account attributes","undefined","-","-","Azure ATP"
+"ss_identity_remove-dormant-accounts-from-sensitive-groups","identity","Remove dormant accounts from sensitive groups","undefined","-","-","Azure ATP"
+"ss_identity_remove-dormant-okta-privileged-accounts","identity","Remove dormant Okta privileged accounts","undefined","-","-","Azure ATP"
+"ss_identity_remove-local-admins-on-identity-assets","identity","Remove local admins on identity assets","undefined","-","-","Azure ATP"
+"ss_identity_remove-non-admin-accounts-with-dcsync-permissions","identity","Remove non-admin accounts with DCSync permissions ","undefined","-","-","Azure ATP"
+"ss_identity_remove-stale-active-directory-accounts","identity","Remove stale Active Directory accounts","undefined","-","-","Azure ATP"
+"ss_identity_remove-stale-cyberark-identity-privileged-accounts","identity","Remove stale CyberArk Identity privileged accounts","undefined","-","-","Azure ATP"
+"ss_identity_remove-stale-pingone-privileged-accounts","identity","Remove stale PingOne privileged accounts","undefined","-","-","Azure ATP"
+"ss_identity_remove-stale-sailpoint-privileged-accounts","identity","Remove stale SailPoint privileged accounts ","undefined","-","-","Azure ATP"
+"ss_identity_remove-stale-service-accounts","identity","Remove stale service accounts","undefined","-","-","Azure ATP"
+"ss_identity_remove-unnecessary-replication-permissions-for-entra-connect-ad-ds-connector-account","identity","Remove unnecessary replication permissions for Entra Connect AD DS Connector Account","undefined","-","-","Azure ATP"
+"ss_identity_remove-unsafe-permissions-on-sensitive-entra-connect-accounts","identity","Remove unsafe permissions on sensitive Entra Connect accounts","undefined","-","-","Azure ATP"
+"ss_identity_remove-unsecure-sid-history-attributes-from-entities","identity","Remove unsecure SID history attributes from entities","undefined","-","-","Azure ATP"
+"ss_identity_replace-enterprise-or-domain-admin-account-for-entra-connect-ad-ds-connector-account","identity","Replace Enterprise or Domain Admin account for Entra Connect AD DS Connector account","undefined","-","-","Azure ATP"
+"ss_identity_require-a-minimum-1-day-password-lifetime","identity","Require a minimum 1 day password lifetime","undefined","-","-","MDA_SF"
+"ss_identity_require-identity-verification-during-multi-factor-authentication-mfa-registration","identity","Require identity verification during multi-factor authentication (MFA) registration","undefined","-","-","MDA_SF"
+"ss_identity_require-identity-verification-for-change-of-email-address","identity","Require identity verification for change of email address","undefined","-","-","MDA_SF"
+"ss_identity_resolve-unsecure-account-attributes","identity","Resolve unsecure account attributes","undefined","-","-","Azure ATP"
+"ss_identity_resolve-unsecure-domain-configurations","identity","Resolve unsecure domain configurations","undefined","-","-","Azure ATP"
+"ss_identity_reversible-passwords-found-in-gpos","identity","Reversible passwords found in GPOs","undefined","-","-","Azure ATP"
+"ss_identity_rotate-old-password-for-smsa-and-set-up-valid-rotation-interval-in-the-gpo","identity","Rotate old password for sMSA and set up valid rotation interval in the GPO","undefined","-","-","Azure ATP"
+"ss_identity_rotate-password-for-entra-connect-ad-ds-connector-account","identity","Rotate password for Entra Connect AD DS Connector account","undefined","-","-","Azure ATP"
+"ss_identity_send-a-notification-on-password-change-for-admins-agents-and-end-users","identity","Send a notification on password change for admins, agents, and end users","undefined","-","-","MDA_Zendesk"
+"ss_identity_session-timeout","identity","Session timeout","undefined","-","-","MDA_SF"
+"ss_identity_set-a-honeytoken-account","identity","Set a honeytoken account","undefined","-","-","Azure ATP"
+"ss_identity_set-a-valid-password-rotation-interval-for-gmsa","identity","Set a valid password rotation interval for gMSA","undefined","-","-","Azure ATP"
+"ss_identity_sign-out-inactive-users-in-sharepoint-online","identity","Sign out inactive users in SharePoint Online","default","+1.52%","0 out of 1","SPO"
+"ss_identity_start-your-defender-for-identity-deployment-installing-sensors-on-domain-controllers-and-other-eligible-servers","identity","Start your Defender for Identity deployment, installing Sensors on Domain Controllers and other eligible servers.","undefined","-","-","Azure ATP"
+"ss_identity_stop-clear-text-credentials-exposure","identity","Stop clear text credentials exposure","undefined","-","-","Azure ATP"
+"ss_identity_stop-weak-cipher-usage","identity","Stop weak cipher usage","undefined","-","-","Azure ATP"
+"ss_identity_unsafe-permissions-on-the-dnsadmins-group","identity","Unsafe permissions on the DnsAdmins group","undefined","-","-","Azure ATP"
+"ss_identity_use-least-privileged-administrative-roles","identity","Use least privileged administrative roles","completed","-","1 out of 1","AzureAD"
+"ss_identity_user-passwords-expire-in-90-days-or-less","identity","User passwords expire in 90 days or less","undefined","-","-","MDA_SF"

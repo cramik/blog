@@ -1,0 +1,57 @@
+Theme,Agreement,Tool,Control_ID,Control_Name_Or_Requirement
+Identity Protection risk policies not enabled,Unanimous,Prowler,entra_identity_protection_sign_in_risk_enabled,At least one Conditional Access Identity Protection sign-in risk policy protects against high and medium risk sign-ins
+Identity Protection risk policies not enabled,Unanimous,Prowler,entra_identity_protection_user_risk_enabled,At least one Conditional Access policy enforces Identity Protection user risk for high-risk users
+Identity Protection risk policies not enabled,Unanimous,Prowler,entra_conditional_access_policy_block_high_medium_sign_in_risk,Conditional Access policy blocks high and medium sign-in risk
+Identity Protection risk policies not enabled,Unanimous,ScubaGear,MS.AAD.2.1v1,Users detected as high risk SHALL be blocked.
+Identity Protection risk policies not enabled,Unanimous,ScubaGear,MS.AAD.2.3v1,Sign-ins detected as high risk SHALL be blocked.
+Identity Protection risk policies not enabled,Unanimous,SecureScore,ss_identity_enable-microsoft-entra-id-identity-protection-sign-in-risk-policies,Enable Microsoft Entra ID Identity Protection sign-in risk policies
+Identity Protection risk policies not enabled,Unanimous,SecureScore,ss_identity_enable-microsoft-entra-id-identity-protection-user-risk-policies,Enable Microsoft Entra ID Identity Protection user risk policies
+MFA enabled but not phishing-resistant,Unanimous,Prowler,entra_admin_users_phishing_resistant_mfa_enabled,At least one Conditional Access policy requires phishing-resistant MFA strength for administrator roles
+MFA enabled but not phishing-resistant,Unanimous,Prowler,entra_users_mfa_enabled,Multifactor authentication is enforced for all users
+MFA enabled but not phishing-resistant,Unanimous,Prowler,entra_users_mfa_capable,User is MFA capable
+MFA enabled but not phishing-resistant,Unanimous,ScubaGear,MS.AAD.3.1v1,Phishing-resistant MFA SHALL be enforced for all users.
+MFA enabled but not phishing-resistant,Unanimous,ScubaGear,MS.AAD.3.2v1,If phishing-resistant MFA has not been enforced an alternative MFA method SHALL be enforced for all users.
+MFA enabled but not phishing-resistant,Unanimous,ScubaGear,MS.AAD.3.6v1,Phishing-resistant MFA SHALL be required for highly privileged roles.
+MFA enabled but not phishing-resistant,Unanimous,SecureScore,ss_identity_ensure-multifactor-authentication-is-enabled-for-all-users,Ensure multifactor authentication is enabled for all users
+SharePoint and OneDrive external sharing,Two-of-three (Prowler + ScubaGear),Prowler,sharepoint_external_sharing_managed,External sharing is restricted using a non-empty domain allowlist or blocklist
+SharePoint and OneDrive external sharing,Two-of-three (Prowler + ScubaGear),Prowler,sharepoint_external_sharing_restricted,Organization external sharing is set to Existing guests only New and existing guests or Disabled
+SharePoint and OneDrive external sharing,Two-of-three (Prowler + ScubaGear),Prowler,sharepoint_guest_sharing_restricted,Guest users cannot share items they do not own
+SharePoint and OneDrive external sharing,Two-of-three (Prowler + ScubaGear),Prowler,sharepoint_onedrive_sync_restricted_unmanaged_devices,OneDrive sync from unmanaged devices is blocked
+SharePoint and OneDrive external sharing,Two-of-three (Prowler + ScubaGear),Prowler,sharepoint_modern_authentication_required,Requires modern authentication for applications
+SharePoint and OneDrive external sharing,Two-of-three (Prowler + ScubaGear),ScubaGear,MS.SHAREPOINT.1.1v1,External sharing for SharePoint SHALL be limited to Existing guests or Only people in your organization.
+SharePoint and OneDrive external sharing,Two-of-three (Prowler + ScubaGear),ScubaGear,MS.SHAREPOINT.1.2v1,External sharing for OneDrive SHALL be limited to Existing guests or Only people in your organization.
+SharePoint and OneDrive external sharing,Two-of-three (Prowler + ScubaGear),ScubaGear,MS.SHAREPOINT.1.3v1,External sharing SHALL be restricted to approved external domains and/or users in approved security groups per interagency collaboration needs.
+SharePoint and OneDrive external sharing,Two-of-three (Prowler + ScubaGear),ScubaGear,MS.SHAREPOINT.2.1v1,File and folder default sharing scope SHALL be set to Specific people (only the people the user specifies).
+SharePoint and OneDrive external sharing,Two-of-three (Prowler + ScubaGear),ScubaGear,MS.SHAREPOINT.2.2v1,File and folder default sharing permissions SHALL be set to view only.
+SharePoint and OneDrive external sharing,Two-of-three (Prowler + ScubaGear),ScubaGear,MS.SHAREPOINT.3.1v1,Expiration days for Anyone links SHALL be set to 30 days or less.
+SharePoint and OneDrive external sharing,Two-of-three (Prowler + ScubaGear),ScubaGear,MS.SHAREPOINT.3.2v1,The allowable file and folder permissions for links SHALL be set to view only.
+SharePoint and OneDrive external sharing,Two-of-three (Prowler + ScubaGear),ScubaGear,MS.SHAREPOINT.3.3v1,Reauthentication days for people who use a verification code SHALL be set to 30 days or less.
+SharePoint and OneDrive external sharing,Two-of-three (partial edge only),SecureScore,ss_identity_sign-out-inactive-users-in-sharepoint-online,Sign out inactive users in SharePoint Online
+SharePoint and OneDrive external sharing,Two-of-three (partial edge only),SecureScore,ss_identity_ensure-modern-authentication-for-sharepoint-applications-is-required,Ensure modern authentication for SharePoint applications is required
+App registration and consent governance,Two-of-three (Prowler + ScubaGear),Prowler,entra_admin_consent_workflow_enabled,Admin consent workflow is enabled
+App registration and consent governance,Two-of-three (Prowler + ScubaGear),Prowler,entra_thirdparty_integrated_apps_not_allowed,Authorization policy disallows app creation by non-admin users
+App registration and consent governance,Two-of-three (Prowler + ScubaGear),Prowler,entra_policy_restricts_user_consent_for_apps,User consent for applications is set to Do not allow user consent
+App registration and consent governance,Two-of-three (Prowler + ScubaGear),Prowler,entra_app_registration_client_secret_unused,Application registrations should not use client secrets
+App registration and consent governance,Two-of-three (Prowler + ScubaGear),Prowler,entra_app_registration_no_unused_privileged_permissions,App registration has no unused privileged API permissions
+App registration and consent governance,Two-of-three (Prowler + ScubaGear),ScubaGear,MS.AAD.5.1v1,Only administrators SHALL be allowed to register applications.
+App registration and consent governance,Two-of-three (Prowler + ScubaGear),ScubaGear,MS.AAD.5.2v1,Only administrators SHALL be allowed to consent to applications.
+App registration and consent governance,Two-of-three (Prowler + ScubaGear),ScubaGear,MS.AAD.5.3v1,An admin consent workflow SHALL be configured for applications.
+App registration and consent governance,Two-of-three (zero-weight in SecureScore),SecureScore,ss_identity_ensure-user-consent-to-apps-accessing-company-data-on-their-behalf-is-not-allowed,Ensure user consent to apps accessing company data on their behalf is not allowed
+Defender for Endpoint visibility gap,Single-tool (Prowler only),Prowler,defenderxdr_endpoint_privileged_user_exposed_credentials,Privileged users do not have credentials exposed on vulnerable endpoints
+Entra Privileged Identity Management lifecycle,Single-tool (ScubaGear only),ScubaGear,MS.AAD.7.2v1,Privileged users SHALL be provisioned with finer-grained roles instead of Global Administrator.
+Entra Privileged Identity Management lifecycle,Single-tool (ScubaGear only),ScubaGear,MS.AAD.7.4v1,Permanent active role assignments SHALL NOT be allowed for highly privileged roles.
+Entra Privileged Identity Management lifecycle,Single-tool (ScubaGear only),ScubaGear,MS.AAD.7.5v1,Provisioning users to highly privileged roles SHALL NOT occur outside of a PAM system.
+Entra Privileged Identity Management lifecycle,Single-tool (ScubaGear only),ScubaGear,MS.AAD.7.6v1,Activation of the Global Administrator role SHALL require approval.
+Entra Privileged Identity Management lifecycle,Single-tool (ScubaGear only),ScubaGear,MS.AAD.7.7v1,Eligible and active highly privileged role assignments SHALL trigger an alert.
+Entra Privileged Identity Management lifecycle,Single-tool (ScubaGear only),ScubaGear,MS.AAD.7.8v1,User activation of the Global Administrator role SHALL trigger an alert.
+Power Platform governance,Single-tool (ScubaGear only),ScubaGear,MS.POWERPLATFORM.1.1v1,The ability to create production and sandbox environments SHALL be restricted to admins.
+Power Platform governance,Single-tool (ScubaGear only),ScubaGear,MS.POWERPLATFORM.1.2v1,The ability to create trial environments SHALL be restricted to admins.
+Power Platform governance,Single-tool (ScubaGear only),ScubaGear,MS.POWERPLATFORM.2.1v1,A DLP policy SHALL be created to restrict connector access in the default Power Platform environment.
+Purview sensitivity labeling,Single-tool (SecureScore only),SecureScore,ss_data_publish-m365-sensitivity-label-data-classification-policies,Publish M365 sensitivity label data classification policies
+Purview sensitivity labeling,Single-tool (SecureScore only),SecureScore,ss_data_ensure-that-auto-labeling-data-classification-policies-are-set-up-and-used,Ensure that Auto-labeling data classification policies are set up and used
+Purview sensitivity labeling,Single-tool (SecureScore only),SecureScore,ss_data_extend-m365-sensitivity-labeling-to-assets-in-microsoft-purview-data-map,Extend M365 sensitivity labeling to assets in Microsoft Purview data map
+Defender for Office anti-phishing and mail hygiene,Single-tool (SecureScore only),SecureScore,ss_appssaas_ensure-that-an-anti-phishing-policy-has-been-created,Ensure that an anti-phishing policy has been created
+Defender for Office anti-phishing and mail hygiene,Single-tool (SecureScore only),SecureScore,ss_appssaas_enable-impersonated-domain-protection,Enable impersonated domain protection
+Defender for Office anti-phishing and mail hygiene,Single-tool (SecureScore only),SecureScore,ss_appssaas_enable-impersonated-user-protection,Enable impersonated user protection
+Defender for Office anti-phishing and mail hygiene,Single-tool (SecureScore only),SecureScore,ss_appssaas_ensure-mailbox-auditing-for-all-users-is-enabled,Ensure mailbox auditing for all users is Enabled
+Defender for Office anti-phishing and mail hygiene,Single-tool (SecureScore only),SecureScore,ss_appssaas_ensure-safe-links-for-office-applications-is-enabled,Ensure Safe Links for Office Applications is Enabled

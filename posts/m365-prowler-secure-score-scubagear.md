@@ -16,6 +16,8 @@ There are at least three different ways to ask "is this Microsoft 365 tenant con
 
 Since a test tenant like this one is basically Microsoft's out-of-the-box configuration with a handful of users dropped in, it's a decent stand-in for "what does a tenant look like before anyone's gone through and hardened it," which turns out to be exactly the gap each of these tools is trying to close, just from different angles.
 
+Throughout this post I'll reference specific checks by name or ID (things like `MS.AAD.3.1v1` or `entra_identity_protection_sign_in_risk_enabled`) without re-explaining what each one does inline. If you want to look any of them up directly instead of digging through each tool's source or docs, here's the generic, tenant-agnostic reference data behind this post: [every Prowler check ID/title](m365-prowler-checks.csv), [every ScubaGear control ID/requirement](m365-scubagear-requirements.csv), [every Secure Score recommendation name](m365-securescore-controls.csv), and [the cross-tool mapping](m365-control-mapping.csv) behind the "where they agree" sections below.
+
 ## Getting ScubaGear running
 
 If you haven't used it before, ScubaGear is a PowerShell module, and setup is refreshingly small:
@@ -100,6 +102,23 @@ This is the part that actually justifies running more than one of these:
 **Only ScubaGear** went deep on Entra Privileged Identity Management, recording six separate CISA "Shall" failures around role activation approval, alerting, and permanent vs. time-bound privileged assignments. Neither Prowler nor Secure Score has an equivalent check. It's also the only one of the three that assesses Power Platform at all (environment creation restrictions, DLP policy), which is easy to forget even exists until a baseline tool goes and checks it.
 
 **Only Secure Score** surfaces Purview sensitivity labeling, and it's not a small miss. Publishing a data classification policy alone is worth +22% in that export, and the full label rollout (auto-labeling, extending it into the Purview data map) is worth +44% combined, more points than anything else in the entire dataset. Neither CSPM tool looks at Purview at all. Secure Score also carries a long tail (26 items) of Defender for Office anti-phishing detail: impersonation protection, quarantine actions, mailbox auditing, Safe Links. ScubaGear would probably mirror some of that if it had Exchange access on this run, but doesn't right now.
+
+## If you're choosing between Secure Score and ScubaGear specifically
+
+Prowler needs its own setup and a security-engineering mindset to run at all, so for a lot of readers the real decision isn't "which of three tools," it's "Secure Score, which I already have, or ScubaGear, which is free but one more thing to run." I went control-by-control through both tools' output (the [control mapping](m365-control-mapping.csv) linked above covers the shared themes) to see how much they actually substitute for each other. Short answer: not much, and the overlap that exists is lopsided in ScubaGear's favor.
+
+- **Of ScubaGear's 67 controls, only around 13-17 have any Secure Score counterpart at all**, and almost all of them sit inside Entra ID: legacy auth, identity protection risk policies, phishing-resistant MFA, app consent/registration, password expiration, admin-count and role hygiene. Everything else ScubaGear checks, including all 9 Power Platform controls, all 6 Entra PIM lifecycle controls, most of its SharePoint link/sharing-scope detail, and most of its Teams meeting and external-access governance, has no Secure Score equivalent, period.
+- **Going the other direction, roughly half of Secure Score's comparable recommendations are Exchange/Defender for Office mail-hygiene items** that ScubaGear's baseline could, in principle, check (it has an Exchange/Defender baseline), but didn't in this run because the scanning account lacked Exchange/Security Reader. That's a permissions gap, not a capability gap. Strip those out and Secure Score still has a genuine, ScubaGear-independent slice: leaked-credential remediation, SSPR, custom banned-password lists, admin sign-in-frequency/session-persistence controls, and Purview sensitivity labeling, none of which ScubaGear's baseline touches at all.
+- **Where the two do check the same thing, ScubaGear is consistently the higher-resolution tool**: specific day thresholds, named Conditional Access conditions, exact role requirements, instead of Secure Score's coarser "enable this feature" framing. If they disagree on something they both claim to check, I'd trust ScubaGear's verdict over the score.
+
+What that adds up to for picking one:
+
+- **Entra ID / MFA / Conditional Access hygiene**: either works, but ScubaGear's answer is the more precise one.
+- **Power Platform governance or Entra PIM lifecycle**: ScubaGear is your only option between these two; Secure Score doesn't go there.
+- **Purview data classification or deep Defender for Office/Exchange mail-hygiene detail**: Secure Score is your only option here, at least until you re-run ScubaGear with full Exchange/Security Reader access, which would close a real chunk of this gap.
+- **A single number to put in front of leadership**: that's what Secure Score is built for. ScubaGear's Pass/Fail/Warning table was never designed to roll up into one score, and trying to force it to is more effort than it's worth.
+
+They're not substitutes for each other so much as two tools with a narrow, mostly-Entra-ID overlap and very different blind spots on either side of it. But if you're asking which to run first, run **ScubaGear first**. It's free, it's more precise everywhere the two overlap, and the ground it alone covers (standing privileged access and alerting in Entra PIM, ungoverned Power Platform environments) is a live privilege-escalation and data-exfiltration surface, not a polish item. Secure Score's exclusive territory (Purview labeling, mail-hygiene tuning) matters, but it's already running in your tenant for free, so there's no cost to coming back to it second. Fix what ScubaGear flags as a Shall-failure, then layer in whatever Secure Score still has open.
 
 ## Takeaways
 
