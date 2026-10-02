@@ -18,7 +18,7 @@ They're all solving the same problem: off-grid messaging without central infrast
 
 | | Briar | Knit | bitchat (iOS) | bitchat-android | Columba (Reticulum/LXMF) |
 |---|---|---|---|---|---|
-| Transport model | Pairwise, trust-graph + Tor | Flood mesh (BLE + Wi-Fi Aware) | Flood mesh (BLE only) | Flood mesh (BLE + Wi-Fi Aware) | Reticulum routed mesh (BLE tested; also does TCP, LoRa/packet radio) |
+| Transport model | Pairwise, trust-graph (BLE, LAN, Tor, USB plugins) | Flood mesh (BLE + Wi-Fi Aware) | Flood mesh (BLE only) | Flood mesh (BLE + Wi-Fi Aware) | Reticulum routed mesh (BLE tested; also does TCP, LoRa/packet radio) |
 | Offline delivery | Self-hosted Tor "mailbox" dead-drop | DB-backed store + anti-entropy digest sync | Sender outbox + physical/virtual couriers + Nostr | In-memory cache + Nostr fallback | LXMF propagation nodes (opt-in store-and-forward) |
 | Handshake | BQP (Curve25519 DH + commitment) | X3DH-style (3x X25519 DH) | Noise XX | Noise XX | X25519 ECDH + Ed25519 identity (Reticulum Link) |
 | Forward secrecy | Per-transport-time-period key rotation | Per-epoch ratchet (~200 msgs/24h) | Per-message (live), weaker offline | Per-message (live) | Per-link (ephemeral, renegotiated per Link) |
