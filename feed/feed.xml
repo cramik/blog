@@ -1203,7 +1203,7 @@ checkLotteryResult(&amp;quot;yourusername&amp;quot;)
 &lt;tbody&gt;
 &lt;tr&gt;
 &lt;td&gt;Transport model&lt;/td&gt;
-&lt;td&gt;Pairwise, trust-graph + Tor&lt;/td&gt;
+&lt;td&gt;Pairwise, trust-graph (BLE, LAN, Tor, USB plugins)&lt;/td&gt;
 &lt;td&gt;Flood mesh (BLE + Wi-Fi Aware)&lt;/td&gt;
 &lt;td&gt;Flood mesh (BLE only)&lt;/td&gt;
 &lt;td&gt;Flood mesh (BLE + Wi-Fi Aware)&lt;/td&gt;
