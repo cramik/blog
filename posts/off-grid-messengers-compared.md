@@ -1,26 +1,28 @@
 ---
-title: "Four Ways to Message Off-Grid: Briar, Knit, and bitchat Compared"
-description: Cloning and reading through Briar, Knit, bitchat, and bitchat-android to see how each actually handles background execution, offline delivery, mesh transport, and crypto.
+title: "BLE Off-Grid Messaging: Briar, Knit, bitchat, and Columba Compared"
+description: Cloning and reading through Briar, Knit, bitchat, and bitchat-android to see how each actually handles background execution, offline delivery, mesh transport, and crypto, plus hands-on notes on Columba's Reticulum/LXMF approach, all scoped to phone-to-phone BLE messaging rather than dedicated LoRa radio hardware.
 date: 2026-08-18
 scheduled: 2026-08-18
-tags: mesh-networking, security, android, ios
+tags: ble, mesh-networking, security, android, ios
 layout: layouts/post.njk
 image: https://cdn.pixabay.com/photo/2020/08/30/20/54/rice-field-5530707_1280.jpg
 ---
 
-There's a small cluster of open-source apps that promise to let you message people without cell service, wifi, or a server anyone controls. They bounce encrypted messages phone-to-phone over Bluetooth, or hold onto them in a dead-drop until someone can pick them up. I'd seen four of them mentioned around enough times that I wanted to actually read the code instead of the marketing copy: **Briar**, **Knit**, and **bitchat**, which ships as two sibling implementations. One is Swift for iOS/macOS, one is Kotlin for Android, and they share a wire protocol but not always the same behavior.
+There's a small cluster of open-source apps that promise to let you message people without cell service, wifi, or a server anyone controls, using nothing but the radios already in your phone. They bounce encrypted messages phone-to-phone over Bluetooth, or hold onto them in a dead-drop until someone can pick them up. I'd seen several of them mentioned around enough times that I wanted to actually read the code instead of the marketing copy: **Briar**, **Knit**, and **bitchat**, which ships as two sibling implementations. One is Swift for iOS/macOS, one is Kotlin for Android, and they share a wire protocol but not always the same behavior. I also spent some hands-on time with **Columba**, an Android client for the Reticulum/LXMF stack, which takes a fundamentally different architectural approach from the other four and gets its own section below rather than a code read-through.
+
+To be clear about scope: this is about apps that turn an ordinary phone's BLE radio into the mesh, not about dedicated LoRa hardware mesh networks like Meshtastic. Meshtastic solves a different problem (long-range radio relay between purpose-built nodes, phone optional) and deserves its own comparison rather than getting lumped in with "install an app and go."
 
 They're all solving the same problem: off-grid messaging without central infrastructure. But the actual engineering underneath is surprisingly different. Here's what I found going through background execution, offline delivery, mesh transport, and crypto in each.
 
 ## Quick reference
 
-| | Briar | Knit | bitchat (iOS) | bitchat-android |
-|---|---|---|---|---|
-| Transport model | Pairwise, trust-graph + Tor | Flood mesh (BLE + Wi-Fi Aware) | Flood mesh (BLE only) | Flood mesh (BLE + Wi-Fi Aware) |
-| Offline delivery | Self-hosted Tor "mailbox" dead-drop | DB-backed store + anti-entropy digest sync | Sender outbox + physical/virtual couriers + Nostr | In-memory cache + Nostr fallback |
-| Handshake | BQP (Curve25519 DH + commitment) | X3DH-style (3x X25519 DH) | Noise XX | Noise XX |
-| Forward secrecy | Per-transport-time-period key rotation | Per-epoch ratchet (~200 msgs/24h) | Per-message (live), weaker offline | Per-message (live) |
-| Platform | Android + desktop headless | Android only | iOS/macOS | Android |
+| | Briar | Knit | bitchat (iOS) | bitchat-android | Columba (Reticulum/LXMF) |
+|---|---|---|---|---|---|
+| Transport model | Pairwise, trust-graph + Tor | Flood mesh (BLE + Wi-Fi Aware) | Flood mesh (BLE only) | Flood mesh (BLE + Wi-Fi Aware) | Reticulum routed mesh (BLE tested; also does TCP, LoRa/packet radio) |
+| Offline delivery | Self-hosted Tor "mailbox" dead-drop | DB-backed store + anti-entropy digest sync | Sender outbox + physical/virtual couriers + Nostr | In-memory cache + Nostr fallback | LXMF propagation nodes (opt-in store-and-forward) |
+| Handshake | BQP (Curve25519 DH + commitment) | X3DH-style (3x X25519 DH) | Noise XX | Noise XX | X25519 ECDH + Ed25519 identity (Reticulum Link) |
+| Forward secrecy | Per-transport-time-period key rotation | Per-epoch ratchet (~200 msgs/24h) | Per-message (live), weaker offline | Per-message (live) | Per-link (ephemeral, renegotiated per Link) |
+| Platform | Android + desktop headless | Android only | iOS/macOS | Android | Android |
 
 ## Off-grid doesn't have to mean mesh
 
@@ -79,6 +81,18 @@ Two more things are worth flagging, since they're the kind of detail you only fi
 
 A third thing, also only visible from the code: bitchat's Nostr fallback path (used to reach a mutually-favorited contact over the internet when there's no BLE path between you) labels its encryption "NIP-44 v2" on the wire, but it isn't the standard NIP-44 that the rest of the Nostr ecosystem implements. The published NIP-44 spec calls for ChaCha20 plus a separate HMAC-SHA256 authentication step, with the plaintext padded into fixed length buckets specifically to stop message-length fingerprinting. bitchat-android's implementation (`NostrCrypto.kt`) instead runs XChaCha20-Poly1305 as a single AEAD call, with no plaintext padding whatsoever, and its own code comments admit it: "Match iOS: derive HKDF input from the compressed shared point," describing a key-derivation step that isn't in the public spec either. Functionally this still gets you confidentiality and authenticity between two bitchat installs, but it means bitchat's Nostr DMs are opaque to (and unreadable by) any standard Nostr client, and they skip the length-hiding padding a spec-compliant NIP-44 implementation would apply. If part of the appeal of the Nostr fallback is "falls back to the wider Nostr network," that's not quite what's happening; it falls back to Nostr relays as a transport, but only other bitchat clients can actually read what gets sent.
 
+## A fifth data point: Columba and Reticulum/LXMF
+
+Everything above came from reading source. This section didn't; it's from actually trying to use **Columba**, an Android messaging client built on Reticulum (a general-purpose cryptographic networking stack) and LXMF (the message format and store-and-forward layer that rides on top of it). Worth being upfront that the confidence level here is lower than a code read, this is what happened when I actually tried it, not an audit of why.
+
+Reticulum is architecturally the odd one out of the five. It's interface-agnostic by design: the same Reticulum identity and the same LXMF message can move over TCP/IP, LoRa or packet radio, or BLE, and the stack picks whatever interfaces are configured rather than being purpose-built around one radio. That's a genuinely different model from the other four, which are BLE-first mesh apps that bolt on a secondary transport (Wi-Fi Aware, Nostr) as a supplement. Reticulum treats the radio layer as a plugin, which is powerful, but it also means the thing you're testing isn't always the thing you think you're testing.
+
+That showed up directly when I tried to test BLE specifically. I disabled every other interface in Columba's settings to force BLE-only operation, and it still found a path to a contact through what had to be a TCP/network interface underlay, since there is no realistic scenario where 8 intermediate multihop BLE nodes exist in my area. Reticulum's transport layer will happily route over whatever interface actually has a path, config intent aside, so a BLE-only test can end up silently riding a Wi-Fi or local network link instead. That's a real usability trap for anyone trying to evaluate BLE mesh performance specifically rather than Reticulum's networking as a whole.
+
+Two other things stood out. First, there's no global or public chat the way bitchat has its unencrypted public mesh channel or Briar has forums; Columba's model is pairwise LXMF messaging and propagation-node store-and-forward, not a broadcast room. That's a legitimate design choice, not a bug, but it's a real functional gap if what you want is bitchat's "open the app, see what's nearby" experience. Second, when I did try a genuine BLE-only path, it simply couldn't find my other node after 5 minutes, and I gave up. I can't say from the outside whether that's a BLE interface immaturity issue, a discovery/announce-interval problem, or something specific to my test setup, but it meant I couldn't get a real BLE mesh test to complete at all, which is itself the finding.
+
+Net: on the metric this post actually cares about, phone-to-phone BLE messaging, Columba's BLE story isn't in the same place as the four purpose-built BLE mesh apps above. No public chat, a BLE-only test that didn't stay BLE-only, and a discovery that just didn't complete in five minutes of trying. Don't go in expecting a bitchat or Knit equivalent.
+
 ## Where that leaves things
 
-Briar is the most institutionally mature of the four. Dagger DI, a database migration chain running to nearly 50 versions, and reproducible Docker builds so published APKs can be verified against source all point the same way: it gets there by deliberately keeping its trust surface small, pairwise contacts only, no ad-hoc relay through strangers. Knit is the newest and, in some ways, the most cryptographically deliberate, with real thought put into the specific hard problem of combining forward secrecy with storage that has to evict old messages. bitchat's two versions are the most ambitious in scope. Physical message-carrying couriers are a genuinely novel idea, and they're paired with the most publicly candid self-assessment of the group, admitted weaknesses included. None of these are better or worse versions of the same app. They're four different, defensible answers to what off-grid messaging should trade away.
+Briar is the most institutionally mature of the four I read in full. Dagger DI, a database migration chain running to nearly 50 versions, and reproducible Docker builds so published APKs can be verified against source all point the same way: it gets there by deliberately keeping its trust surface small, pairwise contacts only, no ad-hoc relay through strangers. Knit is the newest and, in some ways, the most cryptographically deliberate, with real thought put into the specific hard problem of combining forward secrecy with storage that has to evict old messages. bitchat's two versions are the most ambitious in scope. Physical message-carrying couriers are a genuinely novel idea, and they're paired with the most publicly candid self-assessment of the group, admitted weaknesses included. None of these are better or worse versions of the same app. They're four different, defensible answers to what off-grid messaging should trade away. Columba, on the BLE experience I actually tested, isn't a fifth answer in that same league: no global chat, a "BLE-only" test that quietly rode a TCP path instead, and a node discovery that just never completed.
