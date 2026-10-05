@@ -5,7 +5,7 @@
 	
 	<link href="https://cramik.github.io/blog/feed/feed.xml" rel="self"/>
 	<link href="https://cramik.github.io/blog"/>
-	<updated>2026-09-28T00:00:00+00:00</updated>
+	<updated>2026-10-05T00:00:00+00:00</updated>
 	<id>https://cramik.github.io/blog/</id>
 	<author>
 		<name>Cramik</name>
@@ -1505,6 +1505,170 @@ checkLotteryResult(&amp;quot;yourusername&amp;quot;)
 &lt;h2 id=&quot;takeaways&quot;&gt;Takeaways &lt;a class=&quot;direct-link&quot; href=&quot;#takeaways&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;None of these three tools is wrong, exactly; they&#39;re just answering different questions with different depth. Prowler and ScubaGear largely agree where they overlap, which is reassuring: an independent CSPM and a government baseline converging on the same failing controls is a decent signal that those controls are actually worth fixing first. But each one also has a real blind spot the others don&#39;t cover (such as Prowler&#39;s device-threat correlation, ScubaGear&#39;s Entra PIM and Power Platform depth, or Secure Score&#39;s Purview and Defender for Office detail), so picking just one and calling it done leaves real gaps.&lt;/p&gt;
 &lt;p&gt;If you&#39;re doing this for real: fix what&#39;s unanimous first (risk-based conditional access, phishing-resistant MFA), then go through the two-out-of-three items (external sharing, app consent), and don&#39;t skip re-running ScubaGear with full Exchange/Security Reader access; that one gap in this run&#39;s permissions is hiding an entire baseline&#39;s worth of results.&lt;/p&gt;
+
+		</content>
+	</entry>
+	
+	<entry>
+		<title>I Pointed 13 SoCal Mesh Map Sites at the Same Bounding Box and Counted Nodes</title>
+		<link href="https://cramik.github.io/blog/posts/socal-mesh-map-census/"/>
+		<updated>2026-10-05T00:00:00+00:00</updated>
+		<id>https://cramik.github.io/blog/posts/socal-mesh-map-census/</id>
+		<content type="html">
+		  &lt;p&gt;Southern California has a surprising number of public mesh-network maps. Some are built on Meshtastic (LoRa radios, MQTT-aggregated), some on MeshCore (a newer LoRa protocol with its own map ecosystem), one on AREDN (amateur-radio mesh built on repurposed WiFi APs and bridges, reflashed to run on ham bands instead of consumer WiFi channels), one on Reticulum/RNS. Every one of them has its own idea of &amp;quot;SoCal,&amp;quot; its own default zoom, its own cherry-picked viewport screenshot that makes it look appropriately busy. None of that tells you which one actually has the most nodes in a given area, because they&#39;re never showing you the same area.&lt;/p&gt;
+&lt;p&gt;So I started from a list of 15 mesh map URLs, picked one bounding box, and pointed all of them at it. Two of the fifteen (&lt;code&gt;map.meshcore.dev&lt;/code&gt;, which just redirects to &lt;code&gt;map.meshcore.io&lt;/code&gt;, and &lt;code&gt;meshcore.co.uk/map.html&lt;/code&gt;, which iframes it) turned out to be the same dataset wearing a different hostname, so they&#39;re folded into &lt;code&gt;map.meshcore.io&lt;/code&gt;&#39;s entry below rather than listed as their own rows.&lt;/p&gt;
+&lt;h2 id=&quot;the-list&quot;&gt;The list &lt;a class=&quot;direct-link&quot; href=&quot;#the-list&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://rns.wcmesh.com/socal/&quot;&gt;rns.wcmesh.com/socal/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://cvcorescope.wcmesh.com/&quot;&gt;cvcorescope.wcmesh.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://livemap.wcmesh.com/socal/&quot;&gt;livemap.wcmesh.com/socal/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://map.meshcore.io/&quot;&gt;map.meshcore.io&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://map.wcmesh.com/&quot;&gt;map.wcmesh.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://mapping.kg6wxc.net/&quot;&gt;mapping.kg6wxc.net&lt;/a&gt; (AREDN)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://meshmap.net/&quot;&gt;meshmap.net&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://meshmapper.net/&quot;&gt;meshmapper.net&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://meshtastic.liamcottle.net/&quot;&gt;meshtastic.liamcottle.net&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://meshview.socalmesh.org/&quot;&gt;meshview.socalmesh.org&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;meshview.world&lt;/li&gt;
+&lt;li&gt;rmap.world (Reticulum/RNS)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://socal.meshmapper.net/&quot;&gt;socal.meshmapper.net&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;None of these expose a &amp;quot;give me nodes in this bbox&amp;quot; parameter in any consistent way (a couple don&#39;t expose it at all), so the actual approach was: open each site&#39;s JS, find the real fetch call underneath the Leaflet/MapLibre markers, hit that endpoint directly, pull everything it has, and filter to the box myself.&lt;/p&gt;
+&lt;h2 id=&quot;the-bounding-box&quot;&gt;The bounding box &lt;a class=&quot;direct-link&quot; href=&quot;#the-bounding-box&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Rather than eyeball something, I used the broadest span that still reads as &amp;quot;Southern California&amp;quot; without creeping into &amp;quot;the whole state&amp;quot; — the 10-county definition: Imperial, Kern, Los Angeles, Orange, Riverside, San Bernardino, San Diego, San Luis Obispo, Santa Barbara, Ventura.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;lat:  32.5 – 36.0 °N
+lon: -121.0 – -114.1 °W
+area: ≈ 246,700 km²
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Several sites&#39; own default map centers (LA basin, 33.8–34.2°N / −118.0 to −118.3°W, zoom 10–12) sit comfortably inside this box, which is a reasonable sanity check that it isn&#39;t too tight.&lt;/p&gt;
+&lt;h2 id=&quot;finding-the-real-api-in-each-one&quot;&gt;Finding the real API in each one &lt;a class=&quot;direct-link&quot; href=&quot;#finding-the-real-api-in-each-one&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This is the part that actually took the time. A few examples of what &amp;quot;reading the JS&amp;quot; turned up:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;http://meshtastic.liamcottle.net/&quot;&gt;meshtastic.liamcottle.net&lt;/a&gt;&lt;/strong&gt; — plain REST, &lt;code&gt;axios.get(&#39;/api/v1/nodes&#39;)&lt;/code&gt;, returns a JSON array with &lt;code&gt;latitude&lt;/code&gt;/&lt;code&gt;longitude&lt;/code&gt; as &lt;code&gt;1e7&lt;/code&gt;-scaled integers (standard Meshtastic protobuf convention).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;http://map.meshcore.io/&quot;&gt;map.meshcore.io&lt;/a&gt;&lt;/strong&gt; — no REST endpoint at all. The map pulls from &lt;code&gt;https://map.meshcore.io/api/v1/nodes?binary=1&amp;amp;short=1&lt;/code&gt;, a &lt;strong&gt;MessagePack-encoded binary blob&lt;/strong&gt; (65k nodes, 19MB), with field names shortened to single letters (&lt;code&gt;n&lt;/code&gt; = name, &lt;code&gt;t&lt;/code&gt; = type, &lt;code&gt;la&lt;/code&gt; = last_advert) to save bytes. Decoding it meant downloading their own bundled &lt;code&gt;msgpackr&lt;/code&gt; ESM module and running it directly in Node against the raw bytes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;http://rns.wcmesh.com/&quot;&gt;rns.wcmesh.com&lt;/a&gt;&lt;/strong&gt; and &lt;strong&gt;&lt;a href=&quot;http://livemap.wcmesh.com/&quot;&gt;livemap.wcmesh.com&lt;/a&gt;&lt;/strong&gt; — both are white-labeled instances of the same &amp;quot;MeshMapper&amp;quot; platform (&lt;code&gt;data-coverage-api-url=&amp;quot;https://meshmapper.net&amp;quot;&lt;/code&gt; baked into the page&#39;s config attributes), hitting a &lt;code&gt;/socal/snapshot&lt;/code&gt; endpoint that returns a live MQTT-fed object keyed by device ID.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;http://socal.meshmapper.net/&quot;&gt;socal.meshmapper.net&lt;/a&gt;&lt;/strong&gt; — a different data shape from the above despite the shared &amp;quot;MeshMapper&amp;quot; branding: &lt;code&gt;fetch(&#39;?ajax=1&amp;amp;request=map_data&amp;amp;lat=...&#39;)&lt;/code&gt;, returned through Cloudflare &lt;em&gt;only&lt;/em&gt; with a browser-like &lt;code&gt;User-Agent&lt;/code&gt; header (a bare &lt;code&gt;curl&lt;/code&gt; gets a silent 403). The payload isn&#39;t a node list, it&#39;s a &lt;strong&gt;wardrive log&lt;/strong&gt; — repeated signal-observation points over time, meant for coverage-heatmap rendering, not a live roster.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;http://meshmapper.net/&quot;&gt;meshmapper.net&lt;/a&gt;&lt;/strong&gt; (the bare root domain, as opposed to &lt;code&gt;socal.meshmapper.net&lt;/code&gt;) turned out to be a region-picker/chat portal, not a node map at all — its only discoverable endpoint was a &lt;code&gt;live_regions&lt;/code&gt; chat ping feed. Its actual SoCal node data lives one level down, at the &lt;code&gt;socal.meshmapper.net&lt;/code&gt; subdomain.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;http://mapping.kg6wxc.net/&quot;&gt;mapping.kg6wxc.net&lt;/a&gt;&lt;/strong&gt; — the odd one out protocol-wise (AREDN, not LoRa). Data ships as a 13MB &lt;strong&gt;literal JS file&lt;/strong&gt;, &lt;code&gt;data/map_data.js&lt;/code&gt;, with top-level &lt;code&gt;var&lt;/code&gt; assignments instead of pure JSON (&lt;code&gt;allDevices = {...};&lt;/code&gt;). Easiest way to parse that safely is &lt;code&gt;vm.runInContext()&lt;/code&gt; rather than regex-munging it into valid JSON.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;meshview.world&lt;/strong&gt; turned out to be an aggregator of other Meshview instances, &lt;code&gt;meshview.socalmesh.org&lt;/code&gt; included — of its 572 in-box nodes, 545 are literally re-published from &lt;code&gt;meshview.socalmesh.org&lt;/code&gt;&#39;s own feed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;results&quot;&gt;Results &lt;a class=&quot;direct-link&quot; href=&quot;#results&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Nodes with a position, inside the bbox, as of 2026-10-05:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Site&lt;/th&gt;
+&lt;th&gt;Protocol&lt;/th&gt;
+&lt;th style=&quot;text-align:right&quot;&gt;Raw in bbox&lt;/th&gt;
+&lt;th style=&quot;text-align:right&quot;&gt;Unique in bbox&lt;/th&gt;
+&lt;th&gt;Notes&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;http://socal.meshmapper.net/&quot;&gt;socal.meshmapper.net&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;MeshCore (wardrive log)&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;23,184&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;&lt;strong&gt;5,379&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Raw points are repeated signal observations, not distinct radios; deduped by public key (or rounded coords when no key)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;http://map.wcmesh.com/&quot;&gt;map.wcmesh.com&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;MeshCore (public feed)&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;1,479&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;&lt;strong&gt;1,479&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Of 4,975 total nodes in the feed, 2,893 have any location at all&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;http://map.meshcore.io/&quot;&gt;map.meshcore.io&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;MeshCore (official map)&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;1,172&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;&lt;strong&gt;1,172&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Out of 64,999 nodes worldwide&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;http://rns.wcmesh.com/socal&quot;&gt;rns.wcmesh.com/socal&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;MeshCore (live snapshot)&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;810&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;&lt;strong&gt;810&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Already deduped by device ID server-side&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;http://livemap.wcmesh.com/socal&quot;&gt;livemap.wcmesh.com/socal&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;MeshCore (live snapshot)&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;810&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;&lt;strong&gt;810&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Same backend software as &lt;a href=&quot;http://rns.wcmesh.com/&quot;&gt;rns.wcmesh.com&lt;/a&gt;, independent live moment&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;http://meshtastic.liamcottle.net/&quot;&gt;meshtastic.liamcottle.net&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Meshtastic (global)&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;578&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;&lt;strong&gt;578&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Out of 31,348 nodes worldwide (18,124 with any position)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;meshview.world&lt;/td&gt;
+&lt;td&gt;Meshtastic (aggregator)&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;572&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;&lt;strong&gt;572&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;545 of these are re-published from &lt;a href=&quot;http://meshview.socalmesh.org/&quot;&gt;meshview.socalmesh.org&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;http://meshview.socalmesh.org/&quot;&gt;meshview.socalmesh.org&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Meshtastic (SoCal instance)&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;559&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;&lt;strong&gt;559&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Out of 848 tracked nodes, 571 with position&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;http://mapping.kg6wxc.net/&quot;&gt;mapping.kg6wxc.net&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;AREDN (ham WiFi mesh)&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;416&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;&lt;strong&gt;416&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Out of 1,211 &amp;quot;mappable&amp;quot; devices; can include distant tunnel-linked nodes&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;http://meshmap.net/&quot;&gt;meshmap.net&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Meshtastic (global)&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;201&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;&lt;strong&gt;201&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Out of 9,784 nodes worldwide&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;http://cvcorescope.wcmesh.com/&quot;&gt;cvcorescope.wcmesh.com&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;MeshCore (analytics)&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;66&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;&lt;strong&gt;66&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Out of 984 total tracked, skews further north (Central Valley/Monterey) than SoCal&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;rmap.world&lt;/td&gt;
+&lt;td&gt;Reticulum/RNS (global)&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;10&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;&lt;strong&gt;10&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Out of 782 nodes worldwide&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;http://meshmapper.net/&quot;&gt;meshmapper.net&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;MeshCore (portal)&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;n/a&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;n/a&lt;/td&gt;
+&lt;td&gt;Root domain has no node-list API; see &lt;a href=&quot;http://socal.meshmapper.net/&quot;&gt;socal.meshmapper.net&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Raw and unique match for every site except &lt;code&gt;socal.meshmapper.net&lt;/code&gt;, since it&#39;s the only one serving a point-observation log instead of a node/device list.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Winner, on raw node count:&lt;/strong&gt; &lt;code&gt;socal.meshmapper.net&lt;/code&gt;, at 5,379. But that number needs the asterisk it&#39;s getting — it&#39;s a cumulative wardrive/coverage log, not a live snapshot, so it&#39;s counting every distinct radio ever heard in the box, not what&#39;s online right now. It isn&#39;t a fair fight against the live node lists above it.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Winner among actual live maps:&lt;/strong&gt; &lt;code&gt;map.wcmesh.com&lt;/code&gt;, at 1,479, followed by &lt;code&gt;map.meshcore.io&lt;/code&gt; at 1,172.&lt;/p&gt;
+&lt;h2 id=&quot;caveats-worth-keeping-in-mind&quot;&gt;Caveats worth keeping in mind &lt;a class=&quot;direct-link&quot; href=&quot;#caveats-worth-keeping-in-mind&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;rns.wcmesh.com&lt;/code&gt; and &lt;code&gt;livemap.wcmesh.com&lt;/code&gt; run identical front-end software and returned near-identical counts from two live snapshots taken seconds apart — one data point, not two.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;meshview.world&lt;/code&gt; substantially re-publishes &lt;code&gt;meshview.socalmesh.org&lt;/code&gt;&#39;s own numbers, so treat the two as correlated, not additive.&lt;/li&gt;
+&lt;li&gt;Several of these (liamcottle, &lt;a href=&quot;http://meshmap.net/&quot;&gt;meshmap.net&lt;/a&gt;, &lt;a href=&quot;http://map.meshcore.io/&quot;&gt;map.meshcore.io&lt;/a&gt;, rmap.world) are genuinely global trackers; their SoCal slice is a small fraction of a much bigger worldwide total, which is in the table above for context.&lt;/li&gt;
+&lt;li&gt;Cross-protocol totals don&#39;t sum to anything meaningful — a MeshCore node and a Meshtastic node are different radios on different networks, not duplicate sightings of the same device, so there&#39;s no &amp;quot;grand total node count across SoCal mesh&amp;quot; to report here, just per-map, per-protocol numbers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Raw data&lt;/strong&gt;: &lt;a href=&quot;https://cramik.github.io/blog/posts/socal-mesh-map-census/socal-mesh-map-census.csv&quot;&gt;socal-mesh-map-census.csv&lt;/a&gt; — every row above with both the protocol family and the specific sub-variant, plus the exact note text used to derive each number.&lt;/p&gt;
 
 		</content>
 	</entry>
