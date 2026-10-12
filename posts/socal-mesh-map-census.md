@@ -87,4 +87,4 @@ Raw and unique match for every site except `socal.meshmapper.net`, since it's th
 - Several of these (liamcottle, meshmap.net, map.meshcore.io, rmap.world) are genuinely global trackers; their SoCal slice is a small fraction of a much bigger worldwide total, which is in the table above for context.
 - Cross-protocol totals don't sum to anything meaningful — a MeshCore node and a Meshtastic node are different radios on different networks, not duplicate sightings of the same device, so there's no "grand total node count across SoCal mesh" to report here, just per-map, per-protocol numbers.
 
-**Raw data**: [socal-mesh-map-census.csv](socal-mesh-map-census.csv) — every row above with both the protocol family and the specific sub-variant, plus the exact note text used to derive each number.
+**Raw data**: [socal-mesh-map-census.csv](/posts/socal-mesh-map-census.csv) — every row above with both the protocol family and the specific sub-variant, plus the exact note text used to derive each number.

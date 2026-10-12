@@ -63,4 +63,4 @@ I built a quick random-badge picker out of the deduplicated dataset — hit it, 
 
 ---
 
-**Raw stats**: [issuer_stats_all_issued.csv](issuer_stats_all_issued.csv) (every issued badge, by issuer) and [issuer_stats_dedup_certs.csv](issuer_stats_dedup_certs.csv) (deduplicated by unique certification), both broken down by free/paid/none.
+**Raw stats**: [issuer_stats_all_issued.csv](/posts/issuer_stats_all_issued.csv) (every issued badge, by issuer) and [issuer_stats_dedup_certs.csv](/posts/issuer_stats_dedup_certs.csv) (deduplicated by unique certification), both broken down by free/paid/none.

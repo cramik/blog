@@ -55,4 +55,4 @@ For most one-shot scraping over interactive debugging, the low round-trip count 
 
 ---
 
-Full tool-mapping CSV: [camoufox_mcp_tool_comparison.csv](camoufox_mcp_tool_comparison.csv)
+Full tool-mapping CSV: [camoufox_mcp_tool_comparison.csv](/posts/camoufox_mcp_tool_comparison.csv)
