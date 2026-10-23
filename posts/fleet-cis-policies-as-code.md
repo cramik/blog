@@ -1,5 +1,5 @@
 ---
-title: Fleet Will Bulk-Import a Thousand Policies, But It Won't Tell You That From the UI
+title: Fleet Policies as Code (How to add CIS Benchmarks)
 description: Fleet's web UI only lets you add policies one at a time, and the GitOps docs talk about YAML conversion in the abstract. The actual bulk-import path is a CLI-only feature that isn't surfaced anywhere you'd naturally find it.
 date: 2026-10-23
 scheduled: 2026-10-23
