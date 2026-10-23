@@ -1,0 +1,154 @@
+project,repo,attach_method,tool_name,category,action,description
+BrowserMCP.io,BrowserMCP/mcp,chrome-extension,browser_navigate,navigation,write,Navigate to a URL (returns aria snapshot)
+BrowserMCP.io,BrowserMCP/mcp,chrome-extension,browser_go_back,navigation,write,Go back in history
+BrowserMCP.io,BrowserMCP/mcp,chrome-extension,browser_go_forward,navigation,write,Go forward in history
+BrowserMCP.io,BrowserMCP/mcp,chrome-extension,browser_snapshot,inspection,read,Accessibility/aria snapshot of page
+BrowserMCP.io,BrowserMCP/mcp,chrome-extension,browser_click,interaction,write,Click element identified by description
+BrowserMCP.io,BrowserMCP/mcp,chrome-extension,browser_hover,interaction,read,Hover over an element
+BrowserMCP.io,BrowserMCP/mcp,chrome-extension,browser_type,forms,write,Type text into an element
+BrowserMCP.io,BrowserMCP/mcp,chrome-extension,browser_select_option,forms,write,Select an option in a dropdown
+BrowserMCP.io,BrowserMCP/mcp,chrome-extension,browser_press_key,interaction,write,Press a key or key combination
+BrowserMCP.io,BrowserMCP/mcp,chrome-extension,browser_wait,utility,read,Wait a fixed number of seconds
+BrowserMCP.io,BrowserMCP/mcp,chrome-extension,browser_get_console_logs,console,read,Get browser console logs
+BrowserMCP.io,BrowserMCP/mcp,chrome-extension,browser_screenshot,screenshot,read,Take a PNG screenshot
+BrowserTools MCP,AgentDeskAI/browser-tools-mcp,chrome-extension,getConsoleLogs,console,read,Console output filterable and paged
+BrowserTools MCP,AgentDeskAI/browser-tools-mcp,chrome-extension,getConsoleErrors,console,read,Error-level console output and exceptions
+BrowserTools MCP,AgentDeskAI/browser-tools-mcp,chrome-extension,getNetworkLogs,network,read,XHR/fetch requests with status timing bodies
+BrowserTools MCP,AgentDeskAI/browser-tools-mcp,chrome-extension,getNetworkErrors,network,read,Failed and 4xx/5xx requests
+BrowserTools MCP,AgentDeskAI/browser-tools-mcp,chrome-extension,getSelectedElement,inspection,read,Element selected in Elements panel
+BrowserTools MCP,AgentDeskAI/browser-tools-mcp,chrome-extension,getPageInfo,inspection,read,Which page the browser is on
+BrowserTools MCP,AgentDeskAI/browser-tools-mcp,chrome-extension,getConnectionStatus,diagnostics,read,Extension connection state and capture counts
+BrowserTools MCP,AgentDeskAI/browser-tools-mcp,chrome-extension,listBrowserTabs,tabs,read,Every tab with DevTools open plus ids
+BrowserTools MCP,AgentDeskAI/browser-tools-mcp,chrome-extension,takeScreenshot,screenshot,read,Screenshot returned as image plus path
+BrowserTools MCP,AgentDeskAI/browser-tools-mcp,chrome-extension,refreshBrowser,navigation,write,Reload the inspected tab
+BrowserTools MCP,AgentDeskAI/browser-tools-mcp,chrome-extension,getBrowserStorage,storage,read,localStorage sessionStorage and cookies (gated)
+BrowserTools MCP,AgentDeskAI/browser-tools-mcp,chrome-extension,wipeLogs,diagnostics,write,Clear captured telemetry
+BrowserTools MCP,AgentDeskAI/browser-tools-mcp,chrome-extension,runAccessibilityAudit,audit,read,Lighthouse accessibility audit
+BrowserTools MCP,AgentDeskAI/browser-tools-mcp,chrome-extension,runPerformanceAudit,audit,read,Lighthouse performance audit with CWV
+BrowserTools MCP,AgentDeskAI/browser-tools-mcp,chrome-extension,runSEOAudit,audit,read,Lighthouse SEO audit
+BrowserTools MCP,AgentDeskAI/browser-tools-mcp,chrome-extension,runBestPracticesAudit,audit,read,Lighthouse best-practices audit
+mcp-chrome,hangwin/mcp-chrome,chrome-extension,get_windows_and_tabs,tabs,read,List all browser windows and tabs
+mcp-chrome,hangwin/mcp-chrome,chrome-extension,chrome_navigate,navigation,write,Navigate to URL with viewport control
+mcp-chrome,hangwin/mcp-chrome,chrome-extension,chrome_close_tabs,tabs,write,Close specific tabs or windows
+mcp-chrome,hangwin/mcp-chrome,chrome-extension,chrome_switch_tab,tabs,write,Switch the active tab
+mcp-chrome,hangwin/mcp-chrome,chrome-extension,chrome_go_back_or_forward,navigation,write,Navigate browser history
+mcp-chrome,hangwin/mcp-chrome,chrome-extension,chrome_screenshot,screenshot,read,Screenshot with element/full-page/custom size
+mcp-chrome,hangwin/mcp-chrome,chrome-extension,chrome_network_capture_start,network,write,Start webRequest network capture
+mcp-chrome,hangwin/mcp-chrome,chrome-extension,chrome_network_capture_stop,network,read,Stop capture and return collected data
+mcp-chrome,hangwin/mcp-chrome,chrome-extension,chrome_network_debugger_start,network,write,Start Debugger API capture with bodies
+mcp-chrome,hangwin/mcp-chrome,chrome-extension,chrome_network_debugger_stop,network,read,Stop debugger capture and return bodies
+mcp-chrome,hangwin/mcp-chrome,chrome-extension,chrome_network_request,network,write,Send a custom HTTP request
+mcp-chrome,hangwin/mcp-chrome,chrome-extension,chrome_read_page,inspection,read,Accessibility-like tree with ref ids
+mcp-chrome,hangwin/mcp-chrome,chrome-extension,search_tabs_content,search,read,Semantic vector search across open tabs
+mcp-chrome,hangwin/mcp-chrome,chrome-extension,chrome_get_web_content,inspection,read,Extract HTML or text from a page
+mcp-chrome,hangwin/mcp-chrome,chrome-extension,chrome_get_interactive_elements,inspection,read,Find clickable elements (deprecated)
+mcp-chrome,hangwin/mcp-chrome,chrome-extension,chrome_computer,interaction,write,Unified click/scroll/type/hover/wait action
+mcp-chrome,hangwin/mcp-chrome,chrome-extension,chrome_click_element,interaction,write,Click by ref selector or coordinates
+mcp-chrome,hangwin/mcp-chrome,chrome-extension,chrome_fill_or_select,forms,write,Fill a form field or select an option
+mcp-chrome,hangwin/mcp-chrome,chrome-extension,chrome_keyboard,interaction,write,Simulate keyboard input or shortcuts
+mcp-chrome,hangwin/mcp-chrome,chrome-extension,chrome_console,console,read,Capture and retrieve page console output
+mcp-chrome,hangwin/mcp-chrome,chrome-extension,chrome_inject_script,script,write,Inject a content script into a page
+mcp-chrome,hangwin/mcp-chrome,chrome-extension,chrome_send_command_to_inject_script,script,write,Send command to injected content script
+mcp-chrome,hangwin/mcp-chrome,chrome-extension,chrome_history,data,read,Search browser history with time filters
+mcp-chrome,hangwin/mcp-chrome,chrome-extension,chrome_bookmark_search,data,read,Find bookmarks by keyword
+mcp-chrome,hangwin/mcp-chrome,chrome-extension,chrome_bookmark_add,data,write,Add a bookmark with folder support
+mcp-chrome,hangwin/mcp-chrome,chrome-extension,chrome_bookmark_delete,data,write,Delete a bookmark by id or URL
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_navigate,navigation,write,Navigate to URL (reuses tab or new_tab)
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_get_page_content,inspection,read,Get page text or HTML
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_screenshot,screenshot,read,Screenshot via Chrome Debugger
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_execute_script,script,write,Run JavaScript in page context
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_extract_list,inspection,read,Read every row of a long/virtualised list
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_click,interaction,write,Click by CSS or text selector
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_fill,forms,write,Fill an input field
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_press_key,interaction,write,Keyboard events with modifiers
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_scroll,interaction,write,Scroll to element or by pixels
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_wait,utility,read,Wait for an element to appear
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_hover,interaction,read,Hover for tooltips/dropdowns
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_select_option,forms,write,Native select and custom dropdowns
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_set_combobox,forms,write,Autocomplete/combobox type then pick option
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_set_date,forms,write,Robust date inputs across frameworks
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_dismiss_overlays,interaction,write,Bulk-dismiss popups/modals/banners
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_handle_dialog,interaction,write,Accept/dismiss native dialogs
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_double_click,interaction,write,True double-click
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_right_click,interaction,write,Right-click for context menus
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_click_xy,interaction,write,Click at raw viewport coordinates
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_reattach_debugger,diagnostics,write,Force re-attach the Chrome debugger
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_list_tabs,tabs,read,List this session's tabs only
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_switch_tab,tabs,write,Switch to tab by id
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_close_tab,tabs,write,Close a session-owned tab
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_get_new_tab,tabs,read,Get most recently opened tab (OAuth)
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_list_frames,frames,read,List iframes on the page
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_select_frame,frames,write,Execute JS in a specific iframe
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_fetch,network,write,HTTP request from extension (bypasses CORS)
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_wait_for_network,network,read,Wait for a specific API call to complete
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_extract_token,data,read,Extract API token from provider dashboard
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_solve_captcha,captcha,write,Detect and solve CAPTCHAs incl ask_human
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_ask_user,human-in-the-loop,write,Show overlay dialog for 2FA/CAPTCHA/input
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_get_cookies,storage,read,Get cookies for a site this session has open
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_set_cookies,storage,write,Set cookies for a domain
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_get_local_storage,storage,read,Read localStorage from page
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_set_local_storage,storage,write,Write localStorage values
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_console_logs,console,read,Capture console.log/warn/error
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_upload_file,forms,write,Upload files via Chrome Debugger API
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_drop_file,forms,write,Upload via drop-zones and hidden inputs
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_provide_feedback,diagnostics,read,Self-check and report in one call
+Agent360 Browser MCP,Agent360dk/browser-mcp,chrome-extension+debugger,browser_about,diagnostics,read,Project info and prefilled feedback links
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,click,input,write,Click on an element
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,drag,input,write,Drag an element onto another
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,fill,input,write,Type into input/textarea or select option
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,fill_form,input,write,Fill many form elements in one call
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,handle_dialog,input,write,Accept or dismiss a browser dialog
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,hover,input,read,Hover over an element
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,press_key,input,write,Press a key or combination
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,type_text,input,write,Type text into focused input
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,upload_file,input,write,Upload files through an element
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,click_at,input,write,Click at coordinates (experimental vision)
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,close_page,navigation,write,Close a page
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,list_pages,navigation,read,List open pages
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,navigate_page,navigation,write,Go to URL or back/forward/reload
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,new_page,navigation,write,Open a new tab and load a URL
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,select_page,navigation,write,Select a page as context
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,wait_for,utility,read,Wait for text to appear
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,emulate,emulation,write,Emulate color scheme/CPU/network/UA/viewport
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,resize_page,emulation,write,Resize the page window
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,performance_analyze_insight,performance,read,Drill into a performance insight
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,performance_start_trace,performance,write,Start a performance trace
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,performance_stop_trace,performance,write,Stop the active trace
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,get_network_request,network,read,Get a network request by reqid
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,list_network_requests,network,read,List recent requests for the page
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,evaluate_script,script,write,Evaluate JavaScript in the page
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,get_console_message,console,read,Get a console message by id
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,get_css_styles,debugging,read,Matched/inherited CSS for an element
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,lighthouse_audit,audit,read,Lighthouse accessibility/SEO/best-practices
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,list_console_messages,console,read,List console messages
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,take_screenshot,screenshot,read,Take a page or element screenshot
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,take_snapshot,inspection,read,Text snapshot of a11y tree with uids
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,screencast_start,screenshot,write,Start a screencast video
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,screencast_stop,screenshot,write,Stop the screencast
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,take_heapsnapshot,memory,read,Capture a JS heap snapshot
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,analyze_heapsnapshot_contexts,memory,read,Rank closure contexts holding dead fields
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,close_heapsnapshot,memory,write,Close a cached heap snapshot
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,compare_heapsnapshots,memory,read,Compare two heap snapshots
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,get_heapsnapshot_class_nodes,memory,read,Instances of a class with ids
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,get_heapsnapshot_details,memory,read,Heap snapshot stats and aggregates
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,get_heapsnapshot_dominators,memory,read,Dominator chain for a node
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,get_heapsnapshot_duplicate_strings,memory,read,Duplicate strings grouped by value
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,get_heapsnapshot_edges,memory,read,Outgoing references for a node
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,get_heapsnapshot_object_details,memory,read,Details for one object by node id
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,get_heapsnapshot_retainers,memory,read,Retainers for a node
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,get_heapsnapshot_retaining_paths,memory,read,Retaining paths for a node
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,get_heapsnapshot_summary,memory,read,Heap snapshot summary stats
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,query_heapsnapshot_objects,memory,read,Query objects by filters
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,install_extension,extensions,write,Install an unpacked Chrome extension
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,list_extensions,extensions,read,List installed Chrome extensions
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,reload_extension,extensions,write,Reload an extension by id
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,trigger_extension_action,extensions,write,Trigger an extension default action
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,uninstall_extension,extensions,write,Uninstall an extension by id
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,execute_3p_developer_tool,third-party,write,Execute a page third-party developer tool
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,list_3p_developer_tools,third-party,read,List page third-party developer tools
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,execute_webmcp_tool,webmcp,write,Execute a WebMCP tool exposed by page
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,list_webmcp_tools,webmcp,read,List WebMCP tools the page exposes
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,get_os_app_state,pwa,read,OS integration state of an installed PWA
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,install_pwa,pwa,write,Install a PWA without a dialog
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,launch_pwa,pwa,write,Launch an installed PWA
+chrome-devtools-mcp,ChromeDevTools/chrome-devtools-mcp,cdp,uninstall_pwa,pwa,write,Uninstall a PWA
