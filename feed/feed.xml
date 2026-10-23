@@ -1954,7 +1954,7 @@ location: https://chromewebstore.google.com/detail/donodhjdnkockalocpljpfahelbfo
 	</entry>
 	
 	<entry>
-		<title>Fleet Will Bulk-Import a Thousand Policies, But It Won&#39;t Tell You That From the UI</title>
+		<title>Fleet Policies as Code (How to add CIS Benchmarks)</title>
 		<link href="https://cramik.github.io/blog/posts/fleet-cis-policies-as-code/"/>
 		<updated>2026-10-23T00:00:00+00:00</updated>
 		<id>https://cramik.github.io/blog/posts/fleet-cis-policies-as-code/</id>
