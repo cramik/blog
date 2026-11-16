@@ -6,7 +6,8 @@ templateClass: tmpl-post
 
 
 {% block extraArticleHeader %}
-   {% set wc = content | striptags | wordcount %}
+   {# chart figures carry axis labels and tooltips, not reading text #}
+   {% set wc = content | replace(r/<figure[\s\S]*?<\/figure>/g, "") | striptags | wordcount %}
    {% set wPerMinute = (wc / 240) + 1 %}
    <aside>
      {{ wPerMinute | round }} min read.

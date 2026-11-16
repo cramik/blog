@@ -1,0 +1,36 @@
+venue,platform,instrument,kind,feed,premium_vs_cme_es_pts,premium_vs_cme_bps,tracking_error_es_pts,pct_time_within_2_5pts_of_median,lag_s,lag_fri_session_s,lag_mon_session_s,reaction_s,transport_ms,changes_per_min_cash,changes_per_min_overnight,changes_per_min_weekend,pct_time_flat_60s,weekend_move_es_pts,reopen_miss_es_pts
+TV,CME via TradingView,ES1! E-mini S&P futures,CME futures,socket (600 s delayed),,,,,,,,,,25.23,17.13,0.1,,,
+IMPLIEDOPEN,ImpliedOpen,ES futures level,ES aggregator,REST,0.0,0.0,2.95,37.4,3.44,3.0,6.25,3.7,,4.84,4.38,0.0,66.9,1.0,-35.25
+KALSHI,Kalshi,KXUS500PERP,Regulated perp,REST,,,5.07,35.7,0.35,0.25,1.0,2.78,2844,4.76,2.09,0.0,76.0,-1.54,-37.79
+POLY-PERP,Polymarket Perps,SP500-USD,Index perp,socket,,,7.78,56.7,-2.79,-3.0,-1.5,0.0,172,22.17,13.25,5.13,28.2,1.55,-34.7
+TRADEXYZ,trade[XYZ] / Hyperliquid,xyz:SP500,Index perp,socket,,,2.99,59.6,-2.54,-2.75,-1.25,0.0,437,32.53,21.31,18.21,21.6,0.65,-35.6
+BG-SP500,Bitget,SP500USDT,Index perp,socket,19.38,25.5,9.58,0.4,,,,8.78,187,0.97,0.29,0.18,87.2,14.74,-21.51
+MX-500,MEXC,SPX500_USDT,Index perp,socket,-0.89,-1.2,3.25,37.8,5.5,5.5,5.5,3.48,1773,6.14,5.64,5.54,21.6,8.62,-27.63
+MX-500C,MEXC,SPX500_USDC,Index perp,socket,-0.9,-1.2,3.24,55.1,8.07,8.0,8.5,5.91,1798,5.55,5.46,5.5,21.6,-2.31,-38.56
+MX-500D1,MEXC,SPX500_USD1,Index perp,socket,-0.95,-1.2,3.19,53.7,9.83,10.0,8.75,6.74,1795,5.45,5.49,5.49,21.6,-0.2,-36.45
+HTX-500,HTX,SPX500-USDT,Index perp,socket,0.03,0.0,4.14,52.7,,,,19.78,234,1.57,1.62,1.4,30.8,0.2,-36.05
+OKX-500,OKX,US500-USDT-SWAP,Index perp,socket,3.02,4.0,6.59,18.7,,,,22.61,234,0.24,0.2,0.09,92.2,-1.91,-38.16
+GATE,Gate,SPX500_USDT,Index perp,socket,11.55,15.2,6.34,2.9,0.0,,0.0,7.36,171,0.47,0.27,0.05,92.7,14.81,-21.44
+BITGET,Bitget,SPYUSDT,SPY perp,socket,1.32,1.7,4.9,46.0,-0.68,-0.75,-0.25,1.64,184,2.88,1.81,0.8,59.3,-8.03,-44.28
+MEXC,MEXC,SPY_USDT,SPY perp,socket,0.8,1.1,5.44,46.2,4.97,5.0,4.75,4.6,1766,5.62,5.59,5.55,21.6,-8.64,-44.89
+HTX,HTX,SPY-USDT,SPY perp,socket,2.77,3.6,4.79,46.8,,,,32.91,278,0.31,0.27,0.3,77.7,-12.45,-48.7
+DERIBIT,Deribit,SPY_USDC-PERPETUAL,SPY perp,socket,-9.64,-12.7,5.04,0.7,,,,11.29,334,1.34,0.71,0.3,78.1,-1.31,-37.56
+GT-SPY,Gate,SPY_USDT,SPY perp,socket,1.46,1.9,5.08,46.5,-1.11,-1.25,-0.25,0.0,168,17.5,11.12,9.77,24.3,-8.33,-44.58
+OKX-SWAP,OKX,SPY-USDT-SWAP,SPY perp,socket,1.04,1.4,4.65,52.2,-1.61,-1.75,-0.75,0.0,233,10.75,3.78,2.53,33.6,-7.03,-43.28
+ARCUS,Arcus,SPY-USD,SPY perp,REST,-11.8,-15.5,3.68,0.0,-1.29,-1.5,0.0,0.0,,13.27,5.91,2.83,33.3,-4.32,-40.57
+BG-RSPY,Bitget,RSPY spot,Tokenized SPY (CEX),socket,-9.94,-13.1,6.23,0.0,1.82,1.75,2.25,0.0,178,25.46,5.04,0.68,63.3,-10.39,-46.64
+OKX-XSPY,OKX,XSPY-USDT,Tokenized SPY (CEX),socket,-3.28,-4.3,5.68,19.7,-0.72,-0.75,-0.5,1.99,233,4.19,1.6,0.97,61.8,-6.63,-42.88
+OKX-XSPC,OKX,XSPY-USDC,Tokenized SPY (CEX),socket,-10.72,-14.1,11.16,7.4,-0.25,,-0.25,21.73,233,0.56,0.18,0.14,91.6,25.81,-10.44
+PHEMEX,Phemex,SPYon spot,Tokenized SPY (CEX),socket,-31.9,-42.0,39.81,0.5,,,,16.14,204,1.68,1.22,0.58,73.6,-22.8,-59.05
+BN-SPYB,Binance,SPYB spot,Tokenized SPY (CEX),REST,-4.62,-6.1,4.97,3.9,-0.36,-0.5,0.5,0.0,745,5.1,2.1,1.15,52.8,-9.84,-46.09
+SPYB-SOL,Jupiter (Solana),SPYB,Tokenized SPY (DEX),REST,-14.87,-19.6,25.15,3.8,,,,35.25,,0.09,0.08,0.15,93.6,-10.68,-46.93
+SPYx-SOL,Jupiter (Solana),SPYx xStock,Tokenized SPY (DEX),REST,-12.41,-16.3,7.18,1.3,,,,2.68,,4.0,2.62,1.83,40.4,-2.39,-38.64
+SPYON-SOL,Jupiter (Solana),SPYon Ondo,Tokenized SPY (DEX),REST,-8.71,-11.5,58.84,3.3,,,,,,0.05,0.01,0.02,98.8,-76.4,-112.65
+RH-SPY,Dexscreener (Robinhood Chain),SPY,Tokenized SPY (DEX),REST,2.86,3.8,6.42,50.9,,,,23.94,,1.26,1.1,1.0,43.1,-7.93,-44.18
+ETH-SPYON,Dexscreener (Ethereum),SPYon Ondo,Tokenized SPY (DEX),REST,64.03,84.2,14.84,0.0,,,,,,0.05,0.02,0.01,98.6,-7.12,-43.37
+BSC-SPYON,Dexscreener (BSC),SPYon Ondo,Tokenized SPY (DEX),REST,65.03,85.6,16.46,0.0,,,,,,0.02,0.01,0.01,99.2,-30.23,-66.48
+BSC-SPYB,Dexscreener (BSC),SPYB,Tokenized SPY (DEX),REST,8.06,10.6,5.79,28.4,,,,24.45,,1.31,0.75,0.44,62.8,-11.25,-47.5
+SPYx-DEX,Dexscreener (Solana),SPYx xStock,Tokenized SPY (DEX),REST,47.46,62.5,5.63,0.0,,,,24.96,,1.51,1.1,0.8,47.4,-4.62,-40.87
+SPYB-DEX,Dexscreener (Solana),SPYB,Tokenized SPY (DEX),REST,-9.23,-12.1,23.55,6.5,,,,25.31,,0.08,0.02,0.04,97.5,-25.73,-61.98
+RH-POOL,Uniswap v3 (Robinhood Chain),SPY/USDG pool,Tokenized SPY (DEX),chain push,3.41,4.5,6.91,53.1,-0.65,-0.75,0.0,4.42,849,1.78,0.55,0.39,78.6,-8.71,-44.96
+BSC-POOL,PancakeSwap v3 (BSC),SPYB/USDT pool,Tokenized SPY (DEX),chain push,8.72,11.5,1.58,8.2,,,,,,0.01,0.01,0.0,99.8,-20.98,-57.23
